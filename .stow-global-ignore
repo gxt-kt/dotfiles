@@ -1,6 +1,5 @@
 \.git
 \.gitignore
-\README.md
 
 .+~          # emacs backup files
 \#.*\#       # emacs autosave files
