@@ -8,7 +8,7 @@ Use `stow` to manage my dotfiles.
 ```
 cd ~
 
-git clone 
+git clone git@github.com:gxt-kt/dotfiles.git
 
 cd dotfiles
 
