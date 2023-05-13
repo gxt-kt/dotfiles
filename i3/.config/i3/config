@@ -168,7 +168,7 @@ bindsym $mod+shift+d scratchpad show
 bindsym $mod+shift+s exec --no-startup-id "flameshot gui"
 bindsym $mod+v       exec --no-startup-id "copyq toggle"
 bindsym $mod+n       exec --no-startup-id "alacritty -t term-float --class floatingTerminal"
-bindsym Mod1+space   exec --no-startup-id "crow"
+# bindsym Mod1+space   exec --no-startup-id "crow"
 
 bindsym $mod+b exec --no-startup-id polybar-msg cmd toggle
 
