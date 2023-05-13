@@ -7,14 +7,9 @@ Use `stow` to manage my dotfiles.
 
 ```
 cd ~
-
 git clone git@github.com:gxt-kt/dotfiles.git
-
 cd dotfiles
-
-stow .
-
-stow *
+stow -t ~ */
 ```
 
 If you have config file exists, there may some erros. Backup your original files and remove them. Then try `stow *` again.
