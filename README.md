@@ -12,7 +12,7 @@ cd dotfiles
 stow -t ~ */
 ```
 
-If you have config file exists, there may some erros. Backup your original files and remove them. Then try `stow *` again.
+If you have config file exists, there may some erros. Backup your original files and remove them. Then try `stow -t ~ */` again.
 
 Or you can also stow single directory like `stow zsh`, this will only link the files under zsh.
 
