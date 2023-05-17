@@ -28,7 +28,6 @@ exec --no-startup-id dex --autostart --environment i3
 
 exec --no-startup-id sh ~/.config/polybar/launch.sh
 exec --no-startup-id picom --experimental-backends
-# exec --no-startup-id yakuake
 exec --no-startup-id cfw &
 exec --no-startup-id crow &
 # exec --no-startup-id blueman-manager &
@@ -77,12 +76,20 @@ tiling_drag modifier titlebar
 bindsym $mod+Return exec --no-startup-id alacritty
 
 # kill focused window
-bindsym $mod+Shift+q exec --no-startup-id "/home/gxt_kt/miniconda3/bin/python ~/.config/i3/KillWindow.py  >> ~/i3_log "
+bindsym $mod+Shift+q exec --no-startup-id $python ~/.config/i3/KillWindow.py  >> ~/i3_log 
 bindsym $mod+Control+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+s exec --no-startup-id rofi -show drun -show-icons 
 
+# exec --no-startup-id yakuake
+# bindsym $mod+Escape exec --no-startup-id yakuake
+# bindsym $mod+` exec --no-startup-id yakuake
+
+bindsym $mod+Escape exec --no-startup-id $python $HOME/.config/i3/scratchpad.py
+bindsym $mod+grave exec --no-startup-id $python $HOME/.config/i3/scratchpad.py 
+
+# bindsym --release Ctrl+n exec --no-startup-id bash $HOME/.config/i3/ctrl_n_p.sh
 
 bindsym $mod+e exec --no-startup-id dolphin
 # A more modern dmenu replacement is rofi:
@@ -198,6 +205,7 @@ set $ws14 "14"
 set $ws15 "15"
 set $ws16 "16"
 set $ws17 "17"
+
 
 
 # switch to workspace
@@ -336,27 +344,30 @@ for_window [window_role="task_dialog"] floating enable
 for_window [title="Preferences$"] floating enable
 for_window [class="(?i)mplayer"] floating enable
 
-for_window [class="yakuake"] floating enable ; border none
+for_window [class="yakuake"] floating enable ;
 for_window [class="systemsettings"] floating enable
 for_window [class="plasmashell"] floating enable;
-for_window [class="Plasma"] floating enable; border none
-for_window [title="plasma-desktop"] floating enable; border none
-for_window [title="win7"] floating enable; border none
-for_window [class="krunner"] floating enable; border none
-for_window [class="Kmix"] floating enable; border none
-for_window [class="Klipper"] floating enable; border none
-for_window [class="Plasmoidviewer"] floating enable; border none
+for_window [class="Plasma"] floating enable;
+for_window [title="plasma-desktop"] floating enable;
+for_window [title="win7"] floating enable;
+# for_window [class="krunner"] floating enable;
+for_window [class="Kmix"] floating enable;
+for_window [class="Klipper"] floating enable;
+for_window [class="Plasmoidviewer"] floating enable;
 for_window [class="(?i)*nextcloud*"] floating disable
 # for_window [class="plasmashell" window_type="notification"] border none, move position 70 ppt 81 ppt
 for_window [class="plasmashell" window_type="notification"] border none, move position 40 ppt 80 ppt
-# for_window [class="plasmashell"] border none ; move position 1000 ppt 500 ppt
 no_focus [class="plasmashell" window_type="notification"]
+# for_window [class="plasmashell"] border none ; move position 1000 ppt 500 ppt
 
 
-for_window [title="Desktop @ QRect.*"] kill; floating enable; border none
+# for_window [class="krunner"] , move position 40 ppt 50 ppt
+for_window [class="yakuake"] , move position 20 ppt 20 ppt
+
+for_window [title="Desktop @ QRect.*"] kill; floating enable;
 
 
 
 # win+数字切换工作区，第二次返回之前的工作区
-workspace_auto_back_and_forth yes
+# workspace_auto_back_and_forth yes
 
