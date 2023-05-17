@@ -86,8 +86,11 @@ bindsym $mod+s exec --no-startup-id rofi -show drun -show-icons
 # bindsym $mod+Escape exec --no-startup-id yakuake
 # bindsym $mod+` exec --no-startup-id yakuake
 
-bindsym $mod+Escape exec --no-startup-id $python $HOME/.config/i3/scratchpad.py
-bindsym $mod+grave exec --no-startup-id $python $HOME/.config/i3/scratchpad.py 
+bindsym $mod+Escape exec --no-startup-id $python $HOME/.config/i3/scratchpad.py scratchpad
+bindsym $mod+grave exec --no-startup-id $python $HOME/.config/i3/scratchpad.py scratchpad
+
+bindsym $mod+w exec --no-startup-id $python $HOME/.config/i3/scratchpad.py WeChat
+bindsym $mod+q exec --no-startup-id $python $HOME/.config/i3/scratchpad.py QQ
 
 # bindsym --release Ctrl+n exec --no-startup-id bash $HOME/.config/i3/ctrl_n_p.sh
 
@@ -283,8 +286,8 @@ for_window [title="QQ"]         floating enable
 for_window [title="钉钉"]         floating enable
 for_window [title="图片查看"]         floating enable
 for_window [title="WeChat"]         floating enable
-for_window [class="wechat.exe"]         floating enable
-for_window [class="Wine"]         floating enable
+# for_window [class="wechat.exe"]         floating enable
+# for_window [class="Wine"]         floating enable
 for_window [class="dolphin"]         floating enable
 for_window [class="copyq"]         floating enable
 for_window [title="Crow Translate"]         floating enable
@@ -302,20 +305,6 @@ client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
-
-# bar {
-#     colors {
-#         background #000000
-#         statusline #ffffff
-#         separator #666666
-#         # <colorclass>  <border> <background> <text>
-#         focused_workspace  #4c7899 #285577 #ffffff
-#         active_workspace   #333333 #5f676a #ffffff
-#         inactive_workspace #333333 #222222 #888888
-#         urgent_workspace   #2f343a #900000 #ffffff
-#         binding_mode       #2f343a #900000 #ffffff
-#     }
-# }
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)

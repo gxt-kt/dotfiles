@@ -12,9 +12,9 @@ kill_disable_kill = [
 ]
 
 kill_user = {
-    # "WeChat": "/opt/apps/com.qq.weixin.deepin/files/run.sh --wake",
-    "WeChat": "move scratchpad",
     "scratchpad": "move scratchpad",
+    "WeChat": "move scratchpad",
+    "QQ": "move scratchpad",
 }
 
 
