@@ -82,8 +82,8 @@ font:
 window:
   #  opacity: 0.8
   dimensions:
-    columns: 80
-    lines: 24
+    columns: 90
+    lines: 28
     #selection:
     #save_to_clipboard: true
 
