@@ -2,8 +2,10 @@
 
 import subprocess
 
+import time
 
-def ChooseYesOrNo(title:str=" ")->str:
+def ChooseYesOrNo(title:str=" ",delay=0.0)->str:
+    time.sleep(delay)
     #      key:display information   value:function
     choose = {
         "√ YES": "yes",

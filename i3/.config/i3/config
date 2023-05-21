@@ -72,6 +72,9 @@ tiling_drag modifier titlebar
 # smart_borders on
 # default_border pixel 3
 
+# single win key
+# bindcode --release 133 exec --no-startup-id $python ~/.scripts/rofi/power.py
+
 # start a terminal
 bindsym $mod+Return exec --no-startup-id alacritty
 

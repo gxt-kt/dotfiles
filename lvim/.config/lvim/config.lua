@@ -5,8 +5,6 @@ filled in as strings with either
 a global executable or a path to
 an executable
 ]]
-
-
 local home = os.getenv("HOME")
 -- package.path = home .. "/.dotfiles/lvim/?.lua"
 package.path = "/home/gxt_kt/.config/lvim/?.lua;"
@@ -53,24 +51,24 @@ vim.opt.signcolumn = "yes:2"
 
 
 -- This will not change the clipboard content in V mode
-lvim.keys.visual_mode["p"] = '"_dP'
+lvim.keys.visual_mode["p"]            = '"_dP'
 
-lvim.leader                          = ","
-lvim.keys.insert_mode["jj"]          = "<Esc>"
-lvim.keys.normal_mode["<leader>\\"]  = "<C-w>v"
-lvim.keys.normal_mode["<leader>-"]   = "<C-w>s"
-lvim.keys.normal_mode["<C-s>"]       = ":w<cr>"
-lvim.keys.normal_mode["<S-h>"]       = false -- default combine to ^
-lvim.keys.normal_mode["<S-h>"]       = ":BufferLineCyclePrev<CR>"
-lvim.keys.normal_mode["<S-l>"]       = false -- default combine to $
-lvim.keys.normal_mode["<S-l>"]       = ":BufferLineCycleNext<CR>"
+lvim.leader                           = ","
+lvim.keys.insert_mode["jj"]           = "<Esc>"
+lvim.keys.normal_mode["<leader>\\"]   = "<C-w>v"
+lvim.keys.normal_mode["<leader>-"]    = "<C-w>s"
+lvim.keys.normal_mode["<C-s>"]        = ":w<cr>"
+lvim.keys.normal_mode["<S-h>"]        = false -- default combine to ^
+lvim.keys.normal_mode["<S-h>"]        = ":BufferLineCyclePrev<CR>"
+lvim.keys.normal_mode["<S-l>"]        = false -- default combine to $
+lvim.keys.normal_mode["<S-l>"]        = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["H"] = "^"
 -- lvim.keys.normal_mode["L"] = "$"
 -- lvim.keys.normal_mode["Q"] = "q"
-lvim.keys.normal_mode["<leader>h"]   = ":nohl<cr>"
-lvim.keys.normal_mode["<leader>j"]   = ":ClangdSwitchSourceHeader<cr>"
-lvim.builtin.which_key.mappings.o    = nil
-lvim.builtin.which_key.mappings["o"] = {
+lvim.keys.normal_mode["<leader>h"]    = ":nohl<cr>"
+lvim.keys.normal_mode["<leader>j"]    = ":ClangdSwitchSourceHeader<cr>"
+lvim.builtin.which_key.mappings.o     = nil
+lvim.builtin.which_key.mappings["o"]  = {
   name = "+outline",
   s = { "<cmd>SymbolsOutline <cr>", "Outline" },
   v = { "<cmd>Vista!! <cr>", "Vista" },
@@ -78,15 +76,15 @@ lvim.builtin.which_key.mappings["o"] = {
 }
 -- lvim.keys.normal_mode["<leader>os"] = "<cmd> SymbolsOutline"
 -- lvim.keys.normal_mode["<leader>ov"] = ":Vista!!<cr>"
-lvim.keys.normal_mode["<leader>q"]   = ":bd<cr>"
-lvim.keys.normal_mode["<leader>c"]   = ":q<cr>"
+lvim.keys.normal_mode["<leader>q"]    = ":bd<cr>"
+lvim.keys.normal_mode["<leader>c"]    = ":q<cr>"
 -- 暂时还不懂这个映射是干嘛，什么都没做？
-lvim.keys.normal_mode["q"]           = "<Nop>"
+lvim.keys.normal_mode["q"]            = "<Nop>"
 -- 搜索时把结果置于中间并打开折叠
-lvim.keys.normal_mode["n"]           = "nzzzv"
-lvim.keys.normal_mode["N"]           = "Nzzzv"
+lvim.keys.normal_mode["n"]            = "nzzzv"
+lvim.keys.normal_mode["N"]            = "Nzzzv"
 -- 让下一行加到当前行末尾，删掉所有缩进，并加一个空格
-lvim.keys.normal_mode["J"]           = "mzJ`z"
+lvim.keys.normal_mode["J"]            = "mzJ`z"
 -- lvim.keys.visual_mode["p"] = "P"
 -- lvim.keys.visual_mode["H"] = "^"
 -- lvim.keys.visual_mode["L"] = "$"
@@ -95,18 +93,18 @@ lvim.keys.normal_mode["J"]           = "mzJ`z"
 
 -- maximal keymap
 ---- toggle split window maximization
-lvim.keys.normal_mode["<leader>z"] = ":MaximizerToggle<CR>"
+lvim.keys.normal_mode["<leader>z"]    = ":MaximizerToggle<CR>"
 
 -- Markdown-preview keymap
-lvim.keys.normal_mode["<leader>md"] = ":MarkdownPreview<CR>"
+lvim.keys.normal_mode["<leader>md"]   = ":MarkdownPreview<CR>"
 
 -- cmp配置修改
 -- lvim.builtin.cmp.confirm_opts.select=true
-lvim.builtin.cmp.completion = { -- 修改默认就选择第一条
+lvim.builtin.cmp.completion           = { -- 修改默认就选择第一条
   completeopt = 'menu,menuone,noinsert'
 }
 -- 修改tab为替换，<CR>默认就是直接插入了
-lvim.builtin.cmp.mapping["<Tab>"] = require("cmp").mapping {
+lvim.builtin.cmp.mapping["<Tab>"]     = require("cmp").mapping {
   i = require("cmp").mapping.confirm { behavior = require("cmp").ConfirmBehavior.Replace, select = true },
   c = function(fallback)
     if require("cmp").visible() then
@@ -133,20 +131,20 @@ lvim.builtin.cmp.mapping["<Tab>"] = require("cmp").mapping {
 --       end)
 
 -- lsp
-lvim.keys.normal_mode["<leader>in"] = ":lua vim.lsp.buf.incoming_calls()<cr>"
-lvim.keys.visual_mode["<leader>lf"] = "<ESC><cmd>lua vim.lsp.buf.range_formatting()<CR>"
+lvim.keys.normal_mode["<leader>in"]   = ":lua vim.lsp.buf.incoming_calls()<cr>"
+lvim.keys.visual_mode["<leader>lf"]   = "<ESC><cmd>lua vim.lsp.buf.range_formatting()<CR>"
 lvim.builtin.which_key.mappings["la"] = { ":CodeActionMenu<CR>", "My code action" }
 
 
 -- spectre
 -- open in current file
-lvim.keys.normal_mode["sf"] = ":lua require('spectre').open_file_search()<CR>"
+lvim.keys.normal_mode["sf"]           = ":lua require('spectre').open_file_search()<CR>"
 -- open in whole ws
-lvim.keys.normal_mode["sF"] = ":lua require('spectre').open()<CR>"
+lvim.keys.normal_mode["sF"]           = ":lua require('spectre').open()<CR>"
 
 -- SnipRun
-lvim.keys.normal_mode["<leader>r"] = ":%SnipRun<CR>"
-lvim.keys.visual_mode["<leader>r"] = ":'<,'>SnipRun<CR>"
+lvim.keys.normal_mode["<leader>r"]    = ":%SnipRun<CR>"
+lvim.keys.visual_mode["<leader>r"]    = ":'<,'>SnipRun<CR>"
 
 -- Use which-key to add extra bindings with the leader-key prefix
 -- orverwirte old 's'
@@ -162,11 +160,13 @@ lvim.builtin.which_key.mappings["fr"] = { ":Telescope oldfiles<cr>", "Recent fil
 lvim.builtin.which_key.mappings["fk"] = { "<cmd>Telescope keymaps<cr>", "Show all keymaps" }
 -- 原作者自己的
 lvim.keys.visual_mode["<leader>fw"]   = "<Esc>:lua require('my_funcs').live_grep_raw({}, 'v')<cr>"
-lvim.keys.normal_mode["<leader>fw"]   = ":lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>')})<cr>"
-lvim.keys.normal_mode["<leader>fd"]   = ":lua require('my_funcs').live_grep_raw({default_text =  '-g' .. vim.fn.fnamemodify(vim.fn.expand('%'), ':.:h') .. '/*' .. ' ' .. vim.fn.expand('<cword>')})<cr>"
+lvim.keys.normal_mode["<leader>fw"]   =
+":lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>')})<cr>"
+lvim.keys.normal_mode["<leader>fd"]   =
+":lua require('my_funcs').live_grep_raw({default_text =  '-g' .. vim.fn.fnamemodify(vim.fn.expand('%'), ':.:h') .. '/*' .. ' ' .. vim.fn.expand('<cword>')})<cr>"
 
-lvim.keys.normal_mode["<leader>s"] = ":lua require('telescope.builtin').lsp_document_symbols()<cr>"
-lvim.keys.normal_mode["<leader>S"] = ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>"
+lvim.keys.normal_mode["<leader>s"]    = ":lua require('telescope.builtin').lsp_document_symbols()<cr>"
+lvim.keys.normal_mode["<leader>S"]    = ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>"
 
 
 -- hop
@@ -195,6 +195,14 @@ lvim.builtin.autopairs.disable_filetype = { "TelescopePrompt", "spectre_panel", 
 
 -- dap
 lvim.keys.normal_mode["<F12>"] = ":Telescope dap configurations<cr>"
+lvim.builtin.which_key.mappings["dt"] = { "<cmd>lua require'persistent-breakpoints.api'.toggle_breakpoint()<cr>", "Toggle Breakpoint" }
+lvim.builtin.which_key.mappings["dT"] = { "<cmd>lua require'persistent-breakpoints.api'.set_conditional_breakpoint()<cr>", "Toggle condition point" }
+lvim.builtin.which_key.mappings["dR"] = { "<cmd>lua require'persistent-breakpoints.api'.clear_all_breakpoints()<cr>", "clear all breakpoints" }
+-- lvim.builtin.which_key.mappings.d = {
+--   l= { "<cmd>lua require'persistent-breakpoints.api'.toggle_breakpoint()<cr>","toggle_breakpoint" },
+-- -- "<YourKey2>", "<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<cr>", 
+-- -- "<YourKey3>", "<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<cr>", 
+-- }
 -- lvim.keys.normal_mode["d"] = false
 -- lvim.lsp.buffer_mappings.normal_mode['d'] = nil
 -- lvim.builtin.which_key.mappings.d= nil
@@ -273,12 +281,12 @@ lvim.builtin.alpha.mode = "dashboard"
 
 lvim.builtin.terminal.active = true
 lvim.builtin.terminal.execs = {
-      -- Change keys to needed
-      -- { vim.o.shell, "<M-1>", "Horizontal Terminal", "horizontal", 0.3 },
-      -- { vim.o.shell, "<M-2>", "Vertical Terminal", "vertical", 0.4 },
-      { vim.o.shell, "<M-`>", "Float Terminal", "float", nil },
-      { vim.o.shell, "<M-Esc>", "Float Terminal", "float", nil },
-    }
+  -- Change keys to needed
+  -- { vim.o.shell, "<M-1>", "Horizontal Terminal", "horizontal", 0.3 },
+  -- { vim.o.shell, "<M-2>", "Vertical Terminal", "vertical", 0.4 },
+  { vim.o.shell, "<M-`>",   "Float Terminal", "float", nil },
+  { vim.o.shell, "<M-Esc>", "Float Terminal", "float", nil },
+}
 -- vim.keymap.set("n", "<C-t>", "<cmd>ToggleTerm<cr>")
 -- vim.keymap.set("t", "<C-t>", "<cmd>ToggleTerm<cr>")
 -- lvim.keys.normal_mode["<C-t>"] = "<cmd>ToggleTerminal<cr>"
@@ -319,8 +327,8 @@ lvim.builtin.nvimtree.setup.view = {
   mappings = {
     list = {
       { key = { "l", "<CR>", "o" }, action = "edit" },
-      { key = "h", action = "close_node" },
-      { key = "v", action = "vsplit" },
+      { key = "h",                  action = "close_node" },
+      { key = "v",                  action = "vsplit" },
       -- { key = "C-t", action = false}, -- remove default key C-t
       -- { key = "g", action = "toggle_git_ignored" },--[[  default I ]]
       -- { key = "<BS>", action = "toggle_dotfiles" },--[[  default H ]]
@@ -492,7 +500,8 @@ lvim.plugins = {
     end
     -- cmd = "TroubleToggle",
   },
-  { -- better quick fix
+  {
+    -- better quick fix
     "kevinhwang91/nvim-bqf",
     config = function()
       require('bqf').setup(
@@ -505,12 +514,13 @@ lvim.plugins = {
       )
     end
   },
-  { -- only works on https://github.com/universal-ctags/ctags
+  {
+    -- only works on https://github.com/universal-ctags/ctags
     "liuchengxu/vista.vim",
     config = function()
-      vim.cmd([[ 
-      let g:vista_sidebar_position = 'vertical topleft' 
-      let g:vista_default_executive = 'nvim_lsp' 
+      vim.cmd([[
+      let g:vista_sidebar_position = 'vertical topleft'
+      let g:vista_default_executive = 'nvim_lsp'
       ]])
     end
   },
@@ -523,7 +533,8 @@ lvim.plugins = {
       require("litee.lib").setup({})
     end
   },
-  { -- calltree
+  {
+    -- calltree
     "ldelossa/litee-calltree.nvim",
     config = function()
       require("litee.calltree").setup({
@@ -553,7 +564,8 @@ lvim.plugins = {
   {
     "NLKNguyen/papercolor-theme"
   },
-  { -- hop
+  {
+                   -- hop
     "phaazon/hop.nvim",
     branch = 'v2', -- optional but strongly recommended
     config = function()
@@ -564,7 +576,8 @@ lvim.plugins = {
   { -- resize window
     "simeji/winresizer"
   },
-  { -- vim clip on server
+  {
+    -- vim clip on server
     "wincent/vim-clipper",
     config = function()
       vim.cmd([[
@@ -572,7 +585,7 @@ lvim.plugins = {
       let g:ClipperPort=8377
       let g:ClipperAuto=1
       call clipper#set_invocation('netcat -c 127.0.0.1 8377')
-    ]] )
+    ]])
     end
   },
   { -- log file content highlighting
@@ -679,7 +692,6 @@ lvim.plugins = {
         textobjects = {
           select = {
             enable = true,
-
             -- Automatically jump forward to textobj, similar to targets.vim
             lookahead = true,
             keymaps = {
@@ -700,7 +712,7 @@ lvim.plugins = {
             -- mapping query_strings to modes.
             selection_modes = {
               ['@parameter.outer'] = 'v', -- charwise
-              ['@function.outer'] = 'V', -- linewise
+              ['@function.outer'] = 'V',  -- linewise
               ['@class.outer'] = '<c-v>', -- blockwise
             },
             -- If you set this to `true` (default is `false`) then any textobject is
@@ -759,9 +771,7 @@ lvim.plugins = {
               ["<C-p>"] = false,
               paste = false,
               ["<C-p>"] = actions.move_selection_previous,
-
               paste = '<CR>',
-
               -- 选择好像有点问题，不是很理解？
               -- ['<CR>'] = false,
               -- select = false ,
@@ -772,9 +782,8 @@ lvim.plugins = {
 
               -- replay好像也不行，复制不全？会报错?
               replay = '<c-r>', -- replay a macro
-
               delete = '<c-d>', -- delete an entry
-              edit = '<c-e>', -- edit an entry
+              edit = '<c-e>',   -- edit an entry
               custom = {},
             },
             n = {
@@ -784,9 +793,7 @@ lvim.plugins = {
               ["<C-p>"] = false,
               paste = false,
               ["<C-p>"] = actions.move_selection_previous,
-
               paste = '<CR>',
-
               -- 选择好像有点问题，不是很理解？
               -- ['<CR>'] = false,
               -- select = false ,
@@ -798,7 +805,7 @@ lvim.plugins = {
               -- replay好像也不行，复制不全？会报错?
               replay = 'r',
               delete = 'd', -- delete an entry
-              edit = 'e', -- edit an entry
+              edit = 'e',   -- edit an entry
               custom = {},
             },
           },
@@ -824,24 +831,25 @@ lvim.plugins = {
       require("telescope").load_extension('dap')
     end
   },
-  { -- gxt_kt sniprun : run code
-    'michaelb/sniprun', build = 'bash ./install.sh',
+  {
+    -- gxt_kt sniprun : run code
+    'michaelb/sniprun',
+    build = 'bash ./install.sh',
     config = function()
       require('sniprun').setup({
-        selected_interpreters = {}, --# use those instead of the default for the current filetype
-        repl_enable = {}, --# enable REPL-like behavior for the given interpreters
-        repl_disable = {}, --# disable REPL-like behavior for the given interpreters
-
-        interpreter_options = { --# intepreter-specific options, see docs / :SnipInfo <name>
+        selected_interpreters = {},                  --# use those instead of the default for the current filetype
+        repl_enable = {},                            --# enable REPL-like behavior for the given interpreters
+        repl_disable = {},                           --# disable REPL-like behavior for the given interpreters
+        interpreter_options = {
+                                                     --# intepreter-specific options, see docs / :SnipInfo <name>
           GFM_original = {
             use_on_filetypes = { "markdown.pandoc" } --# the 'use_on_filetypes' configuration key is
             --# available for every interpreter
           }
         },
-
         --# you can combo different display modes as desired
         display = {
-          "Classic", --# display results in the command-line  area
+          "Classic",       --# display results in the command-line  area
           "VirtualTextOk", --# display ok results as virtual text (multiline is shortened)
           --"VirtualTextErr",          --# display error results as virtual text
           -- "TempFloatingWindow",      --# display results in a floating window
@@ -851,19 +859,16 @@ lvim.plugins = {
           -- "NvimNotify",              --# display with the nvim-notify plugin
           -- "Api"                      --# return output to a programming interface
         },
-
         display_options = {
-          terminal_width = 45, --# change the terminal display option width
+          terminal_width = 45,     --# change the terminal display option width
           notification_timeout = 5 --# timeout for nvim_notify output
         },
-
         --# You can use the same keys to customize whether a sniprun producing
         --# no output should display nothing or '(no output)'
         show_no_output = {
           "Classic",
           "TempFloatingWindow", --# implies LongTempFloatingWindow, which has no effect on its own
         },
-
         --# customize highlight groups (setting this overrides colorscheme)
         snipruncolors = {
           SniprunVirtualTextOk  = { bg = "#66eeff", fg = "#000000", ctermbg = "Cyan", cterfg = "Black" },
@@ -871,12 +876,11 @@ lvim.plugins = {
           SniprunVirtualTextErr = { bg = "#881515", fg = "#000000", ctermbg = "DarkRed", cterfg = "Black" },
           SniprunFloatingWinErr = { fg = "#881515", ctermfg = "DarkRed" },
         },
-
         --# miscellaneous compatibility/adjustement settings
         inline_messages = 0, --# inline_message (0/1) is a one-line way to display messages
         --# to workaround sniprun not being able to display anything
 
-        borders = 'single', --# display borders around floating windows
+        borders = 'single',      --# display borders around floating windows
         --# possible values are 'none', 'single', 'double', or 'shadow'
         live_mode_toggle = 'off' --# live mode toggle, see Usage - Running for more info
       })
@@ -885,13 +889,15 @@ lvim.plugins = {
   { -- gxt_kt github-nvim-theme
     "projekt0n/github-nvim-theme"
   },
-  { -- gxt_kt nvim-colorizer  for like #ff00ff css color
+  {
+    -- gxt_kt nvim-colorizer  for like #ff00ff css color
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup()
     end
   },
-  { -- gxt_kt nvim-lightbulb  : Show a blub if there a lsp code action
+  {
+    -- gxt_kt nvim-lightbulb  : Show a blub if there a lsp code action
     "kosayoda/nvim-lightbulb",
     config = function()
       require("nvim-lightbulb").setup({
@@ -941,7 +947,8 @@ lvim.plugins = {
     end,
     --vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
   },
-  { -- gxt_kt symbols-outline.nvim : show outline
+  {
+    -- gxt_kt symbols-outline.nvim : show outline
     "simrat39/symbols-outline.nvim",
     config = function()
       require("symbols-outline").setup({
@@ -960,7 +967,8 @@ lvim.plugins = {
         auto_unfold_hover = true,
         fold_markers = { '', '' },
         wrap = false,
-        keymaps = { -- These keymaps can be a string or a table for multiple keys
+        keymaps = {
+                    -- These keymaps can be a string or a table for multiple keys
           close = { "<Esc>", "q" },
           goto_location = "<Cr>",
           focus_location = "o",
@@ -1012,7 +1020,8 @@ lvim.plugins = {
   { -- gxt_kt nvim-ts-rainbow : Show rainbow bracket
     "p00f/nvim-ts-rainbow",
   },
-  { -- gxt_kt tmux.nvim: Use tmux and nvim better
+  {
+    -- gxt_kt tmux.nvim: Use tmux and nvim better
     "aserowy/tmux.nvim",
     config = function()
       require("tmux").setup(
@@ -1021,53 +1030,42 @@ lvim.plugins = {
             -- enables copy sync. by default, all registers are synchronized.
             -- to control which registers are synced, see the `sync_*` options.
             enable = false,
-
             -- ignore specific tmux buffers e.g. buffer0 = true to ignore the
             -- first buffer or named_buffer_name = true to ignore a named tmux
             -- buffer with name named_buffer_name :)
             ignore_buffers = { empty = false },
-
             -- TMUX >= 3.2: all yanks (and deletes) will get redirected to system
             -- clipboard by tmux
             redirect_to_clipboard = false,
-
             -- offset controls where register sync starts
             -- e.g. offset 2 lets registers 0 and 1 untouched
             register_offset = 0,
-
             -- overwrites vim.g.clipboard to redirect * and + to the system
             -- clipboard using tmux. If you sync your system clipboard without tmux,
             -- disable this option!
             sync_clipboard = false,
-
             -- synchronizes registers *, +, unnamed, and 0 till 9 with tmux buffers.
             sync_registers = false,
-
             -- syncs deletes with tmux clipboard as well, it is adviced to
             -- do so. Nvim does not allow syncing registers 0 and 1 without
             -- overwriting the unnamed register. Thus, ddp would not be possible.
             sync_deletes = false,
-
             -- syncs the unnamed register with the first buffer entry from tmux.
             sync_unnamed = false,
           },
           navigation = {
             -- cycles to opposite pane while navigating into the border
             cycle_navigation = false,
-
             -- enables default keybindings (C-hjkl) for normal mode
             enable_default_keybindings = true,
-
             -- prevents unzoom tmux when navigating beyond vim border
             persist_zoom = false,
           },
           resize = {
             -- enables default keybindings (A-hjkl) for normal mode
             enable_default_keybindings = true,
-
             -- sets resize steps for x axis
             resize_step_x = 1,
-
             -- sets resize steps for y axis
             resize_step_y = 1,
           }
@@ -1098,7 +1096,8 @@ lvim.plugins = {
   { -- gxt_kt brooth/far.vim : Search use ripgrep
     'jremmen/vim-ripgrep',
   },
-  { -- gxt_kt nvim-spectre : Search and substitute
+  {
+    -- gxt_kt nvim-spectre : Search and substitute
     'windwp/nvim-spectre',
     config = function()
       require('spectre').setup({
@@ -1178,14 +1177,14 @@ lvim.plugins = {
     'theHamsta/nvim-dap-virtual-text',
     config = function()
       require("nvim-dap-virtual-text").setup {
-        enabled = true, -- enable this plugin (the default)
-        enabled_commands = true, -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
+        enabled = true,                     -- enable this plugin (the default)
+        enabled_commands = true,            -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
         highlight_changed_variables = true, -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
-        highlight_new_as_changed = false, -- highlight new variables in the same way as changed variables (if highlight_changed_variables)
-        show_stop_reason = true, -- show stop reason when stopped for exceptions
-        commented = false, -- prefix virtual text with comment string
-        only_first_definition = true, -- only show virtual text at first definition (if there are multiple)
-        all_references = false, -- show virtual text on all all references of the variable (not only definitions)
+        highlight_new_as_changed = false,   -- highlight new variables in the same way as changed variables (if highlight_changed_variables)
+        show_stop_reason = true,            -- show stop reason when stopped for exceptions
+        commented = false,                  -- prefix virtual text with comment string
+        only_first_definition = true,       -- only show virtual text at first definition (if there are multiple)
+        all_references = false,             -- show virtual text on all all references of the variable (not only definitions)
         --- A callback that determines how a variable is displayed or whether it should be omitted
         --- @param variable Variable https://microsoft.github.io/debug-adapter-protocol/specification#Types_Variable
         --- @param buf number
@@ -1197,9 +1196,9 @@ lvim.plugins = {
         end,
 
         -- experimental features:
-        virt_text_pos = 'eol', -- position of virtual text, see `:h nvim_buf_set_extmark()`
-        all_frames = false, -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
-        virt_lines = false, -- show virtual lines instead of virtual text (will flicker!)
+        virt_text_pos = 'eol',  -- position of virtual text, see `:h nvim_buf_set_extmark()`
+        all_frames = false,     -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+        virt_lines = false,     -- show virtual lines instead of virtual text (will flicker!)
         virt_text_win_col = nil -- position the virtual text at a fixed window column (starting from the first text column) ,
         -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
       }
@@ -1212,17 +1211,16 @@ lvim.plugins = {
     'marko-cerovac/material.nvim',
     config = function()
       require('material').setup({
-
         contrast = {
-          terminal = false, -- Enable contrast for the built-in terminal
-          sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
-          floating_windows = false, -- Enable contrast for floating windows
-          cursor_line = false, -- Enable darker background for the cursor line
+          terminal = false,            -- Enable contrast for the built-in terminal
+          sidebars = false,            -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
+          floating_windows = false,    -- Enable contrast for floating windows
+          cursor_line = false,         -- Enable darker background for the cursor line
           non_current_windows = false, -- Enable darker background for non-current windows
-          filetypes = {}, -- Specify which filetypes get the contrasted (darker) background
+          filetypes = {},              -- Specify which filetypes get the contrasted (darker) background
         },
-
-        styles = { -- Give comments style such as bold, italic, underline etc.
+        styles = {
+                   -- Give comments style such as bold, italic, underline etc.
           comments = { italic = true },
           strings = { bold = true },
           keywords = { underline = false },
@@ -1231,7 +1229,6 @@ lvim.plugins = {
           operators = {},
           types = {},
         },
-
         plugins = { -- Uncomment the plugins that you use to highlight them
           -- Available plugins:
           "dap",
@@ -1251,35 +1248,28 @@ lvim.plugins = {
           "trouble",
           "which-key",
         },
-
         disable = {
           colored_cursor = false, -- Disable the colored cursor
-          borders = false, -- Disable borders between verticaly split windows
-          background = false, -- Prevent the theme from setting the background (NeoVim then uses your terminal background)
-          term_colors = false, -- Prevent the theme from setting terminal colors
-          eob_lines = false -- Hide the end-of-buffer lines
+          borders = false,        -- Disable borders between verticaly split windows
+          background = false,     -- Prevent the theme from setting the background (NeoVim then uses your terminal background)
+          term_colors = false,    -- Prevent the theme from setting terminal colors
+          eob_lines = false       -- Hide the end-of-buffer lines
         },
-
         high_visibility = {
           lighter = false, -- Enable higher contrast text for lighter style
-          darker = false -- Enable higher contrast text for darker style
+          darker = false   -- Enable higher contrast text for darker style
         },
-
         lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
-
-        async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
-
+        async_loading = true,      -- Load parts of the theme asyncronously for faster startup (turned on by default)
         -- If you want to everride the default colors, set this to a function
         -- custom_colors = nil,
         custom_colors = function(colors)
           -- colors.editor.selection = "#ff0000"
         end,
-
         -- change can refer here : https://github.com/marko-cerovac/material.nvim/issues/126
         custom_highlights = {
-          IncSearch = { fg = "#000000", bg = "#ECF9ff", underline = true },
-          Search    = { fg = "#000000", bg = "#ECF9ff", bold = true },
-
+          IncSearch  = { fg = "#000000", bg = "#ECF9ff", underline = true },
+          Search     = { fg = "#000000", bg = "#ECF9ff", bold = true },
           -- change hop-nvim color
           HopNextKey = { fg = "#ff0000", bold = true },
           -- HopNextKey1 = { fg = "#00ff00", bold = true },
@@ -1316,15 +1306,24 @@ lvim.plugins = {
       -- vim.opt.listchars:append "eol:↴"
 
       require("indent_blankline").setup {
-          space_char_blankline = " ",
-          char_highlight_list = {
-            "IndentBlanklineIndent1",
-            "IndentBlanklineIndent2",
-            "IndentBlanklineIndent3",
-            "IndentBlanklineIndent4",
-            "IndentBlanklineIndent5",
-            "IndentBlanklineIndent6",
-          },
+        space_char_blankline = " ",
+        char_highlight_list = {
+          "IndentBlanklineIndent1",
+          "IndentBlanklineIndent2",
+          "IndentBlanklineIndent3",
+          "IndentBlanklineIndent4",
+          "IndentBlanklineIndent5",
+          "IndentBlanklineIndent6",
+        },
+      }
+    end
+  },
+  {
+    'Weissle/persistent-breakpoints.nvim',
+    config = function()
+      require('persistent-breakpoints').setup {
+        save_dir = vim.fn.stdpath('data') .. '/nvim_checkpoints', -- $HOME/.local/share/lvim/nvim_checkpoints/*
+	      load_breakpoints_event = { "BufReadPost" }
       }
     end
   },

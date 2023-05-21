@@ -6,40 +6,35 @@ import time
 
 import choose
 
-SLEEP_TIME = 0.2
+SLEEP_TIME = 0.1
 
 
 def shutdown():
-    time.sleep(SLEEP_TIME)  # 需要加入延时否则鼠标点击的话反应不过来，不会显示下一级菜单
-    ret = choose.ChooseYesOrNo("shutdown")
+    ret = choose.ChooseYesOrNo("shutdown",SLEEP_TIME)
     if ret == "yes":
         os.system("shutdown -h now")
 
 
 def reboot():
-    time.sleep(SLEEP_TIME)  # 需要加入延时否则鼠标点击的话反应不过来，不会显示下一级菜单
-    ret = choose.ChooseYesOrNo("reboot")
+    ret = choose.ChooseYesOrNo("reboot",SLEEP_TIME)
     if ret == "yes":
         os.system("reboot")
 
 
 def logout():
-    time.sleep(SLEEP_TIME)  # 需要加入延时否则鼠标点击的话反应不过来，不会显示下一级菜单
-    ret = choose.ChooseYesOrNo("log out")
+    ret = choose.ChooseYesOrNo("log out",SLEEP_TIME)
     if ret == "yes":
         os.system("i3-msg exit")
 
 
 def suspend():
-    time.sleep(SLEEP_TIME)  # 需要加入延时否则鼠标点击的话反应不过来，不会显示下一级菜单
-    ret = choose.ChooseYesOrNo("suspend to ram")
+    ret = choose.ChooseYesOrNo("suspend to ram",SLEEP_TIME)
     if ret == "yes":
         os.system("systemctl suspend ")
 
 
 def hibernate():
-    time.sleep(SLEEP_TIME)  # 需要加入延时否则鼠标点击的话反应不过来，不会显示下一级菜单
-    ret = choose.ChooseYesOrNo("hibernate to disk")
+    ret = choose.ChooseYesOrNo("hibernate to disk",SLEEP_TIME)
     if ret == "yes":
         os.system("systemctl hibernate ")
 

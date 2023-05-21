@@ -7,13 +7,15 @@ dap.configurations.python = {
     program = "${file}";
     pythonPath = function()
       return '/usr/bin/python'
+      -- return '/home/gxt_kt/miniconda3/bin/python3'
     end;
   },
 }
 dap.adapters.python = {
   type = "executable";
   -- command = '/usr/bin/python';
-  command='/home/gxt_kt/.local/share/nvim/mason/bin/debugpy-adapter';
+  -- command = '/home/gxt_kt/miniconda3/bin/python3.10';
+  command='/home/gxt_kt/.local/share/lvim/mason/bin/debugpy-adapter';
   -- args = { '-m', 'debugpy.adapter' };
   args = {};
 }
