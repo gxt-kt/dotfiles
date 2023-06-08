@@ -29,10 +29,6 @@ if [ ! -d "build" ]; then
 fi
 
 # 进入build目录
-myecho ""
-myecho "============================================="
-myecho "cd build"
-myecho "============================================="
 if ! cd build; then
   echo -e '\033[31m[ ERROR ] : Failed Run "cd build"\033[0m'
   exit 1
