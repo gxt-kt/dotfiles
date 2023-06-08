@@ -12,30 +12,20 @@ package.path = "/home/gxt_kt/.config/lvim/?.lua;"
 -- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 -- general
 lvim.log.level = "warn"
-lvim.format_on_save.enabled = false -- lvim.colorscheme = "lunar"
+lvim.format_on_save.enabled = false
+
 -- themes: https://vimcolorschemes.com/
 -- lvim.colorscheme = "gruvbox"
 -- lvim.colorscheme = "onedarker"
-lvim.colorscheme = "tokyonight-storm"
+-- lvim.colorscheme = "tokyonight-storm"
 
---
---
---   'kaicataldo/material.vim',
---[[ lvim.colorscheme = "material"
--- let g:material_theme_style = 'default' | 'palenight' | 'ocean' | 'lighter' | 'darker' | 'default-community' | 'palenight-community' | 'ocean-community' | 'lighter-community' | 'darker-community'
-vim.g.material_theme_style = 'palenight'
-vim.g.material_terminal_italics = 1 ]]
---
 -- 'marko-cerovac/material.nvim',
--- lvim.colorscheme = "material"
--- vim.g.material_style = "palenight"
+lvim.colorscheme = "material"
+vim.g.material_style = "palenight"
 -- lvim.builtin.lualine.options.theme = "auto"
 -- lvim.builtin.lualine.options.theme = "material-nvim"
 -- lvim.builtin.lualine.options.theme="material-stealth"
---
 
--- to disable icons and use a minimalist setup, uncomment the following
--- lvim.use_icons = false
 
 --  options fold from treesitter
 do
@@ -45,7 +35,7 @@ do
 end
 
 vim.opt.relativenumber = true -- set relative numbered lines
-vim.opt.colorcolumn = "80"
+-- vim.opt.colorcolumn = "80" -- a line at 80 column postion -- 80 for google c++ style
 
 vim.opt.signcolumn = "yes:2"
 
@@ -1267,6 +1257,7 @@ lvim.plugins = {
           -- colors.editor.selection = "#ff0000"
         end,
         -- change can refer here : https://github.com/marko-cerovac/material.nvim/issues/126
+        --
         custom_highlights = {
           IncSearch  = { fg = "#000000", bg = "#ECF9ff", underline = true },
           Search     = { fg = "#000000", bg = "#ECF9ff", bold = true },

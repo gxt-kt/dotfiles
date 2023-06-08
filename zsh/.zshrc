@@ -216,7 +216,7 @@ alias cat="ccat"
 alias v='bash -c '\''my_vim=""; if command -v lvim >/dev/null 2>&1; then my_vim="lvim"; else if command -v nvim >/dev/null 2>&1; then my_vim="nvim"; else my_vim="vim"; fi; fi; if [ $# -gt 0 ]; then $my_vim "$@"; else $my_vim .; fi'\'' bash'
 alias vim='bash -c '\''my_vim=""; if command -v lvim >/dev/null 2>&1; then my_vim="lvim"; else if command -v nvim >/dev/null 2>&1; then my_vim="nvim"; else my_vim="vim"; fi; fi; if [ $# -gt 0 ]; then $my_vim "$@"; else $my_vim .; fi'\'' bash'
 alias cf="cd \$(fd --type d --hidden | fzf)"
-alias chf="cd ~ && cd \$(fd --type d --hidden | fzf)" # search from home
+alias cfh="cd ~ && cd \$(fd --type d --hidden | fzf)" # search from home
 
 ######
 # lunarvim
@@ -260,4 +260,8 @@ unset __conda_setup
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# cmake alias
+alias cbr='bash ~/.scripts/cmake/compile.sh cbr'
+alias br='bash ~/.scripts/cmake/compile.sh br'
 
