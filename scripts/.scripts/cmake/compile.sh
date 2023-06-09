@@ -108,24 +108,24 @@ ExecFile() {
   fi
 }
 
-# cmake+build+run
-cbr() {
+# cmake+make+run
+cmr() {
   ExecCmake
   ExecBuild
   ExecFile "$1"
 }
 
-# build+run
-br() {
+# make+run
+mr() {
   ExecBuild
   ExecFile "$1"
 }
 
-if [[ "$1" == "cbr" ]]; then
-  cbr "$2"
-elif [[ "$1" == "br" ]]; then
-  br "$2"
+if [[ "$1" == "cmr" ]]; then
+  cmr "$2"
+elif [[ "$1" == "mr" ]]; then
+  mr "$2"
 else 
-  cbr
+  cmr
 fi
 

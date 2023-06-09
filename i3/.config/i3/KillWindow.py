@@ -8,7 +8,7 @@ i3 = i3ipc.Connection()
 
 # kill not able kill
 kill_disable_kill = [
-    "tmux",
+    # "tmux", # now use kitty will ask when open tmux
 ]
 
 kill_user = {

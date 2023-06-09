@@ -276,6 +276,8 @@ lvim.builtin.terminal.execs = {
   -- { vim.o.shell, "<M-2>", "Vertical Terminal", "vertical", 0.4 },
   { vim.o.shell, "<M-`>",   "Float Terminal", "float", nil },
   { vim.o.shell, "<M-Esc>", "Float Terminal", "float", nil },
+  { vim.o.shell, "<M-->", "Horizontal Terminal", "horizontal", 0.3 },
+  { vim.o.shell, "<M-\\>", "Vertical Terminal", "vertical", 0.4 },
 }
 -- vim.keymap.set("n", "<C-t>", "<cmd>ToggleTerm<cr>")
 -- vim.keymap.set("t", "<C-t>", "<cmd>ToggleTerm<cr>")

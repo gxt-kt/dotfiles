@@ -76,7 +76,8 @@ tiling_drag modifier titlebar
 # bindcode --release 133 exec --no-startup-id $python ~/.scripts/rofi/power.py
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id alacritty
+# bindsym $mod+Return exec --no-startup-id alacritty
+bindsym $mod+Return exec --no-startup-id kitty
 
 # kill focused window
 bindsym $mod+Shift+q exec --no-startup-id $python ~/.config/i3/KillWindow.py  >> ~/i3_log 
@@ -180,7 +181,8 @@ bindsym $mod+shift+d scratchpad show
 # applications
 bindsym $mod+shift+s exec --no-startup-id "flameshot gui"
 bindsym $mod+v       exec --no-startup-id "copyq toggle"
-bindsym $mod+n       exec --no-startup-id "alacritty -t term-float --class floatingTerminal"
+# bindsym $mod+n       exec --no-startup-id "alacritty -t term-float --class floatingTerminal"
+bindsym $mod+n       exec --no-startup-id "kitty -T term-float --class floatingTerminal"
 # bindsym Mod1+space   exec --no-startup-id "crow"
 
 bindsym $mod+b exec --no-startup-id polybar-msg cmd toggle

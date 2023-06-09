@@ -262,6 +262,6 @@ unset __conda_setup
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # cmake alias
-alias cbr='bash ~/.scripts/cmake/compile.sh cbr'
-alias br='bash ~/.scripts/cmake/compile.sh br'
+alias cmr='bash ~/.scripts/cmake/compile.sh cmr'
+alias mr='bash ~/.scripts/cmake/compile.sh mr'
 
