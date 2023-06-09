@@ -264,12 +264,13 @@ lvim.builtin.which_key.mappings["t"] = {
   t = { "<cmd>TodoTrouble<cr>", "Todo" },
 }
 
--- TODO: User Config for predefined plugins
--- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
 lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 
+-- ToggleTerminal
 lvim.builtin.terminal.active = true
+lvim.builtin.terminal.start_in_insert = true
+lvim.builtin.terminal.persist_mode = true
 lvim.builtin.terminal.execs = {
   -- Change keys to needed
   -- { vim.o.shell, "<M-1>", "Horizontal Terminal", "horizontal", 0.3 },
@@ -282,7 +283,18 @@ lvim.builtin.terminal.execs = {
 -- vim.keymap.set("n", "<C-t>", "<cmd>ToggleTerm<cr>")
 -- vim.keymap.set("t", "<C-t>", "<cmd>ToggleTerm<cr>")
 -- lvim.keys.normal_mode["<C-t>"] = "<cmd>ToggleTerminal<cr>"
-
+function _G.set_terminal_keymaps()
+  local opts = {buffer = 0}
+  vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+  vim.keymap.set('t', 'jj', [[<C-\><C-n>]], opts)
+  vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
+  vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
+  vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
+  vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
+  vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+end
+-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 -- nvim tree
 --("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
