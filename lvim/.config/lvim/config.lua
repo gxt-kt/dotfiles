@@ -165,7 +165,7 @@ do
     require('hop').hint_char1({ direction = require('hop.hint').HintDirection.AFTER_CURSOR, current_line_only = true })
   end, { remap = true })
   vim.keymap.set('', 'F', function()
-    require('hop').hint_char1({ direction = require('hop.hint').BEFORE_CURSOR, current_line_only = true })
+    require('hop').hint_char1({ direction = require('hop.hint').HintDirection.BEFORE_CURSOR, current_line_only = true })
   end, { remap = true })
   vim.keymap.set('', 't', function()
     require('hop').hint_char1({ direction = require('hop.hint').AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
@@ -173,8 +173,6 @@ do
   vim.keymap.set('', 'T', function()
     require('hop').hint_char1({ direction = require('hop.hint').BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
   end, { remap = true })
-  -- lvim.keys.normal_mode["f"] = "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>"
-  -- lvim.keys.normal_mode["F"] = "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>"
   lvim.keys.normal_mode["ss"] = "<cmd>HopChar2<cr>"
   lvim.keys.normal_mode["sS"] = "<cmd>HopChar2MW<cr>"
 end
@@ -279,6 +277,7 @@ lvim.builtin.terminal.execs = {
   { vim.o.shell, "<M-Esc>", "Float Terminal", "float", nil },
   { vim.o.shell, "<M-->", "Horizontal Terminal", "horizontal", 0.3 },
   { vim.o.shell, "<M-\\>", "Vertical Terminal", "vertical", 0.4 },
+  { vim.o.shell, "<M-BackSpace>", "Vertical Terminal", "vertical", 0.4 },
 }
 -- vim.keymap.set("n", "<C-t>", "<cmd>ToggleTerm<cr>")
 -- vim.keymap.set("t", "<C-t>", "<cmd>ToggleTerm<cr>")
@@ -286,7 +285,7 @@ lvim.builtin.terminal.execs = {
 function _G.set_terminal_keymaps()
   local opts = {buffer = 0}
   vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
-  vim.keymap.set('t', 'jj', [[<C-\><C-n>]], opts)
+  -- vim.keymap.set('t', 'jj', [[<C-\><C-n>]], opts) // inconvenient in ranger
   vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
   vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
   vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
@@ -415,6 +414,8 @@ lvim.lsp.installer.setup.automatic_installation = false
 -- disable diagnostics which is super annoying in my case
 -- lvim.lsp.diagnostics.virtual_text = true
 -- lvim.diagnostic.config({ virtual_text = true })
+
+lvim.lsp.buffer_mappings.normal_mode["gh"] = { vim.lsp.buf.hover, "Show documentation" }
 
 -- vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
 
@@ -916,7 +917,7 @@ lvim.plugins = {
         float = {
           enabled = false,
           -- Text to show in the popup float
-          text = "💡",
+          text = "💡", --
           -- Available keys for window options:
           -- - height     of floating window
           -- - width      of floating window
@@ -936,7 +937,7 @@ lvim.plugins = {
         virtual_text = {
           enabled = true,
           -- Text to show at virtual text
-          text = "💡",
+          text = "💡",--
           -- highlight mode to use for virtual text (replace, combine, blend), see :help nvim_buf_set_extmark() for reference
           hl_mode = "replace",
         },
@@ -1331,6 +1332,28 @@ lvim.plugins = {
 	      load_breakpoints_event = { "BufReadPost" }
       }
     end
+  },
+  {
+    -- "luukvbaal/statuscol.nvim",
+    -- config = function()
+    --   local builtin = require("statuscol.builtin")
+    --   require("statuscol").setup({
+    --     -- configuration goes here, for example:
+    --     -- relculright = true,
+    --     segments = {
+    --       { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+    --       {
+    --         sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
+    --         click = "v:lua.ScSa"
+    --       },
+    --       { text = { builtin.lnumfunc }, click = "v:lua.ScLa", },
+    --       {
+    --         sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
+    --         click = "v:lua.ScSa"
+    --       },
+    --     }
+    --   })
+    -- end,  
   },
   -- { -- gxt_kt vim-tmux-clipboard : vim tmux clipboard
   --   'roxma/vim-tmux-clipboard',
