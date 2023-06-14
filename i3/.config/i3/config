@@ -80,8 +80,9 @@ tiling_drag modifier titlebar
 bindsym $mod+Return exec --no-startup-id kitty
 
 # kill focused window
-bindsym $mod+Shift+q exec --no-startup-id $python ~/.config/i3/KillWindow.py  >> ~/i3_log 
-bindsym $mod+Control+q kill
+bindsym $mod+Shift+q exec --no-startup-id $python ~/.config/i3/KillWindow.py kill >> ~/i3_log 
+bindsym $mod+Control+q exec --no-startup-id $python ~/.config/i3/KillWindow.py forcekill >> ~/i3_log 
+# bindsym $mod+Control+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+s exec --no-startup-id rofi -show drun -show-icons 

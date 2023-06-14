@@ -39,6 +39,9 @@ def KillWindow():
 
 
 if __name__ == "__main__":
-    # if(len(sys.argv)) < 2 :
-    #     print("GXT_KT : error : len(sys.argv) dose not meet the requirements")
-    KillWindow(*sys.argv[1:])
+    if(len(sys.argv)) < 2 :
+        print("GXT_KT : error : len(sys.argv) dose not meet the requirements")
+    if(sys.argv[1]=="forcekill") :
+        os.system("xdotool getwindowfocus windowkill")
+    else :
+        KillWindow(*sys.argv[2:])
