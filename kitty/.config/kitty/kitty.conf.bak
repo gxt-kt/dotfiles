@@ -6,6 +6,24 @@
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
+# font_family  Consolas
+# font_family Iosevka
+# font_family UbuntuMono Nerd Font
+# font_family Hasklug Nerd Font
+# font_family Iosevka Fixed SS07
+font_family Iosevka Custom
+bold_font       Iosevka Custom Medium 
+italic_font      auto
+bold_italic_font Iosevka Custom Medium Italic 
+# font_family Iosevka Term
+# font_family Input
+# font_family Fira Code
+# font_family InconsolataLGC Nerd Font Mono
+# font_family SF Mono
+# font_family Monaco
+# bold_font  MonacoB
+# italic_font  Monaco 
+# bold_italic_font  JetBrainsMono Nerd Font
 # font_family      monospace
 # bold_font        auto
 # italic_font      auto
@@ -24,7 +42,7 @@
 #:     italic_font      Operator Mono Book Italic
 #:     bold_italic_font Operator Mono Medium Italic
 
-# font_size 11.0
+font_size 12.5
 
 #: Font size (in pts)
 
@@ -242,7 +260,7 @@
 #: special keyword: background. Note that if cursor is set to none
 #: then this option is ignored.
 
-# cursor_shape block
+cursor_shape block
 
 #: The cursor shape can be one of block, beam, underline. Note that
 #: when reloading the config this will be changed only if the cursor
@@ -360,7 +378,7 @@
 #: The color and style for highlighting URLs on mouse-over. url_style
 #: can be one of: none, straight, double, curly, dotted, dashed.
 
-# open_url_with default
+open_url_with default
 
 #: The program to open clicked URLs. The special value default with
 #: first look for any URL handlers defined via the open_actions
@@ -719,11 +737,11 @@
 
 #: }}}
 
-#: Window layout {{{
+# : Window layout {{{
 
-# remember_window_size  yes
-# initial_window_width  640
-# initial_window_height 400
+remember_window_size  yes
+# initial_window_width  300
+# initial_window_height 50
 
 #: If enabled, the OS Window size will be remembered so that new
 #: instances of kitty will have the same size as the previous
@@ -1411,7 +1429,7 @@
 #: remote machine to read/write to the local filesystem, without
 #: permission.
 
-# allow_hyperlinks yes
+allow_hyperlinks yes
 
 #: Process hyperlink escape sequences (OSC 8). If disabled OSC 8
 #: escape sequences are ignored. Otherwise they become clickable
@@ -1420,7 +1438,7 @@
 #: special value of ask means that kitty will ask before opening the
 #: link when clicked.
 
-# shell_integration enabled
+shell_integration no-cursor 
 
 #: Enable shell integration on supported shells. This enables features
 #: such as jumping to previous prompts, browsing the output of the
@@ -2335,4 +2353,11 @@
 #: }}}
 
 #: }}}
+
+
+
+# BEGIN_KITTY_THEME
+# One Half Dark
+include current-theme.conf
+# END_KITTY_THEME
 

@@ -9,22 +9,32 @@ local home = os.getenv("HOME")
 -- package.path = home .. "/.dotfiles/lvim/?.lua"
 package.path = "/home/gxt_kt/.config/lvim/?.lua;"
 
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
 
 -- themes: https://vimcolorschemes.com/
--- lvim.colorscheme = "gruvbox"
--- lvim.colorscheme = "onedarker"
--- lvim.colorscheme = "tokyonight-storm"
+local theme = "catppuccin"
 
+if theme=="tokyonight" then
+  lvim.colorscheme = "tokyonight-storm"
+elseif theme=="gruvbox" then
+  lvim.colorscheme = "gruvbox"
+elseif theme=="onedarker" then
+  lvim.colorscheme = "onedarker"
+elseif theme=="material" then
 -- 'marko-cerovac/material.nvim',
-lvim.colorscheme = "material"
-vim.g.material_style = "palenight"
+  lvim.colorscheme = "material"
+  vim.g.material_style = "palenight"
 -- lvim.builtin.lualine.options.theme = "auto"
 -- lvim.builtin.lualine.options.theme = "material-nvim"
 -- lvim.builtin.lualine.options.theme="material-stealth"
+elseif theme=="catppuccin" then
+  vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
+  lvim.colorscheme = "catppuccin"
+end
+
+
 
 
 --  options fold from treesitter
@@ -374,7 +384,6 @@ lvim.builtin.treesitter.ensure_installed = {
 -- lvim.builtin.treesitter.auto_install = false
 -- lvim.builtin.treesitter.ensure_installed="all"
 
--- lvim.builtin.treesitter.ignore_install = {"markdown" }
 lvim.builtin.treesitter.highlight.enable = true
 
 -- About treesitter config my rainbow color see https://github.com/p00f/nvim-ts-rainbow/issues/104
@@ -1289,9 +1298,9 @@ lvim.plugins = {
   },
   {
     'iamcco/markdown-preview.nvim',
-    -- run = function()
-    --   vim.fn["mkdp#util#install"]()
-    -- end,
+    config = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   },
   {
     'folke/tokyonight.nvim',
@@ -1332,6 +1341,9 @@ lvim.plugins = {
 	      load_breakpoints_event = { "BufReadPost" }
       }
     end
+  },
+  {
+    "catppuccin/nvim", name = "catppuccin"
   },
   {
     -- "luukvbaal/statuscol.nvim",
