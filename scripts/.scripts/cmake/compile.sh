@@ -70,7 +70,9 @@ find_file() {
       myecho ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
       myecho "Exec File Name : \033[33m$file"
       myecho "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-      "$entry" # exec file
+      shift 2 # 移除参数 $1 和 $2
+      "$entry" "$@" # 执行文件并传递剩余的参数
+      # "$entry" # exec file
       return 0
     elif [[ -d "$entry" ]]; then
       if find_file "$entry" "$file"; then
@@ -89,13 +91,16 @@ ExecFile() {
             myecho ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
             myecho "Exec File Name : \033[33m$file"
             myecho "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-            ./$file
+            # ./$file
+            shift # 移除第一个参数
+            ./$file $@ # 执行文件并传递剩余的参数
             # break # 看需求是否需要遍历所有可执行文件
         fi
     done
   else
     # 在当前目录下递归查找文件
-    if find_file "$(pwd)" "$1"; then
+    # if find_file "$(pwd)" "$1"; then
+    if find_file "$(pwd)" "$@"; then
       # echo "存在"
       :
     else
@@ -112,20 +117,28 @@ ExecFile() {
 cmr() {
   ExecCmake
   ExecBuild
-  ExecFile "$1"
+  # ExecFile "$1"
+  ExecFile $@
 }
 
 # make+run
 mr() {
   ExecBuild
-  ExecFile "$1"
+  # ExecFile "$1"
+  ExecFile $@
+  # echo $@
 }
 
 if [[ "$1" == "cmr" ]]; then
-  cmr "$2"
+  # cmr "$2"
+  shift # 移除第一个参数
+  cmr "$@"
 elif [[ "$1" == "mr" ]]; then
-  mr "$2"
+  shift # 移除第一个参数
+  mr "$@"
+  # mr "$2"
 else 
-  cmr
+  # cmr
+  cmr "$@"
 fi
 
