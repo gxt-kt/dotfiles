@@ -1307,33 +1307,86 @@ lvim.plugins = {
     'folke/tokyonight.nvim',
   },
   {
-    'lukas-reineke/indent-blankline.nvim',
+    "shellRaining/hlchunk.nvim",
     config = function()
-      vim.opt.termguicolors = true
-      vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
-
-      vim.opt.list = true
-      vim.opt.listchars:append "space:⋅"
-      -- vim.opt.listchars:append "eol:↴"
-
-      require("indent_blankline").setup {
-        space_char_blankline = " ",
-        char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-          "IndentBlanklineIndent3",
-          "IndentBlanklineIndent4",
-          "IndentBlanklineIndent5",
-          "IndentBlanklineIndent6",
+		vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL", })
+    require('hlchunk').setup({
+    chunk = {
+        enable = true,
+        use_treesitter = true,
+        notify = true, -- notify if some situation(like disable chunk mod double time)
+        exclude_filetypes = {
+            aerial = true,
+            dashboard = true,
         },
-      }
+        support_filetypes = {
+            "*.lua",
+            "*.js",
+        },
+        chars = {
+            horizontal_line = "─",
+            vertical_line = "│",
+            left_top = "╭",
+            left_bottom = "╰",
+            right_arrow = ">",
+        },
+        style = {
+            { fg = "#806d9c" },
+        },
+    },
+    indent = {
+        enable = true,
+        chars = { "│", "¦", "┆", "┊", },
+        use_treesitter = false,
+        -- style = {
+        --     { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui") }
+        -- },
+    },
+    line_num = {
+        enable = false,
+        use_treesitter = true,
+        style = "#806d9c",
+    },
+    blank = {
+        enable = false,
+        chars = {
+            "․",
+        },
+        style = {
+            vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui"),
+        },
+    },
+  })
     end
   },
+  -- {
+  --   'lukas-reineke/indent-blankline.nvim',
+  --   config = function()
+  --     vim.opt.termguicolors = true
+  --     vim.cmd [[highlight IndentBlanklineIndent1 guifg=#E06C75 gui=nocombine]]
+  --     vim.cmd [[highlight IndentBlanklineIndent2 guifg=#E5C07B gui=nocombine]]
+  --     vim.cmd [[highlight IndentBlanklineIndent3 guifg=#98C379 gui=nocombine]]
+  --     vim.cmd [[highlight IndentBlanklineIndent4 guifg=#56B6C2 gui=nocombine]]
+  --     vim.cmd [[highlight IndentBlanklineIndent5 guifg=#61AFEF gui=nocombine]]
+  --     vim.cmd [[highlight IndentBlanklineIndent6 guifg=#C678DD gui=nocombine]]
+
+  --     vim.opt.list = true
+  --     vim.opt.listchars:append "space:⋅"
+  --     -- vim.opt.listchars:append "eol:↴"
+
+  --     require("indent_blankline").setup {
+  --       space_char_blankline = " ",
+  --       char_highlight_list = {
+  --         "IndentBlanklineIndent1",
+  --         "IndentBlanklineIndent2",
+  --         "IndentBlanklineIndent3",
+  --         "IndentBlanklineIndent4",
+  --         "IndentBlanklineIndent5",
+  --         "IndentBlanklineIndent6",
+  --       },
+  --     }
+  --   end
+  -- },
   {
     'Weissle/persistent-breakpoints.nvim',
     config = function()
