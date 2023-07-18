@@ -5,9 +5,6 @@ filled in as strings with either
 a global executable or a path to
 an executable
 ]]
-local home = os.getenv("HOME")
--- package.path = home .. "/.dotfiles/lvim/?.lua"
-package.path = "/home/gxt_kt/.config/lvim/?.lua;"
 
 -- general
 lvim.log.level = "warn"
@@ -169,7 +166,7 @@ lvim.keys.normal_mode["<leader>s"]    = ":lua require('telescope.builtin').lsp_d
 lvim.keys.normal_mode["<leader>S"]    = ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>"
 
 
--- hop
+-- jump config 
 do
   vim.keymap.set('', 'f', function()
     require('hop').hint_char1({ direction = require('hop.hint').HintDirection.AFTER_CURSOR, current_line_only = true })
@@ -183,8 +180,9 @@ do
   vim.keymap.set('', 'T', function()
     require('hop').hint_char1({ direction = require('hop.hint').BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
   end, { remap = true })
-  lvim.keys.normal_mode["ss"] = "<cmd>HopChar2<cr>"
-  lvim.keys.normal_mode["sS"] = "<cmd>HopChar2MW<cr>"
+  -- lvim.keys.normal_mode["<leader>s"] = "<cmd>HopChar2<cr>"
+  -- lvim.keys.normal_mode["<leader>S"] = "<cmd>HopChar2MW<cr>"
+  lvim.keys.normal_mode["<leader>s"] = "<cmd>lua require('flash').jump()<cr>"
 end
 
 
@@ -578,8 +576,7 @@ lvim.plugins = {
   {
     "NLKNguyen/papercolor-theme"
   },
-  {
-                   -- hop
+  { -- hop
     "phaazon/hop.nvim",
     branch = 'v2', -- optional but strongly recommended
     config = function()
@@ -587,11 +584,25 @@ lvim.plugins = {
       require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
     end
   },
+  { -- flash
+    "folke/flash.nvim",
+    config = function()
+      require 'flash'.setup {
+        modes={
+          search={
+            enabled=false
+          },
+          char={
+            enabled=false
+          }
+        }
+      }
+    end
+  },
   { -- resize window
     "simeji/winresizer"
   },
-  {
-    -- vim clip on server
+  { -- vim clip on server
     "wincent/vim-clipper",
     config = function()
       vim.cmd([[
