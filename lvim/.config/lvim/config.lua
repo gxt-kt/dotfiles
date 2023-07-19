@@ -44,7 +44,7 @@ end
 vim.opt.relativenumber = true -- set relative numbered lines
 -- vim.opt.colorcolumn = "80" -- a line at 80 column postion -- 80 for google c++ style
 
-vim.opt.signcolumn = "yes:2"
+-- vim.opt.signcolumn = "yes:2"
 
 
 -- This will not change the clipboard content in V mode
@@ -1324,7 +1324,7 @@ lvim.plugins = {
     require('hlchunk').setup({
     chunk = {
         enable = true,
-        use_treesitter = true,
+        use_treesitter = false,
         notify = true, -- notify if some situation(like disable chunk mod double time)
         exclude_filetypes = {
             aerial = true,
@@ -1410,7 +1410,7 @@ lvim.plugins = {
   {
     "catppuccin/nvim", name = "catppuccin"
   },
-  {
+  -- {
     -- "luukvbaal/statuscol.nvim",
     -- config = function()
     --   local builtin = require("statuscol.builtin")
@@ -1433,7 +1433,7 @@ lvim.plugins = {
     --     }
     --   })
     -- end,
-  },
+  -- },
   -- { -- gxt_kt vim-tmux-clipboard : vim tmux clipboard
   --   'roxma/vim-tmux-clipboard',
   -- },
@@ -1459,8 +1459,8 @@ vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_li
 
 -- gxt_kt debug config :
 lvim.builtin.dap.active = true
-require('dap.python')
-require('dap.c_cpp_rust')
+-- require('dap.python')
+-- require('dap.c_cpp_rust')
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("FileType", {
