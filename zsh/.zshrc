@@ -117,6 +117,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
+#🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽🔽
 ################################################
 ################################################
 ### Under is my config #########################
@@ -124,42 +125,45 @@ source $ZSH/oh-my-zsh.sh
 ################################################
 
 
+#🔽🔽🔽
 # Autostart X at login
 # Ref : https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   exec startx
 fi
+#🔼🔼🔼
 
+#🔽🔽🔽
+# TMUX config
 # if set this , home and end in tmux will be strange, need remap home and end in tmux.
 # export TERM=xterm-256color
-
 
 # default set TMUX in tmux. 
 # if [[ -v TMUX ]];
 # then
 #     # unset TMUX
 # fi
- 
-######
-# git
-######
+#🔼🔼🔼
+
+#🔽🔽🔽
+#git
 alias g="gitui"
 alias gl="git --no-pager log --pretty=format:'%C(auto)%h%d %C(cyan)(%ci) %C(green)%cn %C(reset)%s'  --all --graph --abbrev-commit -5"
 alias gll="git --no-pager log --pretty=format:'%C(auto)%h%d %C(cyan)(%ci) %C(green)%cn %C(reset)%s'  --all --graph --abbrev-commit -10"
 alias glll="git --no-pager log --pretty=format:'%C(auto)%h%d %C(cyan)(%ci) %C(green)%cn %C(reset)%s'  --all --graph --abbrev-commit -20"
 alias gllll="git --no-pager log --pretty=format:'%C(auto)%h%d %C(cyan)(%ci) %C(green)%cn %C(reset)%s'  --all --graph --abbrev-commit"
 alias gam='git add . && echo "exec git add all" && git commit -m '
+#🔼🔼🔼
 
-######
+#🔽🔽🔽
 # proxychains / proxyhains4
-######
 hash proxychains4 2>/dev/null && { alias pro='proxychains4'; }
 hash proxychains 2>/dev/null && { alias pro='proxychains'; }
+#🔼🔼🔼
 
-######
+#🔽🔽🔽
 # set proxy
 # reference https://wiki.archlinux.org/title/Proxy_server
-######
 local proxy="127.0.0.1:7890"
 function proxy_on() {
     export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
@@ -206,10 +210,10 @@ function proxy_status(){
     	echo -e "Have Proxy environment."
     fi 
 }
+#🔼🔼🔼
 
-######
+#🔽🔽🔽
 # alias
-######
 alias r="ranger"
 alias cat="ccat"
 # alias tr="trash" # need install trash-cli. And files move to ~/.local/share/Trash/
@@ -218,17 +222,17 @@ alias v='bash -c '\''my_vim=""; if command -v lvim >/dev/null 2>&1; then my_vim=
 alias vim='bash -c '\''my_vim=""; if command -v lvim >/dev/null 2>&1; then my_vim="lvim"; else if command -v nvim >/dev/null 2>&1; then my_vim="nvim"; else my_vim="vim"; fi; fi; if [ $# -gt 0 ]; then $my_vim "$@"; else $my_vim .; fi'\'' bash'
 alias cf="cd \$(fd --type d --hidden | fzf)"
 alias cfh="cd ~ && cd \$(fd --type d --hidden | fzf)" # search from home
+#🔼🔼🔼
 
-######
+#🔽🔽🔽
 # lunarvim
-######
 export PATH="$HOME/.local/bin":$PATH
 export EDITOR=$(bash -c 'if command -v lvim >/dev/null 2>&1; then echo "lvim"; elif command -v nvim >/dev/null 2>&1; then echo "nvim"; else echo "vim"; fi')
 # export EDITOR='lvim'
+#🔼🔼🔼
 
-######
+#🔽🔽🔽
 # fzf
-######
 local fzf_ignore=".wine,.git,.idea,.vscode,node_modules,build"
 export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude={${fzf_ignore}} "
 export FZF_DEFAULT_OPTS="--height 80% --layout=reverse --preview 'echo {} | ~/.config/fzf/fzf_preview.py' --preview-window=down --border "
@@ -238,12 +242,14 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
   fd --type d --hidden --exclude={${fzf_ignore}}
 }
+#🔼🔼🔼
 
-######
+#🔽🔽🔽
 # docker display
-######
 xhost +&>/dev/null
+#🔼🔼🔼
 
+#🔽🔽🔽
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/gxt_kt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -258,11 +264,16 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+#🔼🔼🔼
 
+#🔽🔽🔽
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+#🔼🔼🔼
 
+#🔽🔽🔽
 # cmake alias
 alias cmr='bash ~/.scripts/cmake/compile.sh cmr'
 alias mr='bash ~/.scripts/cmake/compile.sh mr'
+#🔼🔼🔼
 
