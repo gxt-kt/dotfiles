@@ -1337,7 +1337,7 @@ lvim.plugins = {
             right_arrow = ">",
         },
         style = {
-            { fg = "#806d9c" },
+            { fg = "#CB8764" },
         },
     },
     indent = {
