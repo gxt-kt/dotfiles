@@ -1,11 +1,3 @@
---[[
-lvim is the global options object
-Linters should be
-filled in as strings with either
-a global executable or a path to
-an executable
-]]
-
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
@@ -41,6 +33,7 @@ do
   vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 end
 
+
 vim.opt.relativenumber = true -- set relative numbered lines
 -- vim.opt.colorcolumn = "80" -- a line at 80 column postion -- 80 for google c++ style
 
@@ -63,6 +56,8 @@ lvim.keys.normal_mode["<S-l>"]        = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["L"] = "$"
 -- lvim.keys.normal_mode["Q"] = "q"
 lvim.keys.normal_mode["<leader>h"]    = ":nohl<cr>"
+lvim.keys.normal_mode["<leader>H"]    = ":Twilight<cr>"
+lvim.keys.normal_mode["<leader>W"]    = ":set wrap!<cr>"
 lvim.keys.normal_mode["<leader>j"]    = ":ClangdSwitchSourceHeader<cr>"
 lvim.builtin.which_key.mappings.o     = nil
 lvim.builtin.which_key.mappings["o"]  = {
@@ -1410,6 +1405,14 @@ lvim.plugins = {
   {
     "catppuccin/nvim", name = "catppuccin"
   },
+  { -- highlight code block on cursor block
+    "folke/twilight.nvim",
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
   -- {
     -- "luukvbaal/statuscol.nvim",
     -- config = function()
@@ -1440,12 +1443,6 @@ lvim.plugins = {
   --
   --
 }
-
--- gxt_kt Show rainbow bracket
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern="cpp",
---   command="autocmd BufEnter,TextChanged <buffer> lua require 'lvim.lsp.buf'.semantic_tokens_full()"
--- })
 
 
 vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
