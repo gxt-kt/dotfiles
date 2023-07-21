@@ -209,6 +209,10 @@ function proxy_status(){
     else
     	echo -e "Have Proxy environment."
     fi 
+    echo -e "http_proxy: ${http_proxy}"
+    echo -e "https_proxy: ${https_proxy}"
+    echo -e "ftp_proxy: ${ftp_proxy}"
+    echo -e "rsync_proxy: ${rsync_proxy}"
 }
 #🔼🔼🔼
 
