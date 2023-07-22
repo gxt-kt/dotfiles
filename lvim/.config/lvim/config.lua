@@ -392,9 +392,12 @@ lvim.builtin.treesitter.rainbow.colors = {
   "#a89984",
   "#cc241d",
 }
+-- solve bug that treesitter rainbow bracket will missup when format the code
+-- Ref: https://github.com/p00f/nvim-ts-rainbow/issues/112#issuecomment-1310835936
+vim.cmd([[autocmd BufNewFile,BufReadPost * TSDisable rainbow | TSEnable rainbow | TSDisable rainbow | TSEnable rainbow | TSDisable rainbow | TSEnable rainbow]])
+
 
 -- generic LSP settings
-
 -- -- make sure server will always be installed even if the server is in skipped_servers list
 lvim.lsp.installer.setup.ensure_installed = {
   "clangd",
@@ -1038,6 +1041,7 @@ lvim.plugins = {
     end
   },
   { -- gxt_kt nvim-ts-rainbow : Show rainbow bracket
+    -- NOTE: this plugin had been deprecated. Need move to new fork like https://github.com/HiPhish/nvim-ts-rainbow2
     "p00f/nvim-ts-rainbow",
   },
   {
