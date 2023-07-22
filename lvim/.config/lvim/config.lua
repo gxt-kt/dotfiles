@@ -1412,9 +1412,7 @@ lvim.plugins = {
   { -- highlight code block on cursor block
     "folke/twilight.nvim",
     opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
+      context=3
     }
   },
   -- {
