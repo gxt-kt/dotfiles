@@ -25,10 +25,10 @@
     indicate_hidden = yes
 
     # Shrink window if it's smaller than the width.
-    shrink = no
+    shrink = yes
 
     # Draw a line between multiple notifications
-    separator_height = 6
+    separator_height = 3
 
     separator_color = "#272f57"
 
@@ -50,7 +50,8 @@
 
     # Set the font
     # font = "Noto Sans 11"
-    font = "Hack Nerd Font 11"
+    # font = "Hack Nerd Font 11"
+    font = "Monaco 11"
 
     # Set line height to font height
     line_height = 0
@@ -110,7 +111,7 @@
     min_icon_size = 50
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 60
+    max_icon_size = 70
 
     # Paths to default icons.
     icon_path = /usr/share/icons/gnome/128x128/status/:/usr/share/icons/gnome/128x128/devices/:/usr/share/icons/Mkos-Big-Sur/128x128/
@@ -131,7 +132,8 @@
     dmenu = /usr/bin/dmenu -p dunst:
 
     # Browser for opening urls in context menu.
-    browser = /usr/bin/firefox -new-tab
+    # browser = /usr/bin/firefox -new-tab
+    browser = /usr/bin/google-chrome-stable
 
     # Always run rule-defined scripts, even if the notification is suppressed
     always_run_script = false
@@ -156,7 +158,7 @@
 
 
     # --- Mouse --- #
-    mouse_left_click = close_current
+    mouse_left_click = do_action,close_current
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
 
@@ -169,7 +171,7 @@
     highlight = "#70a5eb"
     frame_color = "#242931"
     foreground = "#b6beca"
-    timeout = 8
+    timeout = 5
 
 [urgency_normal]
     script = ~/.scripts/dunst/sound-normal.sh
@@ -178,7 +180,7 @@
 
     frame_color = "#242931"
     foreground = "#b6beca"
-    timeout = 8
+    timeout = 5
 
 [urgency_critical]
     script = ~/.scripts/dunst/sound-critical.sh
