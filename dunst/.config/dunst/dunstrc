@@ -174,7 +174,7 @@
     timeout = 5
 
 [urgency_normal]
-    script = ~/.scripts/dunst/sound-normal.sh
+    # script = ~/.scripts/dunst/sound-normal.sh
     background = "#171B20"
     highlight = "#70a5eb"
 
@@ -183,7 +183,7 @@
     timeout = 5
 
 [urgency_critical]
-    script = ~/.scripts/dunst/sound-critical.sh
+    # script = ~/.scripts/dunst/sound-critical.sh
     background = "#BF616A"
     highlight = "#e05f65"
     foreground = "#171B20"
