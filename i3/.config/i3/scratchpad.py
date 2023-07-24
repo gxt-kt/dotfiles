@@ -8,8 +8,8 @@ import os
 i3 = i3ipc.Connection()
 
 scratchpad_user = {
-    # "scratchpad":"alacritty -t scratchpad --class floatingTerminal -e tmux",
-    "scratchpad":"kitty -T scratchpad --class floatingTerminal tmux",
+    # "scratchpad":"alacritty -t scratchpad --class FloatingTerminal -e tmux",
+    "scratchpad":"kitty -T scratchpad --class FloatingTerminal tmux",
     "WeChat" :"/opt/apps/com.qq.weixin.deepin/files/run.sh",
     "QQ":" ",
 }

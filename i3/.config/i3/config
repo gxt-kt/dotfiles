@@ -182,8 +182,8 @@ bindsym $mod+shift+d scratchpad show
 # applications
 bindsym $mod+shift+s exec --no-startup-id "flameshot gui"
 bindsym $mod+v       exec --no-startup-id "copyq toggle"
-# bindsym $mod+n       exec --no-startup-id "alacritty -t term-float --class floatingTerminal"
-bindsym $mod+n       exec --no-startup-id "kitty -T term-float --class floatingTerminal"
+# bindsym $mod+n       exec --no-startup-id "alacritty -t term-float --class FloatingTerminal"
+bindsym $mod+n       exec --no-startup-id "kitty -T term-float --class FloatingTerminal"
 # bindsym Mod1+space   exec --no-startup-id "crow"
 
 bindsym $mod+b exec --no-startup-id polybar-msg cmd toggle
@@ -283,7 +283,8 @@ mode "resize" {
 
 # bindsym $mod+r mode "resize"
 
-for_window [class="floatingTerminal"] floating enable
+for_window [class="FloatingTerminal"] floating enable
+# for_window [name="floatingTerminal"] floating enable
 for_window [class="Nitrogen"]         floating enable
 for_window [title="Image Preview"]    floating enable
 for_window [title="Bluetooth Devices"]         floating enable
