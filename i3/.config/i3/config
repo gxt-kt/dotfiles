@@ -231,7 +231,7 @@ bindsym $mod+0 workspace number $ws10
 
 bindsym $mod+c workspace number $ws11  exec --no-startup-id $python ~/.config/i3/OpenApplication.py 'Google-chrome' 'google-chrome-stable' $ws11  >> $log_file
 bindsym $mod+m workspace number $ws12  exec --no-startup-id $python ~/.config/i3/OpenApplication.py 'YesPlayMusic' '/opt/YesPlayMusic/yesplaymusic' $ws12  >> $log_file
-bindsym $mod+r workspace number $ws13  exec --no-startup-id $python ~/.config/i3/OpenApplication.py 'obs' 'obs' $ws5  >> $log_file
+bindsym $mod+r workspace number $ws13  exec --no-startup-id $python ~/.config/i3/OpenApplication.py 'obs' 'obs' $ws13  >> $log_file
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1 ; workspace number $ws1
@@ -362,6 +362,9 @@ for_window [class="yakuake"] , move position 20 ppt 20 ppt
 
 for_window [title="Desktop @ QRect.*"] kill; floating enable;
 
+# make new window will cover fullscreen
+# for_window [class="^.*"] focus
+for_window [floating] focus
 
 
 # win+数字切换工作区，第二次返回之前的工作区

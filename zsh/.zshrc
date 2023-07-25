@@ -281,3 +281,7 @@ alias cmr='bash ~/.scripts/cmake/compile.sh cmr'
 alias mr='bash ~/.scripts/cmake/compile.sh mr'
 #🔼🔼🔼
 
+# ADD rust cargo bin path
+#🔽🔽🔽
+export PATH="$HOME/.cargo/bin":$PATH
+#🔼🔼🔼
