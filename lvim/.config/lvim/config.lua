@@ -2,30 +2,11 @@
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = false
 
--- themes: https://vimcolorschemes.com/
-local theme = "catppuccin"
-
-if theme=="tokyonight" then
-  lvim.colorscheme = "tokyonight-storm"
-elseif theme=="gruvbox" then
-  lvim.colorscheme = "gruvbox"
-elseif theme=="onedarker" then
-  lvim.colorscheme = "onedarker"
-elseif theme=="material" then
--- 'marko-cerovac/material.nvim',
-  lvim.colorscheme = "material"
-  vim.g.material_style = "palenight"
--- lvim.builtin.lualine.options.theme = "auto"
--- lvim.builtin.lualine.options.theme = "material-nvim"
--- lvim.builtin.lualine.options.theme="material-stealth"
-elseif theme=="catppuccin" then
-  vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
-  lvim.colorscheme = "catppuccin"
-end
 
 -- Add scripts find path
-local home=os.getenv("HOME")
+local home = os.getenv("HOME")
 package.path = home .. "/.config/lvim/?.lua" -- $HOME/.config/lvim/*.lua
+require('my_theme')
 
 --  options fold from treesitter
 do
@@ -34,205 +15,166 @@ do
   vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 end
 
-
 vim.opt.relativenumber = true -- set relative numbered lines
 -- vim.opt.colorcolumn = "80" -- a line at 80 column postion -- 80 for google c++ style
 
 -- vim.opt.signcolumn = "yes:2"
 
-
--- This will not change the clipboard content in V mode
-lvim.keys.visual_mode["p"]            = '"_dP'
-
-lvim.leader                           = ","
-lvim.keys.insert_mode["jj"]           = "<Esc>"
-lvim.keys.normal_mode["<leader>\\"]   = "<C-w>v"
-lvim.keys.normal_mode["<leader>-"]    = "<C-w>s"
-lvim.keys.normal_mode["<C-s>"]        = ":w<cr>"
-lvim.keys.normal_mode["<S-h>"]        = false -- default combine to ^
-lvim.keys.normal_mode["<S-h>"]        = ":BufferLineCyclePrev<CR>"
-lvim.keys.normal_mode["<S-l>"]        = false -- default combine to $
-lvim.keys.normal_mode["<S-l>"]        = ":BufferLineCycleNext<CR>"
+lvim.leader = ","
+lvim.keys.insert_mode["jj"] = "<Esc>"
+lvim.keys.normal_mode["<leader>\\"] = "<C-w>v"
+lvim.keys.normal_mode["<leader>-"] = "<C-w>s"
+lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
+lvim.keys.normal_mode["<S-h>"] = false -- default combine to ^
+lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+lvim.keys.normal_mode["<S-l>"] = false -- default combine to $
+lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 -- lvim.keys.normal_mode["H"] = "^"
 -- lvim.keys.normal_mode["L"] = "$"
 -- lvim.keys.normal_mode["Q"] = "q"
-lvim.keys.normal_mode["<leader>h"]    = ":nohl<cr>"
-lvim.keys.normal_mode["<leader>H"]    = ":Twilight<cr>"
-lvim.keys.normal_mode["<leader>W"]    = ":set wrap!<cr>"
-lvim.keys.normal_mode["<leader>j"]    = ":ClangdSwitchSourceHeader<cr>"
-lvim.builtin.which_key.mappings.o     = nil
-lvim.builtin.which_key.mappings["o"]  = {
+lvim.keys.normal_mode["<leader>h"] = ":nohl<cr>"
+lvim.keys.normal_mode["<leader>H"] = ":Twilight<cr>"
+lvim.keys.normal_mode["<leader>W"] = ":set wrap!<cr>"
+lvim.keys.normal_mode["<leader>j"] = ":ClangdSwitchSourceHeader<cr>"
+lvim.builtin.which_key.mappings.o = nil
+lvim.builtin.which_key.mappings["o"] = {
   name = "+outline",
   s = { "<cmd>SymbolsOutline <cr>", "Outline" },
   v = { "<cmd>Vista!! <cr>", "Vista" },
   h = { "<cmd>ClangdTypeHierarchy<cr>", "Hierarchy" },
 }
--- lvim.keys.normal_mode["<leader>os"] = "<cmd> SymbolsOutline"
--- lvim.keys.normal_mode["<leader>ov"] = ":Vista!!<cr>"
-lvim.keys.normal_mode["<leader>q"]    = ":bd<cr>"
-lvim.keys.normal_mode["<leader>c"]    = ":q<cr>"
+-- This will not change the clipboard content in V mode
+lvim.keys.visual_mode["p"] = '"_dP'
+lvim.keys.normal_mode["<leader>q"] = ":bd<cr>"
+lvim.keys.normal_mode["<leader>c"] = ":q<cr>"
 -- 暂时还不懂这个映射是干嘛，什么都没做？
-lvim.keys.normal_mode["q"]            = "<Nop>"
+lvim.keys.normal_mode["q"] = "<Nop>"
 -- 搜索时把结果置于中间并打开折叠
-lvim.keys.normal_mode["n"]            = "nzzzv"
-lvim.keys.normal_mode["N"]            = "Nzzzv"
+lvim.keys.normal_mode["n"] = "nzzzv"
+lvim.keys.normal_mode["N"] = "Nzzzv"
 -- 让下一行加到当前行末尾，删掉所有缩进，并加一个空格
-lvim.keys.normal_mode["J"]            = "mzJ`z"
--- lvim.keys.visual_mode["p"] = "P"
--- lvim.keys.visual_mode["H"] = "^"
--- lvim.keys.visual_mode["L"] = "$"
+lvim.keys.normal_mode["J"] = "mzJ`z"
+
+-- 将选定的行移动到上/下方一行，并缩进。
 -- lvim.keys.visual_mode["J"] = ":m '>+1<CR>gv=gv"
 -- lvim.keys.visual_mode["K"] = ":m '<-2<CR>gv=gv"
 
 -- maximal keymap
----- toggle split window maximization
-lvim.keys.normal_mode["<leader>z"]    = ":MaximizerToggle<CR>"
+-- toggle split window maximization
+lvim.keys.normal_mode["<leader>z"] = ":MaximizerToggle<CR>"
 
 -- Markdown-preview keymap
-lvim.keys.normal_mode["<leader>md"]   = ":MarkdownPreview<CR>"
+lvim.keys.normal_mode["<leader>md"] = ":MarkdownPreview<CR>"
 
 -- cmp配置修改
 -- lvim.builtin.cmp.confirm_opts.select=true
-lvim.builtin.cmp.completion           = { -- 修改默认就选择第一条
-  completeopt = 'menu,menuone,noinsert'
+lvim.builtin.cmp.completion = { -- 修改默认就选择第一条
+  completeopt = "menu,menuone,noinsert",
 }
 -- 修改tab为替换，<CR>默认就是直接插入了
-lvim.builtin.cmp.mapping["<Tab>"]     = require("cmp").mapping {
-  i = require("cmp").mapping.confirm { behavior = require("cmp").ConfirmBehavior.Replace, select = true },
+lvim.builtin.cmp.mapping["<Tab>"] = require("cmp").mapping({
+  i = require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true }),
   c = function(fallback)
     if require("cmp").visible() then
-      require("cmp").confirm { behavior = require("cmp").ConfirmBehavior.Replace, select = true }
+      require("cmp").confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true })
     else
       fallback()
     end
   end,
-}
--- lvim.builtin.cmp.mapping["<Tab>"]= require("cmp").mapping(function(fallback)
---         if require("cmp").visible() then
---           local confirm_opts = vim.deepcopy(lvim.builtin.cmp.confirm_opts) -- avoid mutating the original opts below
---           local is_insert_mode = function()
---             return vim.api.nvim_get_mode().mode:sub(1, 1) == "i"
---           end
---           if is_insert_mode() then -- prevent overwriting brackets
---             confirm_opts.behavior = require("cmp").ConfirmBehavior.Insert
---           end
---           if require("cmp").confirm(confirm_opts) then
---             return -- success, exit early
---           end
---         end
---         fallback() -- if not exited early, always fallback
---       end)
+})
 
 -- lsp
-lvim.keys.normal_mode["<leader>in"]   = ":lua vim.lsp.buf.incoming_calls()<cr>"
-lvim.keys.visual_mode["<leader>lf"]   = "<ESC><cmd>lua vim.lsp.buf.range_formatting()<CR>"
+lvim.keys.normal_mode["<leader>in"] = ":lua vim.lsp.buf.incoming_calls()<cr>"
+lvim.keys.visual_mode["<leader>lf"] = { ":lua require('my_funcs').range_formatting()<CR>", desc = "Range Format Code" }
 lvim.builtin.which_key.mappings["la"] = { ":CodeActionMenu<CR>", "My code action" }
 
-function ExecuteVisualSelection()
-    local start_pos = vim.fn.getpos("'<")
-    local end_pos = vim.fn.getpos("'>")
-
-    local lines = vim.fn.getline(start_pos[2], end_pos[2])
-    local selected_text = table.concat(lines, "\n")
-
-    if selected_text ~= '' then
-        -- local command_output = vim.fn.system(selected_text)
-
-        local command = "zsh -i -c '".. selected_text .."'"
-        print(command)
-        local handle = io.popen(command)
-        local command_output = handle:read("*a")
-        handle:close()
-
-        local contents = vim.split(command_output, "\n")
-
-        -- 检查最后一个元素是否为空字符串，如果是则删除，否则会多打印一个空行
-        if contents[#contents] == '' then
-            table.remove(contents, #contents)
-        end
-
-        vim.fn.setpos('.', end_pos)
-
-        vim.api.nvim_put({"{>>>>>>>>>>>>>>>>>>>>>>>>>>"}, 'l', true, false)
-        vim.fn.setreg('+', contents)  -- 将输出内容放入寄存器 +
-        -- vim.cmd('normal! "+p')
-        table.insert(contents, "}<<<<<<<<<<<<<<<<<<<<<<<<<<")
-        vim.api.nvim_put(contents, 'l', true, false)
-        -- vim.api.nvim_put({"}<<<<<<<<<<<<<<<<<<<<<<<"}, 'l', true , false)
-    else
-        print("no text selected")
-    end
-end
-
 -- 设置Visual模式下的按键绑定
-lvim.keys.visual_mode["<leader>R"] = ":lua ExecuteVisualSelection()<CR>"
-lvim.keys.normal_mode["<leader>R"] = "V:lua ExecuteVisualSelection()<CR>"
+lvim.keys.visual_mode["<leader>R"] = ":lua require('my_funcs').ExecuteAndPrintCmd()<CR>"
+lvim.keys.normal_mode["<leader>R"] = "V:lua require('my_funcs').ExecuteAndPrintCmd()<CR>"
 
 -- spectre
 -- open in current file
-lvim.keys.normal_mode["sf"]           = ":lua require('spectre').open_file_search()<CR>"
+lvim.keys.normal_mode["sf"] = ":lua require('spectre').open_file_search()<CR>"
 -- open in whole ws
-lvim.keys.normal_mode["sF"]           = ":lua require('spectre').open()<CR>"
+lvim.keys.normal_mode["sF"] = ":lua require('spectre').open()<CR>"
 
 -- SnipRun
-lvim.keys.normal_mode["<leader>r"]    = ":%SnipRun<CR>"
-lvim.keys.visual_mode["<leader>r"]    = ":'<,'>SnipRun<CR>"
+lvim.keys.normal_mode["<leader>r"] = ":%SnipRun<CR>"
+lvim.keys.visual_mode["<leader>r"] = ":'<,'>SnipRun<CR>"
 
 -- Use which-key to add extra bindings with the leader-key prefix
 -- orverwirte old 's'
-lvim.builtin.which_key.mappings.f     = nil
-lvim.builtin.which_key.mappings.s     = nil
---lvim.keys.normal_mode["<leader>fe"] = ":lua require('my_funcs').live_grep_raw({default_text =''})<cr>"
+lvim.builtin.which_key.mappings.f = nil
+lvim.builtin.which_key.mappings.s = nil
 lvim.builtin.which_key.mappings["fy"] = { "<cmd>Telescope neoclip<cr>", "Find clipboard" }
-lvim.builtin.which_key.mappings["ff"] = { ":lua require('lvim.core.telescope.custom-finders').find_project_files()<cr>",
-  "Find file" }
+lvim.builtin.which_key.mappings["ff"] =
+{ ":lua require('lvim.core.telescope.custom-finders').find_project_files()<cr>", "Find file" }
 lvim.builtin.which_key.mappings["fs"] = { ":lua require('telescope.builtin').live_grep()<cr>", "Find string" }
 lvim.builtin.which_key.mappings["fp"] = { "<cmd>Telescope projects<CR>", "Recent projects" }
 lvim.builtin.which_key.mappings["fr"] = { ":Telescope oldfiles<cr>", "Recent files" }
 lvim.builtin.which_key.mappings["fk"] = { "<cmd>Telescope keymaps<cr>", "Show all keymaps" }
+
 -- 原作者自己的
-lvim.keys.visual_mode["<leader>fw"]   = "<Esc>:lua require('my_funcs').live_grep_raw({}, 'v')<cr>"
-lvim.keys.normal_mode["<leader>fw"]   =
+lvim.keys.normal_mode["<leader>fe"] = ":lua require('my_funcs').live_grep_raw({default_text =''})<cr>"
+lvim.keys.visual_mode["<leader>fw"] = "<Esc>:lua require('my_funcs').live_grep_raw({}, 'v')<cr>"
+lvim.keys.normal_mode["<leader>fw"] =
 ":lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>')})<cr>"
-lvim.keys.normal_mode["<leader>fd"]   =
+lvim.keys.normal_mode["<leader>fd"] =
 ":lua require('my_funcs').live_grep_raw({default_text =  '-g' .. vim.fn.fnamemodify(vim.fn.expand('%'), ':.:h') .. '/*' .. ' ' .. vim.fn.expand('<cword>')})<cr>"
 
-lvim.keys.normal_mode["<leader>s"]    = ":lua require('telescope.builtin').lsp_document_symbols()<cr>"
-lvim.keys.normal_mode["<leader>S"]    = ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>"
+lvim.keys.normal_mode["<leader>s"] = ":lua require('telescope.builtin').lsp_document_symbols()<cr>"
+lvim.keys.normal_mode["<leader>S"] = ":lua require('telescope.builtin').lsp_dynamic_workspace_symbols()<cr>"
 
-
--- jump config 
+-- jump config
 do
-  vim.keymap.set('', 'f', function()
-    require('hop').hint_char1({ direction = require('hop.hint').HintDirection.AFTER_CURSOR, current_line_only = true })
+  vim.keymap.set("", "f", function()
+    require("hop").hint_char1({
+      direction = require("hop.hint").HintDirection.AFTER_CURSOR,
+      current_line_only = true,
+    })
   end, { remap = true })
-  vim.keymap.set('', 'F', function()
-    require('hop').hint_char1({ direction = require('hop.hint').HintDirection.BEFORE_CURSOR, current_line_only = true })
+  vim.keymap.set("", "F", function()
+    require("hop").hint_char1({
+      direction = require("hop.hint").HintDirection.BEFORE_CURSOR,
+      current_line_only = true,
+    })
   end, { remap = true })
-  vim.keymap.set('', 't', function()
-    require('hop').hint_char1({ direction = require('hop.hint').AFTER_CURSOR, current_line_only = true, hint_offset = -1 })
+  vim.keymap.set("", "t", function()
+    require("hop").hint_char1({
+      direction = require("hop.hint").AFTER_CURSOR,
+      current_line_only = true,
+      hint_offset = -1,
+    })
   end, { remap = true })
-  vim.keymap.set('', 'T', function()
-    require('hop').hint_char1({ direction = require('hop.hint').BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })
+  vim.keymap.set("", "T", function()
+    require("hop").hint_char1({
+      direction = require("hop.hint").BEFORE_CURSOR,
+      current_line_only = true,
+      hint_offset = 1,
+    })
   end, { remap = true })
   -- lvim.keys.normal_mode["<leader>s"] = "<cmd>HopChar2<cr>"
   -- lvim.keys.normal_mode["<leader>S"] = "<cmd>HopChar2MW<cr>"
   lvim.keys.normal_mode["<leader>s"] = "<cmd>lua require('flash').jump()<cr>"
 end
 
-
 -- auto pairs
 lvim.builtin.autopairs.disable_filetype = { "TelescopePrompt", "spectre_panel", "repl" }
 
 -- dap
 lvim.keys.normal_mode["<F12>"] = ":Telescope dap configurations<cr>"
-lvim.builtin.which_key.mappings["dt"] = { "<cmd>lua require'persistent-breakpoints.api'.toggle_breakpoint()<cr>", "Toggle Breakpoint" }
-lvim.builtin.which_key.mappings["dT"] = { "<cmd>lua require'persistent-breakpoints.api'.set_conditional_breakpoint()<cr>", "Toggle condition point" }
-lvim.builtin.which_key.mappings["dR"] = { "<cmd>lua require'persistent-breakpoints.api'.clear_all_breakpoints()<cr>", "clear all breakpoints" }
+lvim.builtin.which_key.mappings["dt"] =
+{ "<cmd>lua require'persistent-breakpoints.api'.toggle_breakpoint()<cr>", "Toggle Breakpoint" }
+lvim.builtin.which_key.mappings["dT"] = {
+  "<cmd>lua require'persistent-breakpoints.api'.set_conditional_breakpoint()<cr>",
+  "Toggle condition point",
+}
+lvim.builtin.which_key.mappings["dR"] =
+{ "<cmd>lua require'persistent-breakpoints.api'.clear_all_breakpoints()<cr>", "clear all breakpoints" }
 -- lvim.builtin.which_key.mappings.d = {
 --   l= { "<cmd>lua require'persistent-breakpoints.api'.toggle_breakpoint()<cr>","toggle_breakpoint" },
--- -- "<YourKey2>", "<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<cr>", 
--- -- "<YourKey3>", "<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<cr>", 
+-- -- "<YourKey2>", "<cmd>lua require('persistent-breakpoints.api').set_conditional_breakpoint()<cr>",
+-- -- "<YourKey3>", "<cmd>lua require('persistent-breakpoints.api').clear_all_breakpoints()<cr>",
 -- }
 -- lvim.keys.normal_mode["d"] = false
 -- lvim.lsp.buffer_mappings.normal_mode['d'] = nil
@@ -292,7 +234,6 @@ lvim.builtin.telescope.defaults.mappings = {
 -- lvim.builtin.theme.options.dim_inactive = true
 -- lvim.builtin.theme.options.style = "storm"
 
-
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Trouble",
   r = { "<cmd>Trouble lsp_references<cr>", "References" },
@@ -305,7 +246,7 @@ lvim.builtin.which_key.mappings["t"] = {
   t = { "<cmd>TodoTrouble<cr>", "Todo" },
 }
 
-lvim.builtin.alpha.active = true
+-- lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 
 -- ToggleTerminal
@@ -316,27 +257,27 @@ lvim.builtin.terminal.execs = {
   -- Change keys to needed
   -- { vim.o.shell, "<M-1>", "Horizontal Terminal", "horizontal", 0.3 },
   -- { vim.o.shell, "<M-2>", "Vertical Terminal", "vertical", 0.4 },
-  { vim.o.shell, "<M-`>",   "Float Terminal", "float", nil },
-  { vim.o.shell, "<M-Esc>", "Float Terminal", "float", nil },
-  { vim.o.shell, "<M-->", "Horizontal Terminal", "horizontal", 0.3 },
-  { vim.o.shell, "<M-\\>", "Vertical Terminal", "vertical", 0.4 },
-  { vim.o.shell, "<M-BackSpace>", "Vertical Terminal", "vertical", 0.4 },
+  { vim.o.shell, "<M-`>",         "Float Terminal",      "float",      nil },
+  { vim.o.shell, "<M-Esc>",       "Float Terminal",      "float",      nil },
+  { vim.o.shell, "<M-->",         "Horizontal Terminal", "horizontal", 0.3 },
+  { vim.o.shell, "<M-\\>",        "Vertical Terminal",   "vertical",   0.4 },
+  { vim.o.shell, "<M-BackSpace>", "Vertical Terminal",   "vertical",   0.4 },
 }
 -- vim.keymap.set("n", "<C-t>", "<cmd>ToggleTerm<cr>")
 -- vim.keymap.set("t", "<C-t>", "<cmd>ToggleTerm<cr>")
 -- lvim.keys.normal_mode["<C-t>"] = "<cmd>ToggleTerminal<cr>"
 function _G.set_terminal_keymaps()
-  local opts = {buffer = 0}
-  vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+  local opts = { buffer = 0 }
+  vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
   -- vim.keymap.set('t', 'jj', [[<C-\><C-n>]], opts) // inconvenient in ranger
-  vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
-  vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
-  vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
-  vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
-  vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+  vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+  vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+  vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+  vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+  vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
 end
+
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 -- nvim tree
 --("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
@@ -382,24 +323,16 @@ lvim.builtin.nvimtree.setup.view = {
   },
 }
 
-
 -- cmp
 lvim.builtin.cmp.cmdline.enable = true
 table.insert(lvim.builtin.cmp.sources, {
-  name = 'nvim_lsp_signature_help'
-});
-
+  name = "nvim_lsp_signature_help",
+})
 
 -- gitsigns
 lvim.builtin.gitsigns.opts.current_line_blame = false
 lvim.builtin.gitsigns.opts.current_line_blame_opts.virt_text_pos = "right_align"
 lvim.builtin.gitsigns.opts.current_line_blame_opts.delay = 200
-
--- buffer line
-lvim.builtin.bufferline.highlights.buffer_selected = {
-  bold = true,
-  fg = "#ffd43b"
-}
 
 
 -- if you don't want all the parsers change this to a table of the ones you want
@@ -434,7 +367,9 @@ lvim.builtin.treesitter.rainbow.colors = {
 }
 -- solve bug that treesitter rainbow bracket will missup when format the code
 -- Ref: https://github.com/p00f/nvim-ts-rainbow/issues/112#issuecomment-1310835936
-vim.cmd([[autocmd BufNewFile,BufReadPost * TSDisable rainbow | TSEnable rainbow | TSDisable rainbow | TSEnable rainbow | TSDisable rainbow | TSEnable rainbow]])
+vim.cmd(
+  [[autocmd BufNewFile,BufReadPost * TSDisable rainbow | TSEnable rainbow | TSDisable rainbow | TSEnable rainbow | TSDisable rainbow | TSEnable rainbow]]
+)
 
 
 -- generic LSP settings
@@ -479,9 +414,9 @@ require("lvim.lsp.manager").setup("pyright", {
         diagnosticMode = "openFilesOnly",
         useLibraryCodeForTypes = true,
         typeCheckingMode = "off",
-        autoImportCompletions = true
-      }
-    }
+        autoImportCompletions = true,
+      },
+    },
   },
 })
 
@@ -498,8 +433,8 @@ require("lvim.lsp.manager").setup("pyright", {
 -- end
 
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
+local formatters = require("lvim.lsp.null-ls.formatters")
+formatters.setup({
   { command = "black", filetypes = { "python" } },
 
   -- { command = "isort", filetypes = { "python" } },
@@ -512,7 +447,7 @@ formatters.setup {
   --   ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
   --   filetypes = { "typescript", "typescriptreact" },
   -- },
-}
+})
 
 -- -- set additional linters
 -- local linters = require "lvim.lsp.null-ls.linters"
@@ -536,33 +471,38 @@ lvim.lsp.null_ls.setup.on_init = function(new_client, _)
   new_client.offset_encoding = "utf-16"
 end
 
-
+-- local aaa= {
+-- 	{
+-- 		"catppuccin/nvim",
+-- 		name = "catppuccin",
+-- 	},
+-- }
 -- Additional Plugins
 lvim.plugins = {
+  -- require('my_theme'),
+  unpack(require('my_theme').theme),
   {
     "folke/trouble.nvim",
     config = function()
-      require("trouble").setup {
+      require("trouble").setup({
         -- your configuration comes here
         -- or leave it empty to use the default settings
         -- refer to the configuration section below
-      }
-    end
+      })
+    end,
     -- cmd = "TroubleToggle",
   },
   {
     -- better quick fix
     "kevinhwang91/nvim-bqf",
     config = function()
-      require('bqf').setup(
-        {
-          func_map = {
-            pscrollup = "<C-u>",
-            pscrolldown = "<C-d>"
-          },
-        }
-      )
-    end
+      require("bqf").setup({
+        func_map = {
+          pscrollup = "<C-u>",
+          pscrolldown = "<C-d>",
+        },
+      })
+    end,
   },
   {
     -- only works on https://github.com/universal-ctags/ctags
@@ -572,121 +512,71 @@ lvim.plugins = {
       let g:vista_sidebar_position = 'vertical topleft'
       let g:vista_default_executive = 'nvim_lsp'
       ]])
-    end
+    end,
+
   },
   { -- telescope instant searching
-    "nvim-telescope/telescope-live-grep-args.nvim"
+    "nvim-telescope/telescope-live-grep-args.nvim",
   },
-  {
-    "ldelossa/litee.nvim",
-    config = function()
-      require("litee.lib").setup({})
-    end
-  },
-  {
-    -- calltree
-    "ldelossa/litee-calltree.nvim",
-    config = function()
-      require("litee.calltree").setup({
-        -- NOTE: the plugin is in-progressing
-        on_open = "pannel", -- pannel | popout
-        hide_cursor = false,
-        keymaps = {
-          expand = "o",
-          collapse = "zc",
-          collapse_all = "zM",
-          jump = "<CR>",
-          jump_split = "s",
-          jump_vsplit = "v",
-          jump_tab = "t",
-          hover = "i",
-          details = "d",
-          close = "X",
-          close_panel_pop_out = "<C-c>",
-          help = "?",
-          hide = "H",
-          switch = "S",
-          focus = "f"
-        },
-      })
-    end
-  },
-  {
-    "NLKNguyen/papercolor-theme"
-  },
-  { -- hop
+  {                -- hop
     "phaazon/hop.nvim",
-    branch = 'v2', -- optional but strongly recommended
+    branch = "v2", -- optional but strongly recommended
     config = function()
       -- you can configure Hop the way you like here; see :h hop-config
-      require 'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-    end
+      require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
+    end,
   },
   { -- flash
     "folke/flash.nvim",
     config = function()
-      require 'flash'.setup {
-        modes={
-          search={
-            enabled=false
+      require("flash").setup({
+        modes = {
+          search = {
+            enabled = false,
           },
-          char={
-            enabled=false
-          }
-        }
-      }
-    end
+          char = {
+            enabled = false,
+          },
+        },
+      })
+    end,
   },
   { -- resize window
-    "simeji/winresizer"
-  },
-  { -- vim clip on server
-    "wincent/vim-clipper",
-    config = function()
-      vim.cmd([[
-      let g:ClipperAddress="127.0.0.1"
-      let g:ClipperPort=8377
-      let g:ClipperAuto=1
-      call clipper#set_invocation('netcat -c 127.0.0.1 8377')
-    ]])
-    end
+    "simeji/winresizer",
   },
   { -- log file content highlighting
-    "mtdl9/vim-log-highlighting"
+    'fei6409/log-highlight.nvim',
+    config = function()
+      require('log-highlight').setup {
+        -- The file extensions.
+        extension = 'log',
+        -- The file names or the full file paths.
+        filename = {
+        },
+        -- The glob patterns, e.g. `.*%.lg`, `/var/log/.*`.
+        -- Note: `%.` is to match a literal dot (`.`) in a pattern in Lua, but most
+        -- of the time `.` and `%.` here make no observable difference.
+        pattern = {
+        },
+      }
+    end,
   },
   {
-    -- "tpope/vim-surround",
-    'kylechui/nvim-surround',
+    "kylechui/nvim-surround",
     version = "*",
     config = function()
-      require('nvim-surround').setup({
-        --   keymaps = {
-        --     insert = "<C-g>s",
-        --     insert_line = "<C-g>S",
-        --     normal = "ys",
-        --     normal_cur = "yss",
-        --     normal_line = "yS",
-        --     normal_cur_line = "ySS",
-        --     visual = "S",
-        --     visual_line = "gS",
-        --     -- delete = "<NOP>",
-        --     delete = "ds",
-        --     change = "cs",
-        --   },
+      require("nvim-surround").setup({
       })
-    end
-  },
-  { -- theme
-    "morhetz/gruvbox"
+    end,
   },
   {
     "folke/todo-comments.nvim",
     config = function()
-      require("todo-comments").setup {}
-    end
+      require("todo-comments").setup({})
+    end,
   },
   { -- auto save
-    "pocco81/auto-save.nvim"
+    "pocco81/auto-save.nvim",
   },
   {
     "p00f/clangd_extensions.nvim",
@@ -703,7 +593,7 @@ lvim.plugins = {
         "--recovery-ast",
         "--suggest-missing-includes",
         -- 告诉clangd用那个clang进行编译，路径参考which clang++的路径
-        "--query-driver=/usr/locla/bin/clang++,/usr/bin/g++",
+        "--query-driver=/usr/bin/clang++,/usr/bin/g++",
         "--clang-tidy",
         -- 全局补全（会自动补充头文件）
         "--all-scopes-completion",
@@ -716,7 +606,7 @@ lvim.plugins = {
         -- pch优化的位置
         "--pch-storage=memory",
         "--offset-encoding=utf-16",
-        "-j=12",
+        "-j=16",
       }
 
       local custom_on_attach = function(client, bufnr)
@@ -725,18 +615,17 @@ lvim.plugins = {
         require("clangd_extensions.inlay_hints").set_inlay_hints()
       end
 
-
       local custom_on_init = function(client, bufnr)
         require("lvim.lsp").common_on_init(client, bufnr)
-        require("clangd_extensions.config").setup {}
+        require("clangd_extensions.config").setup({})
         require("clangd_extensions.ast").init()
-        vim.cmd [[
+        vim.cmd([[
               command ClangdToggleInlayHints lua require('clangd_extensions.inlay_hints').toggle_inlay_hints()
               command -range ClangdAST lua require('clangd_extensions.ast').display_ast(<line1>, <line2>)
               command ClangdTypeHierarchy lua require('clangd_extensions.type_hierarchy').show_hierarchy()
               command ClangdSymbolInfo lua require('clangd_extensions.symbol_info').show_symbol_info()
               command -nargs=? -complete=customlist,s:memuse_compl ClangdMemoryUsage lua require('clangd_extensions.memory_usage').show_memory_usage('<args>' == 'expand_preamble')
-              ]]
+              ]])
       end
 
       local opts = {
@@ -746,12 +635,12 @@ lvim.plugins = {
       }
 
       require("lvim.lsp.manager").setup("clangd", opts)
-    end
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     config = function()
-      require 'nvim-treesitter.configs'.setup {
+      require("nvim-treesitter.configs").setup({
         textobjects = {
           select = {
             enable = true,
@@ -774,9 +663,9 @@ lvim.plugins = {
             -- and should return the mode ('v', 'V', or '<c-v>') or a table
             -- mapping query_strings to modes.
             selection_modes = {
-              ['@parameter.outer'] = 'v', -- charwise
-              ['@function.outer'] = 'V',  -- linewise
-              ['@class.outer'] = '<c-v>', -- blockwise
+              ["@parameter.outer"] = "v", -- charwise
+              ["@function.outer"] = "V",  -- linewise
+              ["@class.outer"] = "<c-v>", -- blockwise
             },
             -- If you set this to `true` (default is `false`) then any textobject is
             -- extended to include preceding or succeeding whitespace. Succeeding
@@ -811,77 +700,49 @@ lvim.plugins = {
           },
           lsp_interop = {
             enable = true,
-            border = 'none',
+            border = "none",
             peek_definition_code = {
               ["<leader>pf"] = "@function.outer",
               ["<leader>pF"] = "@class.outer",
             },
           },
         },
-      }
-    end
+      })
+    end,
   },
   {
     "AckslD/nvim-neoclip.lua",
     config = function()
-      require('neoclip').setup({
+      require("neoclip").setup({
         keys = {
           telescope = {
             i = {
-              ["<C-j>"] = actions.cycle_history_next,
-              ["<C-k>"] = actions.cycle_history_prev,
               ["<C-n>"] = actions.move_selection_next,
-              ["<C-p>"] = false,
-              paste = false,
               ["<C-p>"] = actions.move_selection_previous,
-              paste = '<CR>',
-              -- 选择好像有点问题，不是很理解？
-              -- ['<CR>'] = false,
-              -- select = false ,
-              -- select ='<CR>',
-
-              --paste = '<c-p>',
-              -- paste_behind = '<c-P>',
-
-              -- replay好像也不行，复制不全？会报错?
-              replay = '<c-r>', -- replay a macro
-              delete = '<c-d>', -- delete an entry
-              edit = '<c-e>',   -- edit an entry
+              paste = "<CR>",
+              delete = "<c-d>", -- delete an entry
+              edit = "<c-e>",   -- edit an entry
               custom = {},
             },
             n = {
-              ["<C-j>"] = actions.cycle_history_next,
-              ["<C-k>"] = actions.cycle_history_prev,
               ["<C-n>"] = actions.move_selection_next,
-              ["<C-p>"] = false,
-              paste = false,
               ["<C-p>"] = actions.move_selection_previous,
-              paste = '<CR>',
-              -- 选择好像有点问题，不是很理解？
-              -- ['<CR>'] = false,
-              -- select = false ,
-              -- select ='<CR>',
-
-              --paste = '<c-p>',
-              -- paste_behind = '<c-P>',
-
-              -- replay好像也不行，复制不全？会报错?
-              replay = 'r',
-              delete = 'd', -- delete an entry
-              edit = 'e',   -- edit an entry
+              paste = "<CR>",
+              delete = "d", -- delete an entry
+              edit = "e",   -- edit an entry
               custom = {},
             },
           },
         },
       })
-      require('telescope').load_extension('neoclip')
+      require("telescope").load_extension("neoclip")
     end,
   },
   {
     "hrsh7th/cmp-nvim-lsp-signature-help",
   },
   {
-    'ethanholz/nvim-lastplace'
+    "ethanholz/nvim-lastplace",
   },
   -- { -- json parser for dap launch.json
   --   -- NOTE: cargo required: https://rustup.rs/
@@ -891,24 +752,24 @@ lvim.plugins = {
   {
     "nvim-telescope/telescope-dap.nvim",
     config = function()
-      require("telescope").load_extension('dap')
-    end
+      require("telescope").load_extension("dap")
+    end,
   },
   {
     -- gxt_kt sniprun : run code
-    'michaelb/sniprun',
-    build = 'bash ./install.sh',
+    "michaelb/sniprun",
+    build = "bash ./install.sh",
     config = function()
-      require('sniprun').setup({
-        selected_interpreters = {},                  --# use those instead of the default for the current filetype
-        repl_enable = {},                            --# enable REPL-like behavior for the given interpreters
-        repl_disable = {},                           --# disable REPL-like behavior for the given interpreters
+      require("sniprun").setup({
+        selected_interpreters = {}, --# use those instead of the default for the current filetype
+        repl_enable = {},           --# enable REPL-like behavior for the given interpreters
+        repl_disable = {},          --# disable REPL-like behavior for the given interpreters
         interpreter_options = {
-                                                     --# intepreter-specific options, see docs / :SnipInfo <name>
+          --# intepreter-specific options, see docs / :SnipInfo <name>
           GFM_original = {
-            use_on_filetypes = { "markdown.pandoc" } --# the 'use_on_filetypes' configuration key is
+            use_on_filetypes = { "markdown.pandoc" }, --# the 'use_on_filetypes' configuration key is
             --# available for every interpreter
-          }
+          },
         },
         --# you can combo different display modes as desired
         display = {
@@ -923,8 +784,8 @@ lvim.plugins = {
           -- "Api"                      --# return output to a programming interface
         },
         display_options = {
-          terminal_width = 45,     --# change the terminal display option width
-          notification_timeout = 5 --# timeout for nvim_notify output
+          terminal_width = 45,      --# change the terminal display option width
+          notification_timeout = 5, --# timeout for nvim_notify output
         },
         --# You can use the same keys to customize whether a sniprun producing
         --# no output should display nothing or '(no output)'
@@ -934,8 +795,8 @@ lvim.plugins = {
         },
         --# customize highlight groups (setting this overrides colorscheme)
         snipruncolors = {
-          SniprunVirtualTextOk  = { bg = "#66eeff", fg = "#000000", ctermbg = "Cyan", cterfg = "Black" },
-          SniprunFloatingWinOk  = { fg = "#66eeff", ctermfg = "Cyan" },
+          SniprunVirtualTextOk = { bg = "#66eeff", fg = "#000000", ctermbg = "Cyan", cterfg = "Black" },
+          SniprunFloatingWinOk = { fg = "#66eeff", ctermfg = "Cyan" },
           SniprunVirtualTextErr = { bg = "#881515", fg = "#000000", ctermbg = "DarkRed", cterfg = "Black" },
           SniprunFloatingWinErr = { fg = "#881515", ctermfg = "DarkRed" },
         },
@@ -943,21 +804,18 @@ lvim.plugins = {
         inline_messages = 0, --# inline_message (0/1) is a one-line way to display messages
         --# to workaround sniprun not being able to display anything
 
-        borders = 'single',      --# display borders around floating windows
+        borders = "single",       --# display borders around floating windows
         --# possible values are 'none', 'single', 'double', or 'shadow'
-        live_mode_toggle = 'off' --# live mode toggle, see Usage - Running for more info
+        live_mode_toggle = "off", --# live mode toggle, see Usage - Running for more info
       })
-    end
-  },
-  { -- gxt_kt github-nvim-theme
-    "projekt0n/github-nvim-theme"
+    end,
   },
   {
     -- gxt_kt nvim-colorizer  for like #ff00ff css color
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup()
-    end
+    end,
   },
   {
     -- gxt_kt nvim-lightbulb  : Show a blub if there a lsp code action
@@ -995,7 +853,7 @@ lvim.plugins = {
         virtual_text = {
           enabled = true,
           -- Text to show at virtual text
-          text = "💡",--
+          text = "💡", --
           -- highlight mode to use for virtual text (replace, combine, blend), see :help nvim_buf_set_extmark() for reference
           hl_mode = "replace",
         },
@@ -1004,8 +862,8 @@ lvim.plugins = {
           -- Text to provide when code actions are available
           text = "💡",
           -- Text to provide when no actions are available
-          text_unavailable = ""
-        }
+          text_unavailable = "",
+        },
       })
     end,
     --vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
@@ -1018,20 +876,20 @@ lvim.plugins = {
         highlight_hovered_item = true,
         show_guides = true,
         auto_preview = false,
-        position = 'right',
+        position = "right",
         relative_width = true,
         width = 25,
         auto_close = false,
         show_numbers = false,
         show_relative_numbers = false,
         show_symbol_details = true,
-        preview_bg_highlight = 'Pmenu',
+        preview_bg_highlight = "Pmenu",
         autofold_depth = nil,
         auto_unfold_hover = true,
-        fold_markers = { '', '' },
+        fold_markers = { "", "" },
         wrap = false,
         keymaps = {
-                    -- These keymaps can be a string or a table for multiple keys
+          -- These keymaps can be a string or a table for multiple keys
           close = { "<Esc>", "q" },
           goto_location = "<Cr>",
           focus_location = "o",
@@ -1078,7 +936,7 @@ lvim.plugins = {
           Fragment = { icon = "", hl = "@constant" },
         },
       })
-    end
+    end,
   },
   { -- gxt_kt nvim-ts-rainbow : Show rainbow bracket
     -- NOTE: this plugin had been deprecated. Need move to new fork like https://github.com/HiPhish/nvim-ts-rainbow2
@@ -1088,54 +946,52 @@ lvim.plugins = {
     -- gxt_kt tmux.nvim: Use tmux and nvim better
     "aserowy/tmux.nvim",
     config = function()
-      require("tmux").setup(
-        {
-          copy_sync = {
-            -- enables copy sync. by default, all registers are synchronized.
-            -- to control which registers are synced, see the `sync_*` options.
-            enable = false,
-            -- ignore specific tmux buffers e.g. buffer0 = true to ignore the
-            -- first buffer or named_buffer_name = true to ignore a named tmux
-            -- buffer with name named_buffer_name :)
-            ignore_buffers = { empty = false },
-            -- TMUX >= 3.2: all yanks (and deletes) will get redirected to system
-            -- clipboard by tmux
-            redirect_to_clipboard = false,
-            -- offset controls where register sync starts
-            -- e.g. offset 2 lets registers 0 and 1 untouched
-            register_offset = 0,
-            -- overwrites vim.g.clipboard to redirect * and + to the system
-            -- clipboard using tmux. If you sync your system clipboard without tmux,
-            -- disable this option!
-            sync_clipboard = false,
-            -- synchronizes registers *, +, unnamed, and 0 till 9 with tmux buffers.
-            sync_registers = false,
-            -- syncs deletes with tmux clipboard as well, it is adviced to
-            -- do so. Nvim does not allow syncing registers 0 and 1 without
-            -- overwriting the unnamed register. Thus, ddp would not be possible.
-            sync_deletes = false,
-            -- syncs the unnamed register with the first buffer entry from tmux.
-            sync_unnamed = false,
-          },
-          navigation = {
-            -- cycles to opposite pane while navigating into the border
-            cycle_navigation = false,
-            -- enables default keybindings (C-hjkl) for normal mode
-            enable_default_keybindings = true,
-            -- prevents unzoom tmux when navigating beyond vim border
-            persist_zoom = false,
-          },
-          resize = {
-            -- enables default keybindings (A-hjkl) for normal mode
-            enable_default_keybindings = true,
-            -- sets resize steps for x axis
-            resize_step_x = 1,
-            -- sets resize steps for y axis
-            resize_step_y = 1,
-          }
-        }
-      )
-    end
+      require("tmux").setup({
+        copy_sync = {
+          -- enables copy sync. by default, all registers are synchronized.
+          -- to control which registers are synced, see the `sync_*` options.
+          enable = false,
+          -- ignore specific tmux buffers e.g. buffer0 = true to ignore the
+          -- first buffer or named_buffer_name = true to ignore a named tmux
+          -- buffer with name named_buffer_name :)
+          ignore_buffers = { empty = false },
+          -- TMUX >= 3.2: all yanks (and deletes) will get redirected to system
+          -- clipboard by tmux
+          redirect_to_clipboard = false,
+          -- offset controls where register sync starts
+          -- e.g. offset 2 lets registers 0 and 1 untouched
+          register_offset = 0,
+          -- overwrites vim.g.clipboard to redirect * and + to the system
+          -- clipboard using tmux. If you sync your system clipboard without tmux,
+          -- disable this option!
+          sync_clipboard = false,
+          -- synchronizes registers *, +, unnamed, and 0 till 9 with tmux buffers.
+          sync_registers = false,
+          -- syncs deletes with tmux clipboard as well, it is adviced to
+          -- do so. Nvim does not allow syncing registers 0 and 1 without
+          -- overwriting the unnamed register. Thus, ddp would not be possible.
+          sync_deletes = false,
+          -- syncs the unnamed register with the first buffer entry from tmux.
+          sync_unnamed = false,
+        },
+        navigation = {
+          -- cycles to opposite pane while navigating into the border
+          cycle_navigation = false,
+          -- enables default keybindings (C-hjkl) for normal mode
+          enable_default_keybindings = true,
+          -- prevents unzoom tmux when navigating beyond vim border
+          persist_zoom = false,
+        },
+        resize = {
+          -- enables default keybindings (A-hjkl) for normal mode
+          enable_default_keybindings = true,
+          -- sets resize steps for x axis
+          resize_step_x = 1,
+          -- sets resize steps for y axis
+          resize_step_y = 1,
+        },
+      })
+    end,
   },
   -- { -- gxt_kt nvim-semantic-tokens :
   --   'theHamsta/nvim-semantic-tokens',
@@ -1152,95 +1008,95 @@ lvim.plugins = {
   --   end
   -- },
   { -- gxt_kt vim-autoread : Auto load file if file changes
-    'djoshea/vim-autoread',
+    "djoshea/vim-autoread",
   },
   -- { -- gxt_kt far.vim : Search and substitute plugin
   --   'brooth/far.vim'
   -- },
   { -- gxt_kt brooth/far.vim : Search use ripgrep
-    'jremmen/vim-ripgrep',
+    "jremmen/vim-ripgrep",
   },
   {
     -- gxt_kt nvim-spectre : Search and substitute
-    'windwp/nvim-spectre',
+    "windwp/nvim-spectre",
     config = function()
-      require('spectre').setup({
-        open_cmd           = 'vnew',
-        live_update        = true, -- auto excute search again when you write any file in vim
-        replace_vim_cmd    = "cdo",
+      require("spectre").setup({
+        open_cmd = "vnew",
+        live_update = true,        -- auto excute search again when you write any file in vim
+        replace_vim_cmd = "cdo",
         is_open_target_win = true, --open file on opener window
-        is_insert_mode     = true, -- start open panel on is_insert_mode
-        mapping            = {
-          ['send_to_qf'] = {
+        is_insert_mode = true,     -- start open panel on is_insert_mode
+        mapping = {
+          ["send_to_qf"] = {
             map = "F",
             cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
-            desc = "send all item to quickfix"
+            desc = "send all item to quickfix",
           },
-          ['replace_cmd'] = {
+          ["replace_cmd"] = {
             map = "C",
             cmd = "<cmd>lua require('spectre.actions').replace_cmd()<CR>",
-            desc = "input replace vim command"
+            desc = "input replace vim command",
           },
-          ['show_option_menu'] = {
+          ["show_option_menu"] = {
             map = "M",
             cmd = "<cmd>lua require('spectre').show_options()<CR>",
-            desc = "show option"
+            desc = "show option",
           },
-          ['run_current_replace'] = {
+          ["run_current_replace"] = {
             map = "r",
             cmd = "<cmd>lua require('spectre.actions').run_current_replace()<CR>",
-            desc = "replace current line"
+            desc = "replace current line",
           },
-          ['run_replace'] = {
+          ["run_replace"] = {
             map = "R",
             cmd = "<cmd>lua require('spectre.actions').run_replace()<CR>",
-            desc = "replace all"
+            desc = "replace all",
           },
-          ['change_view_mode'] = {
+          ["change_view_mode"] = {
             map = "<A-v>",
             cmd = "<cmd>lua require('spectre').change_view()<CR>",
-            desc = "change result view mode"
+            desc = "change result view mode",
           },
-          ['toggle_live_update'] = {
+          ["toggle_live_update"] = {
             map = "U",
             cmd = "<cmd>lua require('spectre').toggle_live_update()<CR>",
-            desc = "update change when vim write file."
+            desc = "update change when vim write file.",
           },
-          ['toggle_ignore_case'] = {
+          ["toggle_ignore_case"] = {
             map = "I",
             cmd = "<cmd>lua require('spectre').change_options('ignore-case')<CR>",
-            desc = "toggle ignore case"
+            desc = "toggle ignore case",
           },
-          ['toggle_ignore_hidden'] = {
+          ["toggle_ignore_hidden"] = {
             map = "H",
             cmd = "<cmd>lua require('spectre').change_options('hidden')<CR>",
-            desc = "toggle search hidden"
+            desc = "toggle search hidden",
           },
-          ['resume_last_search'] = {
+          ["resume_last_search"] = {
             map = "L",
             cmd = "<cmd>lua require('spectre').resume_last_search()<CR>",
-            desc = "resume last search before close"
+            desc = "resume last search before close",
           },
           -- you can put your mapping here it only use normal mode
-        }
+        },
       })
-    end
+    end,
   },
   {
-    'mg979/vim-visual-multi',
+    "mg979/vim-visual-multi",
   },
   {
-    'weilbith/nvim-code-action-menu',
+    "weilbith/nvim-code-action-menu",
     config = function()
       vim.g.code_action_menu_show_details = false
       vim.g.code_action_menu_show_diff = true
       vim.g.code_action_menu_show_action_kind = true
-    end
+    end,
   },
   {
-    'theHamsta/nvim-dap-virtual-text',
+    "theHamsta/nvim-dap-virtual-text",
     config = function()
-      require("nvim-dap-virtual-text").setup {
+      require("nvim-dap-virtual-text").setup({
         enabled = true,                     -- enable this plugin (the default)
         enabled_commands = true,            -- create commands DapVirtualTextEnable, DapVirtualTextDisable, DapVirtualTextToggle, (DapVirtualTextForceRefresh for refreshing when debug adapter did not notify its termination)
         highlight_changed_variables = true, -- highlight changed values with NvimDapVirtualTextChanged, else always NvimDapVirtualText
@@ -1256,158 +1112,80 @@ lvim.plugins = {
         --- @param node userdata tree-sitter node identified as variable definition of reference (see `:h tsnode`)
         --- @return string|nil A text how the virtual text should be displayed or nil, if this variable shouldn't be displayed
         display_callback = function(variable, _buf, _stackframe, _node)
-          return variable.name .. ' = ' .. variable.value
+          return variable.name .. " = " .. variable.value
         end,
 
         -- experimental features:
-        virt_text_pos = 'eol',  -- position of virtual text, see `:h nvim_buf_set_extmark()`
-        all_frames = false,     -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
-        virt_lines = false,     -- show virtual lines instead of virtual text (will flicker!)
-        virt_text_win_col = nil -- position the virtual text at a fixed window column (starting from the first text column) ,
+        virt_text_pos = "eol",   -- position of virtual text, see `:h nvim_buf_set_extmark()`
+        all_frames = false,      -- show virtual text for all stack frames not only current. Only works for debugpy on my machine.
+        virt_lines = false,      -- show virtual lines instead of virtual text (will flicker!)
+        virt_text_win_col = nil, -- position the virtual text at a fixed window column (starting from the first text column) ,
         -- e.g. 80 to position at column 80, see `:h nvim_buf_set_extmark()`
-      }
-    end
-  },
-  -- {
-  --   'kaicataldo/material.vim',
-  -- },
-  {
-    'marko-cerovac/material.nvim',
-    config = function()
-      require('material').setup({
-        contrast = {
-          terminal = false,            -- Enable contrast for the built-in terminal
-          sidebars = false,            -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
-          floating_windows = false,    -- Enable contrast for floating windows
-          cursor_line = false,         -- Enable darker background for the cursor line
-          non_current_windows = false, -- Enable darker background for non-current windows
-          filetypes = {},              -- Specify which filetypes get the contrasted (darker) background
-        },
-        styles = {
-                   -- Give comments style such as bold, italic, underline etc.
-          comments = { italic = true },
-          strings = { bold = true },
-          keywords = { underline = false },
-          functions = { bold = true, undercurl = false },
-          variables = {},
-          operators = {},
-          types = {},
-        },
-        plugins = { -- Uncomment the plugins that you use to highlight them
-          -- Available plugins:
-          "dap",
-          "dashboard",
-          "gitsigns",
-          "hop",
-          "indent-blankline",
-          "lspsaga",
-          "mini",
-          "neogit",
-          "nvim-cmp",
-          "nvim-navic",
-          "nvim-tree",
-          "nvim-web-devicons",
-          "sneak",
-          "telescope",
-          "trouble",
-          "which-key",
-        },
-        disable = {
-          colored_cursor = false, -- Disable the colored cursor
-          borders = false,        -- Disable borders between verticaly split windows
-          background = false,     -- Prevent the theme from setting the background (NeoVim then uses your terminal background)
-          term_colors = false,    -- Prevent the theme from setting terminal colors
-          eob_lines = false       -- Hide the end-of-buffer lines
-        },
-        high_visibility = {
-          lighter = false, -- Enable higher contrast text for lighter style
-          darker = false   -- Enable higher contrast text for darker style
-        },
-        lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
-        async_loading = true,      -- Load parts of the theme asyncronously for faster startup (turned on by default)
-        -- If you want to everride the default colors, set this to a function
-        -- custom_colors = nil,
-        custom_colors = function(colors)
-          -- colors.editor.selection = "#ff0000"
-        end,
-        -- change can refer here : https://github.com/marko-cerovac/material.nvim/issues/126
-        --
-        custom_highlights = {
-          IncSearch  = { fg = "#000000", bg = "#ECF9ff", underline = true },
-          Search     = { fg = "#000000", bg = "#ECF9ff", bold = true },
-          -- change hop-nvim color
-          HopNextKey = { fg = "#ff0000", bold = true },
-          -- HopNextKey1 = { fg = "#00ff00", bold = true },
-          -- HopNextKey2 = { fg = "#0000ff" },
-        }, -- Overwrite highlights with your own
       })
-    end
+    end,
   },
   {
-    'szw/vim-maximizer',
+    "szw/vim-maximizer",
   },
   {
-    'iamcco/markdown-preview.nvim',
+    "iamcco/markdown-preview.nvim",
     config = function()
       vim.fn["mkdp#util#install"]()
       vim.g.mkdp_auto_close = 0 -- not close when changing buffer
     end,
   },
   {
-    'folke/tokyonight.nvim',
-  },
-  {
     "shellRaining/hlchunk.nvim",
     config = function()
-		vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL", })
-    require('hlchunk').setup({
-    chunk = {
-        enable = true,
-        use_treesitter = false,
-        notify = true, -- notify if some situation(like disable chunk mod double time)
-        exclude_filetypes = {
+      vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
+      require("hlchunk").setup({
+        chunk = {
+          enable = true,
+          use_treesitter = false,
+          notify = true, -- notify if some situation(like disable chunk mod double time)
+          exclude_filetypes = {
             aerial = true,
             dashboard = true,
-        },
-        support_filetypes = {
+          },
+          support_filetypes = {
             "*.lua",
             "*.js",
-        },
-        chars = {
+          },
+          chars = {
             horizontal_line = "─",
             vertical_line = "│",
             left_top = "╭",
             left_bottom = "╰",
             right_arrow = ">",
-        },
-        style = {
+          },
+          style = {
             { fg = "#CB8764" },
+          },
         },
-    },
-    indent = {
-        enable = true,
-        chars = { "│", "¦", "┆", "┊", },
-        use_treesitter = false,
-        -- style = {
-        --     { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui") }
-        -- },
-    },
-    line_num = {
-        enable = false,
-        use_treesitter = true,
-        style = "#806d9c",
-    },
-    blank = {
-        enable = false,
-        chars = {
+        indent = {
+          enable = true,
+          chars = { "│", "¦", "┆", "┊" },
+          use_treesitter = false,
+          -- style = {
+          --     { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui") }
+          -- },
+        },
+        line_num = {
+          enable = false,
+          use_treesitter = true,
+          style = "#806d9c",
+        },
+        blank = {
+          enable = false,
+          chars = {
             "․",
-        },
-        style = {
+          },
+          style = {
             vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui"),
+          },
         },
-    },
-  })
-    end
+      })
+    end,
   },
   -- {
   --   'lukas-reineke/indent-blankline.nvim',
@@ -1438,22 +1216,19 @@ lvim.plugins = {
   --   end
   -- },
   {
-    'Weissle/persistent-breakpoints.nvim',
+    "Weissle/persistent-breakpoints.nvim",
     config = function()
-      require('persistent-breakpoints').setup {
-        save_dir = vim.fn.stdpath('data') .. '/nvim_checkpoints', -- $HOME/.local/share/lvim/nvim_checkpoints/*
-	      load_breakpoints_event = { "BufReadPost" }
-      }
-    end
-  },
-  {
-    "catppuccin/nvim", name = "catppuccin"
+      require("persistent-breakpoints").setup({
+        save_dir = vim.fn.stdpath("data") .. "/nvim_checkpoints", -- $HOME/.local/share/lvim/nvim_checkpoints/*
+        load_breakpoints_event = { "BufReadPost" },
+      })
+    end,
   },
   { -- highlight code block on cursor block
     "folke/twilight.nvim",
     opts = {
-      context=3
-    }
+      context = 3,
+    },
   },
   -- {
   --   "LintaoAmons/easy-commands.nvim",
@@ -1478,28 +1253,28 @@ lvim.plugins = {
   --   end
   -- }
   -- {
-    -- "luukvbaal/statuscol.nvim",
-    -- config = function()
-    --   local builtin = require("statuscol.builtin")
-    --   require("statuscol").setup({
-    --     -- configuration goes here, for example:
-    --     relculright = true,
-    --     segments = {
-    --       { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
-    --       {
-    --         sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
-    --         click = "v:lua.ScSa"
-    --       },
-    --       { text = { builtin.lnumfunc }, click = "v:lua.ScLa", },
-    --       {
-    --         sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
-    --         click = "v:lua.ScSa",
-    --         sign = { name = { "gitsign*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
-    --         click = "v:lua.ScSa",
-    --       },
-    --     }
-    --   })
-    -- end,
+  -- "luukvbaal/statuscol.nvim",
+  -- config = function()
+  --   local builtin = require("statuscol.builtin")
+  --   require("statuscol").setup({
+  --     -- configuration goes here, for example:
+  --     relculright = true,
+  --     segments = {
+  --       { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+  --       {
+  --         sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
+  --         click = "v:lua.ScSa"
+  --       },
+  --       { text = { builtin.lnumfunc }, click = "v:lua.ScLa", },
+  --       {
+  --         sign = { name = { ".*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
+  --         click = "v:lua.ScSa",
+  --         sign = { name = { "gitsign*" }, maxwidth = 2, colwidth = 1, auto = true, wrap = true },
+  --         click = "v:lua.ScSa",
+  --       },
+  --     }
+  --   })
+  -- end,
   -- },
   -- { -- gxt_kt vim-tmux-clipboard : vim tmux clipboard
   --   'roxma/vim-tmux-clipboard',
@@ -1507,7 +1282,6 @@ lvim.plugins = {
   --
   --
 }
-
 
 vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
 
@@ -1536,5 +1310,5 @@ lvim.builtin.dap.active = true
 --
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "python",
-  command = "set tabstop=4  shiftwidth=4"
+  command = "set tabstop=4  shiftwidth=4",
 })
