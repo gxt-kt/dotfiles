@@ -23,8 +23,9 @@ elseif theme=="catppuccin" then
   lvim.colorscheme = "catppuccin"
 end
 
-
-
+-- Add scripts find path
+local home=os.getenv("HOME")
+package.path = home .. "/.config/lvim/?.lua" -- $HOME/.config/lvim/*.lua
 
 --  options fold from treesitter
 do
@@ -127,6 +128,45 @@ lvim.keys.normal_mode["<leader>in"]   = ":lua vim.lsp.buf.incoming_calls()<cr>"
 lvim.keys.visual_mode["<leader>lf"]   = "<ESC><cmd>lua vim.lsp.buf.range_formatting()<CR>"
 lvim.builtin.which_key.mappings["la"] = { ":CodeActionMenu<CR>", "My code action" }
 
+function ExecuteVisualSelection()
+    local start_pos = vim.fn.getpos("'<")
+    local end_pos = vim.fn.getpos("'>")
+
+    local lines = vim.fn.getline(start_pos[2], end_pos[2])
+    local selected_text = table.concat(lines, "\n")
+
+    if selected_text ~= '' then
+        -- local command_output = vim.fn.system(selected_text)
+
+        local command = "zsh -i -c '".. selected_text .."'"
+        print(command)
+        local handle = io.popen(command)
+        local command_output = handle:read("*a")
+        handle:close()
+
+        local contents = vim.split(command_output, "\n")
+
+        -- 检查最后一个元素是否为空字符串，如果是则删除，否则会多打印一个空行
+        if contents[#contents] == '' then
+            table.remove(contents, #contents)
+        end
+
+        vim.fn.setpos('.', end_pos)
+
+        vim.api.nvim_put({"{>>>>>>>>>>>>>>>>>>>>>>>>>>"}, 'l', true, false)
+        vim.fn.setreg('+', contents)  -- 将输出内容放入寄存器 +
+        -- vim.cmd('normal! "+p')
+        table.insert(contents, "}<<<<<<<<<<<<<<<<<<<<<<<<<<")
+        vim.api.nvim_put(contents, 'l', true, false)
+        -- vim.api.nvim_put({"}<<<<<<<<<<<<<<<<<<<<<<<"}, 'l', true , false)
+    else
+        print("no text selected")
+    end
+end
+
+-- 设置Visual模式下的按键绑定
+lvim.keys.visual_mode["<leader>R"] = ":lua ExecuteVisualSelection()<CR>"
+lvim.keys.normal_mode["<leader>R"] = "V:lua ExecuteVisualSelection()<CR>"
 
 -- spectre
 -- open in current file
@@ -1415,6 +1455,28 @@ lvim.plugins = {
       context=3
     }
   },
+  -- {
+  --   "LintaoAmons/easy-commands.nvim",
+  --   config = function()
+  --     require("easy-commands").Setup({
+  --       disabledCommands = { "CopyFilename", "FormatCode" }, -- You can disable the commands you don't want
+  --       myCommands = { -- It always welcome to send me back your good commands and usecases
+  --         ["MyCommand"] = "lua vim.print('easy command user command')", -- You can add your own commands, commands can be string | function | table
+  --         ["EasyCommand"] = "lua vim.print('Over write easy-command builtin command')", -- You can overwrite the current implementation
+  --         ["CopyCdCommand"] = function()
+  --           local editor = require("easy-commands.impl.util.editor") -- You can use the utils provided by the plugin to build your own command
+  --           local cmd = "cd " .. editor.get_buf_abs_dir_path()
+  --           vim.print(cmd)
+  --           require("easy-commands.impl.util.base.sys").CopyToSystemClipboard(cmd)
+  --         end,
+  --       },
+  --       ["RunSelectedAndOutputWithPrePostFix"] = { -- Each Command may have defferent config options, check out the commands to find more options.
+  --         prefix = "```lua",
+  --         postfix = "```",
+  --       },
+  --     })
+  --   end
+  -- }
   -- {
     -- "luukvbaal/statuscol.nvim",
     -- config = function()

@@ -13,6 +13,7 @@
   "cmp-nvim-lsp-signature-help": { "branch": "main", "commit": "3d8912ebeb56e5ae08ef0906e3a54de1c66b92f1" },
   "cmp-path": { "branch": "main", "commit": "91ff86cd9c29299a64f968ebb45846c485725f23" },
   "cmp_luasnip": { "branch": "master", "commit": "18095520391186d634a0045dacaa346291096566" },
+  "easy-commands.nvim": { "branch": "main", "commit": "0f1de3ca9200583ad13ed7cedaa4710cd21be09b" },
   "flash.nvim": { "branch": "main", "commit": "b6b89a517d53f6e09ce4eb82c5114121c0bf89d2" },
   "friendly-snippets": { "branch": "main", "commit": "ad7cef5d538b023ee3af0fe3170cadb096171b1f" },
   "github-nvim-theme": { "branch": "main", "commit": "609eb5c45d9cc677afe9b9876b3aa0dd4d39060a" },
