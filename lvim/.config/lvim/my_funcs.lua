@@ -19,12 +19,15 @@ end
 M.live_grep_raw = function(opts, mode)
   opts = opts or {}
   opts.prompt_title = 'Live Grep Raw (-t[ty] include, -T exclude -g"[!] [glob])"'
-  if not opts.default_text then
-    if mode then
-      opts.default_text = '"' .. M.escape_rg_text(M.get_text(mode)) .. '"'
-    else
-      opts.default_text = '"'
-    end
+  -- if not opts.default_text then
+  --   if mode then
+  --     opts.default_text = '"' .. M.escape_rg_text(M.get_text(mode)) .. '"'
+  --   else
+  --     opts.default_text = '"'
+  --   end
+  -- end
+  if mode then
+    opts.default_text = opts.default_text .. '"' .. M.escape_rg_text(M.get_text(mode)) .. '"'
   end
 
   require('telescope').extensions.live_grep_args.live_grep_args(
@@ -100,6 +103,10 @@ M.ExecuteAndPrintCmd = function()
   else
     print("no text selected")
   end
+end
+
+M.RetNullIfInputPoint = function(string)
+  return string == '.' and '' or string
 end
 
 return M

@@ -22,7 +22,7 @@ elseif theme == "catppuccin" then
 end
 
 
-M.theme = {
+M.plugins_theme = {
   {
     "catppuccin/nvim",
     name = "catppuccin",
