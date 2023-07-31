@@ -34,6 +34,10 @@ exec --no-startup-id crow &
 # exec --no-startup-id blueman-manager &
 exec --no-startup-id copyq &
 
+# ~/miniconda3/bin/i3expod -m sequential
+exec_always --no-startup-id $HOME/miniconda3/bin/i3expod -m sequential -w $HOME/my_desktop/backgrouds/Nord-Wallpapers/wallpapers/5.png
+# exec_always --no-startup-id $HOME/miniconda3/bin/i3expod -f  -w $HOME/my_desktop/backgrouds/Nord-Wallpapers/wallpapers/5.png
+
 gaps top 0
 gaps bottom 0
 gaps left 0
@@ -163,11 +167,11 @@ bindsym $mod+Ctrl+3 layout toggle split
 bindsym $mod+f floating toggle
 
 # change focus between tiling / floating windows
-bindsym Mod4+Tab focus mode_toggle
+# bindsym Mod4+Tab focus mode_toggle
+bindsym $mod+Tab exec --no-startup-id "killall -s SIGUSR1 i3expod"
 
 # 循环切换工作区
 bindsym Mod1+Tab workspace next
-# bindsym $mod+Tab workspace next
 bindsym Mod1+Shift+Tab workspace prev
 
 # focus the parent container
@@ -362,6 +366,9 @@ no_focus [class="plasmashell" window_type="notification"]
 for_window [class="yakuake"] , move position 20 ppt 20 ppt
 
 for_window [title="Desktop @ QRect.*"] kill; floating enable;
+
+# for_window [class="i3expod"] border none, floating enable  
+for_window [class="i3expod"] border none, floating enable  
 
 # make new window will cover fullscreen
 # for_window [class="^.*"] focus

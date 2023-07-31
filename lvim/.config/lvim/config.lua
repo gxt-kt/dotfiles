@@ -15,7 +15,6 @@ do
   vim.opt.foldmethod = "expr"
   vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 end
-
 vim.opt.relativenumber = true -- set relative numbered lines
 -- vim.opt.colorcolumn = "80" -- a line at 80 column postion -- 80 for google c++ style
 
@@ -235,6 +234,8 @@ lvim.builtin.terminal.execs = {
   { vim.o.shell, "<M-\\>",        "Vertical Terminal",   "vertical",   0.4 },
   { vim.o.shell, "<M-BackSpace>", "Vertical Terminal",   "vertical",   0.4 },
 }
+-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 -- vim.keymap.set("n", "<C-t>", "<cmd>ToggleTerm<cr>")
 -- vim.keymap.set("t", "<C-t>", "<cmd>ToggleTerm<cr>")
 -- lvim.keys.normal_mode["<C-t>"] = "<cmd>ToggleTerminal<cr>"
