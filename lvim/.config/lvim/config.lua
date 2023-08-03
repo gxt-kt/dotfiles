@@ -72,6 +72,7 @@ lvim.builtin.cmp.completion = { -- 修改默认就选择第一条
   completeopt = "menu,menuone,noinsert",
 }
 -- 修改tab为替换，<CR>默认就是直接插入了
+lvim.builtin.cmp.mapping["<C-Enter>"] = require("cmp").mapping(require('cmp').mapping.complete(), { "i", "c" })
 lvim.builtin.cmp.mapping["<Tab>"] = require("cmp").mapping({
   i = require("cmp").mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true }),
   c = function(fallback)

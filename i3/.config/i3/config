@@ -28,7 +28,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 exec --no-startup-id sh ~/.config/polybar/launch.sh
 exec --no-startup-id picom --experimental-backends
-exec --no-startup-id xfce4-power-manager &
+# exec --no-startup-id xfce4-power-manager &
 exec --no-startup-id cfw &
 exec --no-startup-id crow &
 # exec --no-startup-id blueman-manager &

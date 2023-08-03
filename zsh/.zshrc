@@ -276,12 +276,15 @@ unset __conda_setup
 #🔼🔼🔼
 
 #🔽🔽🔽
-# cmake alias
+# scripts alias
 alias cmr='bash ~/.scripts/cmake/compile.sh cmr'
 alias mr='bash ~/.scripts/cmake/compile.sh mr'
+alias count_lines='python3 ~/.scripts/code/count_lines.py'
 #🔼🔼🔼
 
 # ADD rust cargo bin path
 #🔽🔽🔽
 export PATH="$HOME/.cargo/bin":$PATH
 #🔼🔼🔼
+
+
