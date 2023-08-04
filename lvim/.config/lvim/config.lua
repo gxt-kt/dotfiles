@@ -326,7 +326,7 @@ lvim.builtin.treesitter.highlight.enable = true
 -- About treesitter config my rainbow color see https://github.com/p00f/nvim-ts-rainbow/issues/104
 lvim.builtin.treesitter.rainbow.enable = true
 lvim.builtin.treesitter.rainbow.extended_mode = true
-lvim.builtin.treesitter.rainbow.max_file_lines = 5000 -- default is 1000
+lvim.builtin.treesitter.rainbow.max_file_lines = 500 -- default is 1000
 lvim.builtin.treesitter.rainbow.colors = {
   "#d65d0e",
   "#689d6a",
