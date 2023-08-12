@@ -454,8 +454,9 @@ vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_li
 
 -- gxt_kt debug config :
 lvim.builtin.dap.active = true
--- require('dap.python')
--- require('dap.c_cpp_rust')
+require("dap.dap-lldb")
+require('dap.python')
+require('dap.c_cpp_rust')
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("FileType", {
