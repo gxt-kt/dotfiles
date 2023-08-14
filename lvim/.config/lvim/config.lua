@@ -458,6 +458,10 @@ require("dap.dap-lldb")
 require('dap.python')
 require('dap.c_cpp_rust')
 
+-- Associate .launch files with the xml language  
+vim.cmd([[autocmd BufNewFile,BufRead *.launch set filetype=xml]])
+
+
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 -- vim.api.nvim_create_autocmd("FileType", {
 --   pattern = "zsh",
