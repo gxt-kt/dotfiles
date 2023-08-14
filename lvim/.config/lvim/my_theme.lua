@@ -36,9 +36,6 @@ M.plugins_theme = {
 	{
 		"NLKNguyen/papercolor-theme",
 	},
-	-- {
-	--   'kaicataldo/material.vim',
-	-- },
 	{
 		"marko-cerovac/material.nvim",
 		config = function()
