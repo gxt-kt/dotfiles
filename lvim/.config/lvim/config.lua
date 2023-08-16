@@ -35,6 +35,7 @@ lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<leader>h"] = ":nohl<cr>"
 lvim.keys.normal_mode["<leader>H"] = ":Twilight<cr>"
 lvim.keys.normal_mode["<leader>W"] = ":set wrap!<cr>"
+lvim.keys.normal_mode["<leader>n"] = ":set relativenumber!<cr>"
 lvim.keys.normal_mode["<leader>j"] = ":ClangdSwitchSourceHeader<cr>"
 lvim.builtin.which_key.mappings.o = nil
 lvim.builtin.which_key.mappings["o"] = {
@@ -324,7 +325,7 @@ lvim.builtin.treesitter.ensure_installed = {
 lvim.builtin.treesitter.highlight.enable = true
 
 -- About treesitter config my rainbow color see https://github.com/p00f/nvim-ts-rainbow/issues/104
-lvim.builtin.treesitter.rainbow.enable = true
+lvim.builtin.treesitter.rainbow.enable = false
 lvim.builtin.treesitter.rainbow.extended_mode = true
 lvim.builtin.treesitter.rainbow.max_file_lines = 500 -- default is 1000
 lvim.builtin.treesitter.rainbow.colors = {
@@ -338,9 +339,9 @@ lvim.builtin.treesitter.rainbow.colors = {
 }
 -- solve bug that treesitter rainbow bracket will missup when format the code
 -- Ref: https://github.com/p00f/nvim-ts-rainbow/issues/112#issuecomment-1310835936
-vim.cmd(
-  [[autocmd BufNewFile,BufReadPost * TSDisable rainbow | TSEnable rainbow | TSDisable rainbow | TSEnable rainbow | TSDisable rainbow | TSEnable rainbow]]
-)
+-- vim.cmd(
+--   [[autocmd BufNewFile,BufReadPost * TSDisable rainbow | TSEnable rainbow | TSDisable rainbow | TSEnable rainbow | TSDisable rainbow | TSEnable rainbow]]
+-- )
 
 
 -- generic LSP settings
