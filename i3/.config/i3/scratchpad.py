@@ -17,6 +17,15 @@ scratchpad_user = {
 
 def find_scratchpad_window(title: str, cmd: str = ""):
     current_workspace = i3.get_tree().find_focused().workspace().name
+    print("current_workspace",current_workspace)
+    # print(i3.get_tree().descendants())
+    for con in i3.get_tree().descendents():  
+        if con.type == 'con' and con.window:  
+            print("Window ID: {}".format(con.window))  
+            print("Title: {}".format(con.name))  
+            print("Position: ({}, {})".format(con.rect.x, con.rect.y))  
+            print("Size: {}x{}".format(con.rect.width, con.rect.height))  
+            print("---")  
     find = 0
     for con in i3.get_tree():
         if con.window_title == title:
