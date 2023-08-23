@@ -755,6 +755,9 @@ lvim.plugins = {
       context = 3,
     },
   },
+  {
+    "wsdjeg/vim-fetch",
+  },
   -- {
   --   "LintaoAmons/easy-commands.nvim",
   --   config = function()
