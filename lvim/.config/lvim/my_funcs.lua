@@ -109,4 +109,65 @@ M.RetNullIfInputPoint = function(string)
   return string == '.' and '' or string
 end
 
+
+M.ExtractFileInfo = function()
+  local current_line = vim.api.nvim_get_current_line()
+  local file_path, line_num, col_num = current_line:match('(%S+):(%d+):(%d+)')
+  if not file_path and not line_num and not col_num then
+    vim.api.nvim_err_writeln("[ERROR]: cannot find the correspond file and line")
+    return
+  end
+  print(file_path, line_num, col_num)
+  local file = io.open(file_path, "r")
+  if not file then
+    vim.api.nvim_err_writeln("[ERROR]:", file_path, "not exist")
+    return
+  end
+  M.GoToFile(file_path, line_num, col_num)
+end
+
+M.GoToFile = function(file, line, col)
+  local cur_buf = vim.api.nvim_get_current_buf()
+  local cur_file_type = vim.api.nvim_buf_get_option(cur_buf, 'filetype')
+  if (cur_file_type == "toggleterm") then
+    vim.api.nvim_command(":ToggleTerm")
+  end
+
+  -- 获取所有的缓冲区列表
+  local buffers = vim.api.nvim_list_bufs()
+  -- 遍历每个缓冲区
+  for _, buf in ipairs(buffers) do
+    -- 切换到当前缓冲区
+    -- vim.api.nvim_set_current_buf(buf)
+    -- 获取缓冲区的属性
+    local buf_name = vim.api.nvim_buf_get_name(buf)
+    local buf_type = vim.api.nvim_buf_get_option(buf, 'buftype')
+    local file_type = vim.api.nvim_buf_get_option(buf, 'filetype')
+    local buf_modified = vim.api.nvim_buf_get_option(buf, 'modified')
+    local buf_line_count = vim.api.nvim_buf_line_count(buf)
+
+    -- if (buf_name == file) then
+    --   vim.api.nvim_set_current_buf(buf)
+    --   vim.api.nvim_win_set_cursor(0, { tonumber(line), tonumber(col) })
+    --   return
+    -- end
+    if (buf_type == "") then
+      -- vim.api.nvim_set_current_buf(buf)
+      vim.api.nvim_command('edit ' .. file)
+      vim.api.nvim_win_set_cursor(0, { tonumber(line), tonumber(col) })
+      return
+    end
+
+    -- 打印缓冲区属性和文件名
+    print(string.format("Buffer Name: %s", buf_name))
+    print(string.format("buf Type: %s", buf_type))
+    print(string.format("File Type: %s", file_type))
+    print(string.format("Modified: %s", buf_modified))
+    print(string.format("Line Count: %s", buf_line_count))
+    print("-------------------------")
+  end
+  vim.api.nvim_command('edit ' .. file)
+  vim.api.nvim_win_set_cursor(0, { tonumber(line), tonumber(col) })
+end
+
 return M

@@ -94,6 +94,9 @@ lvim.builtin.which_key.mappings["la"] = { ":CodeActionMenu<CR>", "My code action
 lvim.keys.visual_mode["<leader>R"] = ":lua require('my_funcs').ExecuteAndPrintCmd()<CR>"
 lvim.keys.normal_mode["<leader>R"] = "V:lua require('my_funcs').ExecuteAndPrintCmd()<CR>"
 
+-- run go to make file
+lvim.keys.normal_mode["gf"] = ":lua require('my_funcs').ExtractFileInfo()<CR>"
+
 -- spectre
 -- open in current file
 lvim.keys.normal_mode["sf"] = ":lua require('spectre').open_file_search()<CR>"
