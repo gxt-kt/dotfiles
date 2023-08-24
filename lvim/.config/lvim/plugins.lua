@@ -691,9 +691,10 @@ lvim.plugins = {
           enable = true,
           chars = { "│", "¦", "┆", "┊" },
           use_treesitter = false,
-          -- style = {
-          --     { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui") }
-          -- },
+          style = {
+            -- { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui") }
+            { fg = "#a1a1a1", }
+          },
         },
         line_num = {
           enable = false,
