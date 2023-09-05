@@ -53,7 +53,8 @@ ExecBuild() {
   myecho "============================================="
   myecho "make"
   myecho "============================================="
-  if ! make; then
+  cpu_cores=$(grep -c '^processor' /proc/cpuinfo)  
+  if ! make -j${cpu_cores}; then
     echo -e '\033[31m[ ERROR ] : Failed Run "make"\033[0m'
     exit 1
   fi

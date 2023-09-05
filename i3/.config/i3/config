@@ -36,7 +36,7 @@ exec --no-startup-id crow &
 exec --no-startup-id copyq &
 
 # ~/miniconda3/bin/i3expod -m sequential
-exec_always --no-startup-id $HOME/miniconda3/bin/i3expod -m sequential -w $HOME/my_desktop/backgrouds/Nord-Wallpapers/wallpapers/5.png
+# exec_always --no-startup-id $HOME/miniconda3/bin/i3expod -m sequential -w $HOME/my_desktop/backgrouds/Nord-Wallpapers/wallpapers/5.png
 # exec_always --no-startup-id $HOME/miniconda3/bin/i3expod -f  -w $HOME/my_desktop/backgrouds/Nord-Wallpapers/wallpapers/5.png
 
 gaps top 0
@@ -170,8 +170,8 @@ bindsym $mod+f floating toggle
 bindsym $mod+Shift+f focus mode_toggle
 
 # change focus between tiling / floating windows
-# bindsym Mod4+Tab focus mode_toggle
-bindsym $mod+Tab exec --no-startup-id "killall -s SIGUSR1 i3expod"
+bindsym $mod+Tab focus mode_toggle
+# bindsym $mod+Tab exec --no-startup-id "killall -s SIGUSR1 i3expod"
 
 # 循环切换工作区
 bindsym Mod1+Tab workspace next

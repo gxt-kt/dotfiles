@@ -159,12 +159,12 @@ M.GoToFile = function(file, line, col)
     end
 
     -- 打印缓冲区属性和文件名
-    print(string.format("Buffer Name: %s", buf_name))
-    print(string.format("buf Type: %s", buf_type))
-    print(string.format("File Type: %s", file_type))
-    print(string.format("Modified: %s", buf_modified))
-    print(string.format("Line Count: %s", buf_line_count))
-    print("-------------------------")
+    -- print(string.format("Buffer Name: %s", buf_name))
+    -- print(string.format("buf Type: %s", buf_type))
+    -- print(string.format("File Type: %s", file_type))
+    -- print(string.format("Modified: %s", buf_modified))
+    -- print(string.format("Line Count: %s", buf_line_count))
+    -- print("-------------------------")
   end
   vim.api.nvim_command('edit ' .. file)
   vim.api.nvim_win_set_cursor(0, { tonumber(line), tonumber(col) })

@@ -21,7 +21,7 @@ vim.opt.relativenumber = true -- set relative numbered lines
 -- vim.opt.signcolumn = "yes:2"
 
 lvim.leader = ","
-lvim.keys.insert_mode["jj"] = "<Esc>"
+lvim.keys.insert_mode["jk"] = "<Esc>"
 lvim.keys.normal_mode["<leader>\\"] = "<C-w>v"
 lvim.keys.normal_mode["<leader>-"] = "<C-w>s"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
