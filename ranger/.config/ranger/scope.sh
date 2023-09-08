@@ -87,9 +87,13 @@ handle_extension() {
             pandoc -s -t markdown -- "${FILE_PATH}" && exit 5
             exit 1;;
         md) # gxt_kt add preview markdown
-              ## markdown
-              glow -s dark -- "${FILE_PATH}" && exit 5
-              exit 1;;
+            ## markdown
+            glow -s dark -- "${FILE_PATH}" && exit 5
+            exit 1;;
+        gif) # gxt_kt add preview gif
+             # Thumbnail
+             ffmpegthumbnailer -i "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" -s 0 && exit 6
+             exit 1;;
         ## XLSX
         xlsx)
             ## Preview as csv conversion
