@@ -35,6 +35,7 @@ lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<leader>h"] = ":nohl<cr>"
 lvim.keys.normal_mode["<leader>H"] = ":Twilight<cr>"
 lvim.keys.normal_mode["<leader>W"] = ":set wrap!<cr>"
+lvim.keys.normal_mode["<leader>S"] = ":set invspell<cr>" -- https://vimtricks.com/p/vim-spell-check/
 lvim.keys.normal_mode["<leader>n"] = ":set relativenumber!<cr>"
 lvim.keys.normal_mode["<leader>j"] = ":ClangdSwitchSourceHeader<cr>"
 lvim.builtin.which_key.mappings.o = nil
@@ -462,7 +463,7 @@ require("dap.dap-lldb")
 require('dap.python')
 require('dap.c_cpp_rust')
 
--- Associate .launch files with the xml language  
+-- Associate .launch files with the xml language
 vim.cmd([[autocmd BufNewFile,BufRead *.launch set filetype=xml]])
 
 
