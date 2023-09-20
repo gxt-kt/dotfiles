@@ -1,0 +1,195 @@
+"" Source your .vimrc
+"source ~/.vimrc
+
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" Do incremental searching.
+set incsearch
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
+
+
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+" ================================================================================================
+" = Basic settings =====================================
+" ================================================================================================
+set clipboard+=unnamed
+set smartcase
+set number
+set relativenumber
+set scrolloff=30
+set history=200
+set number
+set incsearch
+set hlsearch
+" set keep-english-in-normal
+set syntax on
+set ideajoin
+inoremap jk <Esc>`^
+let mapleader=','
+
+
+vnoremap p "_dP
+
+nnoremap <leader>q  :bd<cr>
+nnoremap <leader>c  :q<cr>
+nnoremap <c-s>  :w<cr>
+nnoremap <leader>w  :w<cr>
+
+nnoremap <leader>h = :nohl<cr>
+map <leader>j :ClangdSwitchSourceHeader<cr>
+
+
+nnoremap <leader>\\  <C-w>v
+nnoremap <leader>-  <C-w>s
+
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-,> <C-W><
+nnoremap <C-.> <C-W>>
+nnoremap <C-=> <C-W>+
+nnoremap <C--> <C-W>-
+
+" nnoremap <s-h> :bp<CR>
+" nnoremap <s-l> :bn<CR>
+nnoremap <s-h> gT
+nnoremap <s-l> gt
+
+nnoremap <leader>W :set wrap!<cr>
+nnoremap <leader>n :set relativenumber!<cr>
+
+" 多行缩进在visual mode
+vnoremap > >gv
+vnoremap < <gv
+
+" ================================================================================================
+" = Extensions =====================================
+" ================================================================================================
+set NERDTree
+set surround
+set commentary
+set multiple-cursors
+set ReplaceWithRegister
+set easymotion
+set argtextobj
+set highlightyank
+set textobj-entire
+
+" ================================================================================================
+" ================================================================================================
+" plugin set"
+" ================================================================================================
+" ================================================================================================
+
+" easymotion
+map <leader>s <Plug>(easymotion-s2)
+nmap f <Plug>(easymotion-fl)
+nmap F <Plug>(easymotion-Fl)
+nmap t <Plug>(easymotion-tl)
+nmap T <Plug>(easymotion-Tl)
+vmap f <Plug>(easymotion-fl)
+vmap F <Plug>(easymotion-Fl)
+vmap t <Plug>(easymotion-tl)
+vmap T <Plug>(easymotion-Tl)
+
+" NERDTree
+nnoremap <leader>e :NERDTreeToggle<cr>
+"nnoremap <leader>e :NERDTree<CR>
+
+" multiple-cursors
+" https://stackoverflow.com/questions/55202799/ideavim-multi-cursor-usage
+" Remap multiple-cursors shortcuts to match terryma/vim-multiple-cursors
+nmap <C-n> <Plug>NextWholeOccurrence
+xmap <C-n> <Plug>NextWholeOccurrence
+nmap g<C-n> <Plug>NextOccurrence
+xmap g<C-n> <Plug>NextOccurrence
+nmap <C-x> <Plug>SkipOccurrence
+xmap <C-x> <Plug>SkipOccurrence
+nmap <C-p> <Plug>RemoveOccurrence
+xmap <C-p> <Plug>RemoveOccurrence
+" Note that the default <A-n> and g<A-n> shortcuts don't work on Mac due to dead keys.
+" <A-n> is used to enter accented text e.g. ñ
+nmap <S-C-n> <Plug>AllWholeOccurrences
+xmap <S-C-n> <Plug>AllWholeOccurrences
+nmap g<S-C-n> <Plug>AllOccurrences
+xmap g<S-C-n> <Plug>AllOccurrencesset ideajoin
+
+" 查找文件
+nnoremap <leader>ff mm`m:action GotoFile<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""LSP"""""""""""""""""""""''""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 格式化代码
+nnoremap <leader>lf :action ReformatCode<CR>
+" 跳转下一个错误
+nnoremap <leader>lj :action GotoNextError<CR>
+" 跳转上一个错误
+nnoremap <leader>lk :action GotoPreviousError<CR>
+" 命名元素
+nnoremap <leader>lr :action RenameElement<CR>
+" 快速显示文档
+nnoremap K  :action QuickJavaDoc<CR>
+" idea智能提示
+nnoremap <leader>la :action ShowIntentionActions<CR>
+" 显示错误描述
+nnoremap gh :action ShowErrorDescription<CR>
+" 弹出参数信息(打类的时候有奇效)
+nnoremap gp :action ParameterInfo<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""Debug""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 打上断点或取消断点
+nnoremap <leader>dt :action ToggleLineBreakpoint<CR>
+" 取消所有的断点
+nnoremap <leader>dT :action Debugger.RemoveAllBreakpointsInFile<CR>
+" debug上次运行的类
+nnoremap <leader>dd :action Debug<CR>
+" debug当前(now)类
+nnoremap <leader>dc :action DebugClass<CR>
+" StepInto (F7)
+nnoremap <leader>di :action ForceStepInto<CR>
+" ForceStepInto(CMD + SHIFT + F7)
+nnoremap <leader>dI :action ForceStepInto
+" StepOver (F8)
+nnoremap <leader>dj :action StepOver<CR>
+" Resume (跳到下个断点运行)
+nnoremap <leader>dr :action Resume<CR>
+" StepOut (SHIFT+F8)
+nnoremap <leader>do :action StepOut<CR>
+" debug强制运行到光标处
+nnoremap <leader>dc :action ForceRunToCursor<CR>
+" debug上次运行的类
+nnoremap <leader>ds :action Stop<CR>
+nnoremap <leader>dR :action Restart<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""RUN""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" 设置运行配置 (未知)
+" nnoremap <leader>rc :action RunConfiguration<CR>
+" 运行上次运行类
+nnoremap <leader>rr :action Run<CR>
+" 运行当前(now)类
+nnoremap <leader>rc :action RunClass<CR>
+" 停止运行
+nnoremap <leader>rp :action Stop<CR>
+
