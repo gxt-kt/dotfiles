@@ -287,16 +287,6 @@ lvim.builtin.nvimtree.setup.view = {
   -- },
   width = 30,
   side = "left",
-  mappings = {
-    list = {
-      { key = { "l", "<CR>", "o" }, action = "edit" },
-      { key = "h",                  action = "close_node" },
-      { key = "v",                  action = "vsplit" },
-      -- { key = "C-t", action = false}, -- remove default key C-t
-      -- { key = "g", action = "toggle_git_ignored" },--[[  default I ]]
-      -- { key = "<BS>", action = "toggle_dotfiles" },--[[  default H ]]
-    },
-  },
 }
 
 -- cmp
