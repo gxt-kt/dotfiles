@@ -86,6 +86,7 @@ plugins=(
 	autojump
 	extract
 	fzf
+  z
 )
 
 source $ZSH/oh-my-zsh.sh
