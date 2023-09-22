@@ -856,24 +856,6 @@ lvim.plugins = {
     config = function()
       local builtin = require("statuscol.builtin")
       require("statuscol").setup({
-        -- segments = {
-        --   {
-        --     text = {
-        --       " ",     -- whitespace padding
-        --       function(args) -- custom line number highlight function
-        --         return ((args.lnum % 2 > 0) and "%#DiffDelete#%=" or "%#DiffAdd#%=") .. "%l"
-        --       end,
-        --       " ", -- whitespace padding
-        --     },
-        --     condition = {
-        --       true,    -- always shown
-        --       function(args) -- shown only for the current window
-        --         return vim.api.nvim_get_current_win() == args.win
-        --       end,
-        --       builtin.notempty, -- only shown when the rest of the statuscolumn is not empty
-        --     },
-        --   }
-        -- },
         setopt = true, -- Whether to set the 'statuscolumn' option, may be set to false for those who
         -- want to use the click handlers in their own 'statuscolumn': _G.Sc[SFL]a().
         -- Although I recommend just using the segments field below to build your
@@ -892,7 +874,7 @@ lvim.plugins = {
               name = { ".*" },
               max_width = 2,
               colwidth = 2,
-              auto = true,
+              auto = false,
             },
             -- condition = { true, builtin.not_empty },
             click = "v:lua.ScLa",
@@ -906,9 +888,9 @@ lvim.plugins = {
             -- Ref: https://github.com/luukvbaal/statuscol.nvim/issues/71
             sign = {
               name = { "GitSign*" },
-              max_width = 2,
+              max_width = 1,
               colwidth = 1,
-              auto = true,
+              auto = false,
             },
             -- condition = { true, builtin.not_empty },
             click = "v:lua.ScLa",
