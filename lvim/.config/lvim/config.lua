@@ -121,7 +121,7 @@ lvim.builtin.which_key.mappings["fs"] = { ":lua require('telescope.builtin').liv
 lvim.builtin.which_key.mappings["fp"] = { "<cmd>Telescope projects<CR>", "Recent projects" }
 lvim.builtin.which_key.mappings["fr"] = { ":Telescope oldfiles<cr>", "Recent files" }
 lvim.builtin.which_key.mappings["fk"] = { "<cmd>Telescope keymaps<cr>", "Show all keymaps" }
-lvim.builtin.which_key.mappings["ft"] = { "<cmd>:TodoTelescope<cr>", "Show all keymaps" }
+lvim.builtin.which_key.mappings["ft"] = { "<cmd>:TodoTelescope<cr>", "Show all TODOs" }
 
 -- use telescope to find string
 lvim.builtin.which_key.vmappings["fw"] = { "<Esc>:lua require('my_funcs').live_grep_raw({default_text=''}, 'v')<cr>",
