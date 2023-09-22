@@ -191,4 +191,25 @@ M.git_gitui_toggle = function()
   gitui:toggle()
 end
 
+M.GetBufFullPath = function()
+  -- print(vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
+  return vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
+end
+
+M.GetBufRelativePath = function()
+  local path = string.gsub(M.GetBufFullPath(), vim.fn.getcwd(), "")
+  -- Remove leading backslash if it exists
+  if string.sub(path, 1, 1) == "/" then
+    path = string.sub(path, 2)
+  end
+  -- print(path)
+  return path
+end
+
+M.GetBufName = function()
+  -- print(vim.fn.fnamemodify(vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()), ":t"))
+  return vim.fn.fnamemodify(vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()), ":t")
+end
+
+
 return M

@@ -124,14 +124,14 @@ vim.keymap.set('n', 'sW', '<cmd>lua require("spectre").open_visual({select_word=
   desc = "Search on current file"
 })
 vim.keymap.set('v', 'sw',
-  '<esc><cmd>lua require("spectre").open({ search_text=require("my_funcs").get_text("v"), path=vim.fn.fnamemodify(vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()  ), ":t") })<CR>',
+  '<esc><cmd>lua require("spectre").open({ search_text=require("my_funcs").get_text("v"), path=require("my_funcs").GetBufRelativePath()})<CR>',
   {
-    desc = "Search current word"
+    desc = "Search select word"
   })
 vim.keymap.set('v', 'sW',
   '<esc><cmd>lua require("spectre").open({ search_text=require("my_funcs").get_text("v") })<CR>',
   {
-    desc = "Search current word"
+    desc = "Search select word"
   })
 
 -- SnipRun
