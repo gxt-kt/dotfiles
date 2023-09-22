@@ -927,6 +927,15 @@ M.my_plugins = {
       })
     end,
   },
+  -- show latex on markdown file can use plugin "jbyuki/nabla.nvim"
+  {
+    'lukas-reineke/headlines.nvim',
+    after = 'nvim-treesitter',
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("headlines").setup()
+    end,
+  },
   -- { -- gxt_kt vim-tmux-clipboard : vim tmux clipboard
   --   'roxma/vim-tmux-clipboard',
   -- },
