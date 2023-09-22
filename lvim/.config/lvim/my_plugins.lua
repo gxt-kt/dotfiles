@@ -557,10 +557,10 @@ M.my_plugins = {
         line_sep_start = '┌-----------------------------------------',
         result_padding = '¦  ',
         line_sep       = '└-----------------------------------------',
-        highlight      = {
+        highlight      = { -- set with color group/ can use :highlight to see all color group
           ui = "String",
-          search = "DiffChange",
-          replace = "DiffDelete"
+          search = "TodoBgTODO",
+          replace = "TodoBgTEST"
         },
         mapping        = {
           ["send_to_qf"] = {
