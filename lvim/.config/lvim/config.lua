@@ -117,6 +117,22 @@ lvim.builtin.which_key.mappings["gg"] = { ":lua require('my_funcs').git_gitui_to
 lvim.keys.normal_mode["sf"] = ":lua require('spectre').open_file_search()<CR>"
 -- open in whole ws
 lvim.keys.normal_mode["sF"] = ":lua require('spectre').open()<CR>"
+vim.keymap.set('n', 'sw', '<cmd>lua require("spectre").open_file_search({select_word=true})<CR>', {
+  desc = "Search on current file"
+})
+vim.keymap.set('n', 'sW', '<cmd>lua require("spectre").open_visual({select_word=true})<CR>', {
+  desc = "Search on current file"
+})
+vim.keymap.set('v', 'sw',
+  '<esc><cmd>lua require("spectre").open({ search_text=require("my_funcs").get_text("v"), path=vim.fn.fnamemodify(vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()  ), ":t") })<CR>',
+  {
+    desc = "Search current word"
+  })
+vim.keymap.set('v', 'sW',
+  '<esc><cmd>lua require("spectre").open({ search_text=require("my_funcs").get_text("v") })<CR>',
+  {
+    desc = "Search current word"
+  })
 
 -- SnipRun
 lvim.keys.normal_mode["<leader>r"] = ":%SnipRun<CR>"

@@ -551,12 +551,18 @@ M.my_plugins = {
     "windwp/nvim-spectre",
     config = function()
       require("spectre").setup({
-        open_cmd = "vnew",
-        live_update = true,        -- auto excute search again when you write any file in vim
-        replace_vim_cmd = "cdo",
-        is_open_target_win = true, --open file on opener window
-        is_insert_mode = true,     -- start open panel on is_insert_mode
-        mapping = {
+        color_devicons = true,
+        open_cmd       = 'vnew',
+        live_update    = false, -- auto execute search again when you write to any file in vim
+        line_sep_start = '┌-----------------------------------------',
+        result_padding = '¦  ',
+        line_sep       = '└-----------------------------------------',
+        highlight      = {
+          ui = "String",
+          search = "DiffChange",
+          replace = "DiffDelete"
+        },
+        mapping        = {
           ["send_to_qf"] = {
             map = "F",
             cmd = "<cmd>lua require('spectre.actions').send_to_qf()<CR>",
