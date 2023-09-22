@@ -11,3 +11,5 @@
 
 
 *.cache/
+
+luarc.json
