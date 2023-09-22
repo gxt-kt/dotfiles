@@ -19,6 +19,9 @@ elseif theme == "material" then
 elseif theme == "catppuccin" then
   vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
   lvim.colorscheme = "catppuccin"
+elseif theme == "everforest" then
+  lvim.colorscheme = "everforest"
+  -- vim.g.everforest_background = "soft"
 end
 
 
@@ -26,6 +29,12 @@ M.plugins_theme = {
   {
     "catppuccin/nvim",
     name = "catppuccin",
+  },
+  {
+    "EdenEast/nightfox.nvim"
+  },
+  {
+    "sainnhe/everforest"
   },
   {
     "morhetz/gruvbox",
