@@ -6,8 +6,19 @@ lvim.format_on_save.enabled = false
 -- Add scripts find path
 local home = os.getenv("HOME")
 package.path = home .. "/.config/lvim/?.lua" -- $HOME/.config/lvim/*.lua
-require('plugins')
+-- define lvim.plugins
+require('my_plugins')
 require('my_theme')
+
+lvim.plugins = {}
+-- add theme plugins
+for _, item in ipairs(require('my_theme').plugins_theme) do
+  table.insert(lvim.plugins, item)
+end
+-- add my plugins
+for _, item in ipairs(require('my_plugins').my_plugins) do
+  table.insert(lvim.plugins, item)
+end
 
 --  options fold from treesitter
 do

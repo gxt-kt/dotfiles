@@ -1,7 +1,7 @@
--- Additional Plugins
-lvim.plugins = {
-  -- require('my_theme'),
-  unpack(require('my_theme').plugins_theme),
+local M = {}
+
+-- add my plugins
+M.my_plugins = {
   {
     "folke/trouble.nvim",
     config = function()
@@ -927,3 +927,5 @@ lvim.plugins = {
   --
   --
 }
+
+return M
