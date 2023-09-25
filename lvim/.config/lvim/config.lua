@@ -291,6 +291,9 @@ end
 -- lvim.builtin.project.manual_mode = true
 lvim.builtin.nvimtree.setup.hijack_directories.enable = true
 lvim.builtin.nvimtree.setup.hijack_directories.auto_open = true
+-- enable nvimtree show icons
+lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
+lvim.builtin.nvimtree.setup.renderer.icons.glyphs.git = { staged = "✓", untracked = "★"}
 lvim.builtin.nvimtree.setup.diagnostics = {
   enable = true,
   show_on_dirs = true,
