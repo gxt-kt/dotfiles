@@ -11,10 +11,25 @@
 # font_family UbuntuMono Nerd Font
 # font_family Hasklug Nerd Font
 # font_family Iosevka Fixed SS07
-font_family Iosevka Custom
-bold_font       Iosevka Custom Medium 
-italic_font      auto
-bold_italic_font Iosevka Custom Medium Italic 
+#
+# font_family Iosevka Custom
+# bold_font       Iosevka Custom Medium 
+# italic_font      auto
+# bold_italic_font Iosevka Custom Medium Italic 
+
+
+font_family       Hack Regular
+bold_font         Hack Bold
+italic_font       Hack Italic
+bold_italic_font  auto 
+
+
+# font_family      Fira Code Regular
+# bold_font        Fira Code Bold 
+# italic_font      auto
+# bold_italic_font auto 
+# font_features FiraCode-Bold +zero +onum
+
 # font_family Iosevka Term
 # font_family Input
 # font_family Fira Code
@@ -543,6 +558,12 @@ open_url_with default
 
 # mouse_map left click ungrabbed mouse_handle_click selection link prompt
 
+# gxt_kt ref:
+# https://www.reddit.com/r/KittyTerminal/comments/tx7rt2/disable_url_opening_on_just_single_click/
+mouse_map left click ungrabbed no-op
+mouse_map ctrl+left click ungrabbed mouse_handle_click selection link prompt
+# mouse_map ctrl+left press ungrabbed mouse_selection norma
+
 #::  First check for a selection and if one exists do nothing. Then
 #::  check for a link under the mouse cursor and if one exists, click
 #::  it. Finally check if the click happened at the current shell
@@ -739,9 +760,14 @@ open_url_with default
 
 # : Window layout {{{
 
-remember_window_size  yes
-# initial_window_width  300
-# initial_window_height 50
+# remember_window_size  yes
+remember_window_size  no
+# pixels
+# initial_window_width  2000
+# initial_window_height 1200
+# cells
+initial_window_width  116c
+initial_window_height 34c
 
 #: If enabled, the OS Window size will be remembered so that new
 #: instances of kitty will have the same size as the previous
@@ -2357,7 +2383,7 @@ shell_integration no-cursor
 
 
 # BEGIN_KITTY_THEME
-# One Half Dark
+# Everforest Dark Soft
 include current-theme.conf
 # END_KITTY_THEME
 
