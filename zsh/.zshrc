@@ -289,3 +289,13 @@ export PATH="$HOME/.cargo/bin":$PATH
 #🔼🔼🔼
 
 
+# trash-cli alis : https://github.com/andreafrancia/trash-cli
+#🔽🔽🔽
+alias rm='trash-put'
+alias trash-autoclean='trash-empty 30'
+alias trash-cd='cd ${HOME}/.local/share/Trash'
+alias trash-ls='trash-list'
+alias trash-ll='trash-ls'
+#🔼🔼🔼
+
+
