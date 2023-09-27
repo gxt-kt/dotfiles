@@ -110,6 +110,7 @@ lvim.keys.normal_mode["<leader>R"] = "V:lua require('my_funcs').ExecuteAndPrintC
 lvim.keys.normal_mode["gf"] = ":lua require('my_funcs').ExtractFileInfo()<CR>"
 
 -- change default lazygit to gitui
+lvim.builtin.which_key.mappings["gg"] = nil
 lvim.builtin.which_key.mappings["gg"] = { ":lua require('my_funcs').git_gitui_toggle()<CR>", "gitui" }
 
 -- spectre
