@@ -68,6 +68,9 @@ lvim.keys.normal_mode["N"] = "Nzzzv"
 -- 让下一行加到当前行末尾，删掉所有缩进，并加一个空格
 lvim.keys.normal_mode["J"] = "mzJ`z"
 
+
+vim.opt.matchpairs:append("<:>")
+
 -- 将选定的行移动到上/下方一行，并缩进。
 -- lvim.keys.visual_mode["J"] = ":m '>+1<CR>gv=gv"
 -- lvim.keys.visual_mode["K"] = ":m '<-2<CR>gv=gv"
@@ -110,7 +113,7 @@ lvim.keys.normal_mode["<leader>R"] = "V:lua require('my_funcs').ExecuteAndPrintC
 lvim.keys.normal_mode["gf"] = ":lua require('my_funcs').ExtractFileInfo()<CR>"
 
 -- change default lazygit to gitui
-lvim.builtin.which_key.mappings["gg"] = nil
+lvim.builtin.which_key.mappings["gg"] = {}
 lvim.builtin.which_key.mappings["gg"] = { ":lua require('my_funcs').git_gitui_toggle()<CR>", "gitui" }
 
 -- spectre
@@ -294,7 +297,7 @@ lvim.builtin.nvimtree.setup.hijack_directories.enable = true
 lvim.builtin.nvimtree.setup.hijack_directories.auto_open = true
 -- enable nvimtree show icons
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
-lvim.builtin.nvimtree.setup.renderer.icons.glyphs.git = { staged = "✓", untracked = "★"}
+lvim.builtin.nvimtree.setup.renderer.icons.glyphs.git = { staged = "✓", untracked = "★" }
 lvim.builtin.nvimtree.setup.diagnostics = {
   enable = true,
   show_on_dirs = true,
