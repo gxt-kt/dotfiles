@@ -12,13 +12,13 @@ fi
 
 # 获取输入文件的路径和文件名
 filepath=$1
-echo "filepath: ${filepath}"
+# echo "filepath: ${filepath}"
 filename=$(basename "$filepath")
-echo "filename: ${filename}"
+# echo "filename: ${filename}"
 extension="${filename##*.}"
-echo "extension: ${extension}"
+# echo "extension: ${extension}"
 filename="${filename%.*}"
-echo "filename: ${filename}"
+# echo "filename: ${filename}"
 
 # 判断当前文件是否为已经g++后的文件，适用于cmake工程
 # 检查文件扩展名是否为 .o 
@@ -26,7 +26,7 @@ if [ "$extension" == "o" ]; then
     # 递归搜索当前目录下的 .o 文件，并对其执行 objdump  
     found_files=$(find . -name "$filename.o")  
     if [ -z "$found_files" ]; then  
-        echo -e "\033[31m找不到匹配的 .o 文件\033[0m"  
+        echo -e "\033[31mcannot find file: $filename.o\033[0m"  
         exit 1  
     fi  
     for file in $found_files; do  
