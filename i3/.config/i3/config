@@ -188,7 +188,8 @@ bindsym $mod+d move scratchpad
 bindsym $mod+shift+d scratchpad show
 
 # applications
-bindsym $mod+shift+s exec --no-startup-id "flameshot gui"
+# bindsym $mod+shift+s exec --no-startup-id "flameshot gui"
+bindsym $mod+shift+s exec --no-startup-id "bash $HOME/.scripts/flameshot/start_flameshot.sh"
 bindsym $mod+v       exec --no-startup-id "copyq toggle"
 # bindsym $mod+n       exec --no-startup-id "alacritty -t term-float --class FloatingTerminal"
 bindsym $mod+n       exec --no-startup-id "kitty -T term-float --class FloatingTerminal"
