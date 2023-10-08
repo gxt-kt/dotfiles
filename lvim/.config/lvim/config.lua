@@ -378,10 +378,12 @@ lvim.builtin.treesitter.rainbow.colors = {
 
 -- generic LSP settings
 -- -- make sure server will always be installed even if the server is in skipped_servers list
-lvim.lsp.installer.setup.ensure_installed = {
-  "clangd",
-  "pyright",
-}
+-- ---@usage disable automatic installation of servers
+lvim.lsp.installer.setup.automatic_installation = false
+-- lvim.lsp.installer.setup.ensure_installed = {
+--   "clangd",
+--   "pyright",
+-- }
 
 -- -- change UI setting of `LspInstallInfo`
 -- -- see <https://github.com/williamboman/nvim-lsp-installer#default-configuration>
@@ -392,8 +394,6 @@ lvim.lsp.installer.setup.ensure_installed = {
 --     toggle_server_expand = "o",
 -- }
 
--- ---@usage disable automatic installation of servers
-lvim.lsp.installer.setup.automatic_installation = false
 
 -- disable diagnostics which is super annoying in my case
 -- lvim.lsp.diagnostics.virtual_text = true
