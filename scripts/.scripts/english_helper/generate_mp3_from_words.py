@@ -72,6 +72,12 @@ def read_word_list(file_path):
     return word_list
 
 
+# 将单词列表写入文件
+def write_word_list(file_path, word_list):
+    with open(file_path, "w") as file:
+        for word in word_list:
+            file.write(word + "\n")
+
 def generate_mp3_from_words(
     word_lists, generate_file_name, repeats_times, interval_file
 ):
@@ -92,10 +98,15 @@ def generate_mp3_from_words(
     audio.export(generate_file_name, format="mp3")
     print("generating "+generate_file_name+" completely")
 
+  
 
 word_lists = read_word_list(file_path)
 if random_flag == True:
     random.shuffle(word_lists)
+    base_name = os.path.basename(file_path)
+    write_word_list(os.path.splitext(base_name)[0]+"_random"+".txt", word_lists)  
+    if output_file_path=="":
+        output_file_path = os.path.splitext(base_name)[0] + "_random" ".mp3"
 
 if output_file_path=="":
     base_name = os.path.basename(file_path)
