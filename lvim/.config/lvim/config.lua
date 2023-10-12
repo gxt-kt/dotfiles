@@ -476,7 +476,6 @@ lvim.lsp.null_ls.setup.on_init = function(new_client, _)
 end
 
 
-vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
 
 --- dap config
 -- load non-standard json file

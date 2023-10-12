@@ -352,6 +352,7 @@ M.my_plugins = {
     "kosayoda/nvim-lightbulb",
     config = function()
       require("nvim-lightbulb").setup({
+        autocmd = { enabled = true },
         -- LSP client names to ignore
         -- Example: {"sumneko_lua", "null-ls"}
         ignore = {},
@@ -396,7 +397,6 @@ M.my_plugins = {
         },
       })
     end,
-    --vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()]])
   },
   {
     -- gxt_kt symbols-outline.nvim : show outline
