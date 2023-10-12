@@ -790,10 +790,16 @@ M.my_plugins = {
       }
       local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
       for _, ls in ipairs(language_servers) do
-        require('lspconfig')[ls].setup({
+        -- NOTE: gxt_kt: Must change lspconfig to lvim.lsp.manager
+        -- Otherwise will make lsp server start failure
+        require('lvim.lsp.manager').setup(ls,{
           capabilities = capabilities
           -- you can add other fields for setting up lsp server in this table
         })
+        -- require('lspconfig')[ls].setup({
+        --   capabilities = capabilities
+        --   -- you can add other fields for setting up lsp server in this table
+        -- })
       end
       -- require('ufo').setup()
       --
