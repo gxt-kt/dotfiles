@@ -112,9 +112,11 @@ lvim.keys.normal_mode["<leader>R"] = "V:lua require('my_funcs').ExecuteAndPrintC
 -- run go to make file
 lvim.keys.normal_mode["gf"] = ":lua require('my_funcs').ExtractFileInfo()<CR>"
 
--- change default lazygit to gitui
-lvim.builtin.which_key.mappings["gg"] = {}
-lvim.builtin.which_key.mappings["gg"] = { ":lua require('my_funcs').git_gitui_toggle()<CR>", "gitui" }
+-- change default lazygit to gitui 
+-- https://github.com/LunarVim/LunarVim/issues/4380
+-- lvim.builtin.which_key.mappings["gg"] = {}
+lvim.builtin.which_key.mappings.g.g= { ":lua require('my_funcs').git_gitui_toggle()<CR>", "gitui" }
+-- lvim.builtin.which_key.mappings["gg"] = { ":lua require('my_funcs').git_gitui_toggle()<CR>", "gitui" }
 
 -- spectre
 -- open in current file
