@@ -106,7 +106,7 @@ M.my_plugins = {
   },
   {
     "p00f/clangd_extensions.nvim",
-    after = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
+    dependencies = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
     config = function()
       local provider = "clangd"
       local clangd_flags = {
@@ -930,7 +930,6 @@ M.my_plugins = {
   -- show latex on markdown file can use plugin "jbyuki/nabla.nvim"
   {
     'lukas-reineke/headlines.nvim',
-    after = 'nvim-treesitter',
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
       require("headlines").setup()
