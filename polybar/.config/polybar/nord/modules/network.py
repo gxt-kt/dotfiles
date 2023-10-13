@@ -59,12 +59,42 @@ def GetTx()->str:
     send_string=str(get_speed(tx_bytes))
     return (send_string)
 
+def GetDynamic(convert=False):
+    DYNAMIC_POSITON="~/.cache/network_dynamic_flag"
+    if (os.path.exists(DYNAMIC_POSITON)==False): 
+        os.system("touch "+DYNAMIC_POSITON)
+    cmd="cat "+DYNAMIC_POSITON
+    result = subprocess.run(cmd, shell=True, timeout=3, stderr=subprocess.PIPE, stdout=subprocess.PIPE)
+    tx_or_rx=result.stdout.decode('utf-8').replace("\n","")
+    if tx_or_rx=="TX":
+        if convert==True:
+            cmd="echo "+"RX"+" > "+DYNAMIC_POSITON
+            os.system(cmd)
+            print(GetRx())
+        else :
+            print(GetTx())
+    elif tx_or_rx=="RX":
+        if convert==True:
+            cmd="echo "+"TX"+" > "+DYNAMIC_POSITON
+            os.system(cmd)
+            print(GetTx())
+        else :
+            print(GetRx())
+    else :
+        cmd="echo "+"RX"+" > "+DYNAMIC_POSITON
+        os.system(cmd)
+        print(GetRx())
+
 if __name__ == "__main__":
   if len(sys.argv) > 1:
     if(sys.argv[1]=="TX") :
         print(GetTx())
     elif (sys.argv[1]=="RX") :
         print(GetRx())
+    elif (sys.argv[1]=="DYNAMIC") :
+        GetDynamic(convert=False)
+    elif (sys.argv[1]=="DYNAMIC_CONVERT") :
+        GetDynamic(convert=True)
     else :
         print("Unknown Pparameter!")
    
