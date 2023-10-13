@@ -34,7 +34,9 @@ exec --no-startup-id cfw &
 exec --no-startup-id crow &
 # exec --no-startup-id blueman-manager &
 exec --no-startup-id copyq &
+exec --no-startup-id nitrogen --set-scaled ~/my_desktop/backgrouds/ai/暮雨_青い瞳の猫_105138153_p0.png
 
+exec --no-startup-id kitty $python ~/.config/i3/welcome.py
 # ~/miniconda3/bin/i3expod -m sequential
 # exec_always --no-startup-id $HOME/miniconda3/bin/i3expod -m sequential -w $HOME/my_desktop/backgrouds/Nord-Wallpapers/wallpapers/5.png
 # exec_always --no-startup-id $HOME/miniconda3/bin/i3expod -f  -w $HOME/my_desktop/backgrouds/Nord-Wallpapers/wallpapers/5.png
