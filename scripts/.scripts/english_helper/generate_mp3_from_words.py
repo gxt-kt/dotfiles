@@ -9,9 +9,6 @@ import tempfile
 import random
 
 
-print("Because this script use gtts with google translate")
-print("It's better to set proxy before start this scipt")
-print(">>>>>>>>>>>>>>>>>>>>BEGIN<<<<<<<<<<<<<<<<<<<<")
 
 
 # 创建命令行参数解析器
@@ -99,6 +96,9 @@ def generate_mp3_from_words(
     print("generating "+generate_file_name+" completely")
 
   
+print("Because this script use gtts with google translate")
+print("It's better to set proxy before start this scipt")
+print(">>>>>>>>>>>>>>>>>>>>BEGIN<<<<<<<<<<<<<<<<<<<<")
 
 word_lists = read_word_list(file_path)
 if random_flag == True:
