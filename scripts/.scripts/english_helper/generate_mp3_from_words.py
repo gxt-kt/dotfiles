@@ -20,7 +20,7 @@ parser.add_argument(
     "--repeat",
     "-r",
     type=int,
-    default=2,
+    default=3,
     help="repeat times",
 )
 parser.add_argument(
