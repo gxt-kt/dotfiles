@@ -301,3 +301,7 @@ alias trash-ll='trash-ls'
 #🔼🔼🔼
 
 
+# soft ware
+#🔽🔽🔽
+alias clion='nohup /opt/clion/clion-2023.2.1/bin/clion.sh&>/dev/null'
+#🔼🔼🔼
