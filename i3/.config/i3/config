@@ -154,6 +154,7 @@ bindsym $mod+Shift+l move right 100px
 
 # split in horizontal orientation
 bindsym $mod+backslash split h
+bindsym $mod+BackSpace split h
 
 # split in vertical orientation
 bindsym $mod+minus split v

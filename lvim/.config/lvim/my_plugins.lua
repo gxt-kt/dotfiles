@@ -700,7 +700,8 @@ M.my_plugins = {
         },
         indent = {
           enable = true,
-          chars = { "│", "¦", "┆", "┊" },
+          -- chars = { "│", "¦", "┆", "┊" },
+          chars = { " ", " ", " ", " " },
           use_treesitter = false,
           style = {
             -- { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui") }

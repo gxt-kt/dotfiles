@@ -294,7 +294,7 @@ function _G.set_terminal_keymaps()
 end
 
 -- nvim tree
-lvim.builtin.project.manual_mode = true -- set manual_mode will not auto cwd root directory with git
+lvim.builtin.project.manual_mode = false -- set manual_mode will not auto cwd root directory with git
 lvim.builtin.nvimtree.setup.hijack_directories.enable = true
 lvim.builtin.nvimtree.setup.hijack_directories.auto_open = true
 -- enable nvimtree show icons
