@@ -1,0 +1,5 @@
+[Desktop Entry]
+Exec=bash -c "killall picom;sleep 0.1; nohup picom&>/dev/null"
+Name=Restart picom (gxt_kt)
+Icon=apper
+Type=Application

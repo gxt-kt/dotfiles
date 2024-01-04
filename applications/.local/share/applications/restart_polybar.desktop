@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=bash -c "sh ~/.config/polybar/launch.sh"
+Name=Restart polybar (gxt_kt)
+Icon=apper
+Type=Application
+
