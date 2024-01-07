@@ -1,0 +1,69 @@
+#!/usr/bin/env bash
+shopt -s globstar
+OIFS=$IFS
+
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+source "$CURRENT_DIR/variables.sh"
+source "$CURRENT_DIR/helpers.sh"
+
+OPEN_STRATEGY="$(get_tmux_option "$open_strategy" ":e")"
+
+# Check pipe from stdin or parameter
+FPATH=${STDIN:-$1}
+if [ "$1" ]; then
+	FPATH=$1
+elif read -r -t 2 STDIN; then
+	FPATH=$STDIN
+else
+	echo "No file provided for opening" && exit 1
+fi
+FPATH=$(printf '%s' "$FPATH" | tr -d '[:space:]')
+
+# Parse line:col
+IFS=':' a=("$FPATH")
+IFS=$OIFS
+[ "${a[0]}" ] || { echo "You must supply a filename. Found ${a[0]}" && exit 1; }
+FILE=$(realpath "${a[0]}")
+[ "$FILE" ] || { echo "Couldn't open file ${a[0]}" && exit 1; }
+LINE=${a[1]:-0}
+COLUMN=${a[2]:-0}
+
+# Get all lvim listening sockets (default location)
+IFS=':' read -r -a LISTEN_SOCKS <<<"$(ls "${XDG_RUNTIME_DIR:-${TMPDIR}lvim.${USER}}"/**/lvim.*.0 2>/dev/null | tr '\n' ':')"
+IFS=$OIFS
+
+# Match child process with lvim sock, since process is within
+# e.g `/run/user/1000/lvim.1624238.0` -- lvim process is 1624238
+IFS=':' read -r -a panes <<<"$(tmux list-panes -F '#{pane_index} #{pane_pid}' | tr '\n' ':')"
+IFS=$OIFS
+
+for pane in "${panes[@]}"; do
+	IFS=' ' pane_ids=($pane)
+	IFS=$OIFS
+
+	id=${pane_ids[0]}
+	pid=${pane_ids[1]}
+
+	# Get pid of lvim process
+	cpid=$(pgrep -P "$pid" lvim)
+	ppid=0
+	if [ $cpid ]; then
+		# Get pid of lvim parent process
+		ppid=$(pgrep -P "$cpid" lvim)
+	fi
+
+	for sock in "${LISTEN_SOCKS[@]}"; do
+		if [[ $sock == *$cpid* ]] || [[ $sock == *$ppid* ]]; then
+			# Open on remote!
+			lvim --server "$sock" --remote-send "<esc>$OPEN_STRATEGY $FILE<cr>"
+			lvim --server "$sock" --remote-send "<esc>:call cursor($LINE, $COLUMN)<cr>"
+			tmux selectp -t "$id"
+			exit 0
+		fi
+	done
+done
+
+# No remote lvim, so just open in current pane
+tmux send-keys "lvim -c \"call cursor($LINE, $COLUMN)\" $FILE"
+tmux send-keys "C-m"

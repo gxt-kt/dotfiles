@@ -1,0 +1,4 @@
+Some additional tests
+FOO_BAR=value
+BAR_FOO="longer value"
+echo $FOO_BAR $BAR_FOO

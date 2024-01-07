@@ -1,0 +1,10 @@
+Unicode:
+
+  euro_€_
+  infinity_∞_
+  ruble_₽_
+
+excluded:
+  note_♫_
+  block_drawing_│_
+  some_whitespace_⋅↴│_
