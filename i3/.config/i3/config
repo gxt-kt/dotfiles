@@ -9,7 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-set $python /home/gxt_kt/miniconda3/bin/python
+set $python $HOME/miniconda3/bin/python
 set $log_file ~/i3_log
 
 set $mod Mod4
@@ -162,12 +162,6 @@ bindsym $mod+minus split v
 # enter fullscreen mode for the focused container
 bindsym $mod+z fullscreen toggle
 
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+Ctrl+1 layout stacking
-bindsym $mod+Ctrl+2 layout tabbed
-bindsym $mod+Ctrl+3 layout toggle split
-
-
 # toggle tiling / floating
 bindsym $mod+f floating toggle
 bindsym $mod+Shift+f focus mode_toggle
@@ -182,9 +176,12 @@ bindsym Mod1+Shift+Tab workspace prev
 
 # focus the parent container
 bindsym $mod+a focus parent
-
 ## focus the child container
 bindsym $mod+Shift+a focus child
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+Ctrl+1 layout stacking
+bindsym $mod+Ctrl+2 layout tabbed
+bindsym $mod+Ctrl+3 layout toggle split
 
 # scratchpad
 bindsym $mod+d move scratchpad
