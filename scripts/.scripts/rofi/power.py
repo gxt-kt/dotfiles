@@ -51,7 +51,7 @@ def MenuRofi():
         "󰍃 log out": "logout",
         "⏾ suspend to ram": "suspend",
         "󰒲 hibernate to disk": "hibernate",
-        " lock": "lock",
+        "󰷛 lock": "lock",
     }
     cmd = "echo $(echo -e '"
     for choose_string in choose.keys():
