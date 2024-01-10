@@ -86,14 +86,12 @@ handle_extension() {
             ## Preview as markdown conversion
             pandoc -s -t markdown -- "${FILE_PATH}" && exit 5
             exit 1;;
+
+        ## markdown
         md) # gxt_kt add preview markdown
-            ## markdown
             glow -s dark -- "${FILE_PATH}" && exit 5
             exit 1;;
-        gif) # gxt_kt add preview gif
-             # Thumbnail
-             ffmpegthumbnailer -i "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" -s 0 && exit 6
-             exit 1;;
+
         ## XLSX
         xlsx)
             ## Preview as csv conversion
@@ -160,14 +158,14 @@ handle_image() {
             ## as above), but might fail for unsupported types.
             exit 7;;
 
-        # Video
-        video/*)
+        ## Video
+        video/*) # gxt_kt preview video
             # Thumbnail
             ffmpegthumbnailer -i "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" -s 0 && exit 6
             exit 1;;
 
-        ## PDF  //gxt_kt
-         application/pdf)
+        ## PDF
+        application/pdf) # gxt_kt preview pdf
              pdftoppm -f 1 -l 1 \
                       -scale-to-x "${DEFAULT_SIZE%x*}" \
                       -scale-to-y -1 \
@@ -175,7 +173,6 @@ handle_image() {
                       -jpeg -tiffcompression jpeg \
                       -- "${FILE_PATH}" "${IMAGE_CACHE_PATH%.*}" \
                  && exit 6 || exit 1;;
-
 
         ## ePub, MOBI, FB2 (using Calibre)
         # application/epub+zip|application/x-mobipocket-ebook|\
