@@ -900,7 +900,7 @@ M.my_plugins = {
           {
             -- Ref: https://github.com/luukvbaal/statuscol.nvim/issues/71
             sign = {
-              name = { "GitSign*" },
+              namespace = { 'gitsign' },
               max_width = 1,
               colwidth = 1,
               auto = false,
