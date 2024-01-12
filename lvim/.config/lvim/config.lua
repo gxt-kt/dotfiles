@@ -60,7 +60,7 @@ lvim.builtin.which_key.mappings["o"] = {
 lvim.keys.visual_mode["p"] = '"_dP'
 lvim.keys.normal_mode["<leader>q"] = ":bd<cr>"
 lvim.keys.normal_mode["<leader>c"] = ":q<cr>"
--- 暂时还不懂这个映射是干嘛，什么都没做？
+-- 禁用vim中的宏
 lvim.keys.normal_mode["q"] = "<Nop>"
 -- 搜索时把结果置于中间并打开折叠
 lvim.keys.normal_mode["n"] = "nzzzv"
@@ -68,7 +68,7 @@ lvim.keys.normal_mode["N"] = "Nzzzv"
 -- 让下一行加到当前行末尾，删掉所有缩进，并加一个空格
 lvim.keys.normal_mode["J"] = "mzJ`z"
 
-
+-- 支持%跳转"<>"
 vim.opt.matchpairs:append("<:>")
 
 -- 将选定的行移动到上/下方一行，并缩进。
@@ -82,7 +82,7 @@ lvim.keys.normal_mode["<leader>z"] = ":MaximizerToggle<CR>"
 -- Markdown-preview keymap
 lvim.keys.normal_mode["<leader>md"] = ":MarkdownPreview<CR>"
 
--- cmp配置修改
+-- cmp配置修改 支持table替换，enter插入
 -- lvim.builtin.cmp.confirm_opts.select=true
 lvim.builtin.cmp.completion = { -- 修改默认就选择第一条
   completeopt = "menu,menuone,noinsert",
