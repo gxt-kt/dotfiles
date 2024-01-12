@@ -100,6 +100,9 @@ lvim.builtin.cmp.mapping["<Tab>"] = require("cmp").mapping({
   end,
 })
 
+-- colortheme choose color
+lvim.keys.normal_mode["<leader>C"] = { ":lua require('my_theme').ChooseColors()<CR>"}
+
 -- lsp
 lvim.keys.normal_mode["<leader>in"] = ":lua vim.lsp.buf.incoming_calls()<cr>"
 lvim.keys.visual_mode["<leader>lf"] = { ":lua require('my_funcs').range_formatting()<CR>", desc = "Range Format Code" }

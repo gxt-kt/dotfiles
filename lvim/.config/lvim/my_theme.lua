@@ -118,4 +118,62 @@ M.plugins_theme = {
     end,
   },
 }
+
+
+-- CycleColors
+-- Ref: https://neovim.discourse.group/t/creating-a-color-picker-using-telescope/1986
+-- In order to mapp this function you have to map the command below:
+-- :lua require('${file}').ChooseColors()
+M.ChooseColors = function()
+  local actions = require "telescope.actions"
+  local actions_state = require "telescope.actions.state"
+  local pickers = require "telescope.pickers"
+  local finders = require "telescope.finders"
+  local sorters = require "telescope.sorters"
+  local dropdown = require "telescope.themes".get_dropdown()
+
+  local function enter(prompt_bufnr)
+    local selected = actions_state.get_selected_entry()
+    local cmd = 'colorscheme ' .. selected[1]
+    vim.cmd(cmd)
+    actions.close(prompt_bufnr)
+  end
+
+  local function next_color(prompt_bufnr)
+    actions.move_selection_next(prompt_bufnr)
+    local selected = actions_state.get_selected_entry()
+    local cmd = 'colorscheme ' .. selected[1]
+    vim.cmd(cmd)
+  end
+
+  local function prev_color(prompt_bufnr)
+    actions.move_selection_previous(prompt_bufnr)
+    local selected = actions_state.get_selected_entry()
+    local cmd = 'colorscheme ' .. selected[1]
+    vim.cmd(cmd)
+  end
+
+  local all_colors = vim.fn.getcompletion("", "color")
+  local opts = {
+    --Modify the list of colors
+    -- finder = finders.new_table {"gruvbox", "nordfox", "nightfox", "monokai", "tokyonight"},
+    finder = finders.new_table(all_colors),
+    sorter = sorters.get_generic_fuzzy_sorter({}),
+
+    prompt_title="Change Colorscheme: ( <C-n/p> <C-j/k> Enter )",
+
+    attach_mappings = function(prompt_bufnr, map)
+      map("i", "<CR>", enter)
+      map("i", "<C-j>", next_color)
+      map("i", "<C-k>", prev_color)
+      return true
+    end,
+
+  }
+
+  local colors = pickers.new(dropdown, opts)
+
+  colors:find()
+end
+
 return M
