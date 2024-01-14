@@ -155,12 +155,14 @@ lvim.keys.visual_mode["<leader>r"] = ":'<,'>SnipRun<CR>"
 lvim.builtin.which_key.mappings.f = nil
 lvim.builtin.which_key.mappings["fy"] = { "<cmd>Telescope neoclip<cr>", "Find clipboard" }
 lvim.builtin.which_key.mappings["ff"] =
-{ ":lua require('lvim.core.telescope.custom-finders').find_project_files()<cr>", "Find file" }
+{ ":lua require('lvim.core.telescope.custom-finders').find_project_files()<cr>", "Find file(project)" }
+lvim.builtin.which_key.mappings["fF"] = { ":lua require('telescope.builtin').find_files()<cr>", "Find file" }
 lvim.builtin.which_key.mappings["fs"] = { ":lua require('telescope.builtin').live_grep()<cr>", "Find string" }
 lvim.builtin.which_key.mappings["fp"] = { "<cmd>Telescope projects<CR>", "Recent projects" }
 lvim.builtin.which_key.mappings["fr"] = { ":Telescope oldfiles<cr>", "Recent files" }
 lvim.builtin.which_key.mappings["fk"] = { "<cmd>Telescope keymaps<cr>", "Show all keymaps" }
 lvim.builtin.which_key.mappings["ft"] = { "<cmd>:TodoTelescope<cr>", "Show all TODOs" }
+lvim.builtin.which_key.mappings["fh"] = { ":lua require('telescope.builtin').help_tags()<cr>", "Find helps" }
 
 -- use telescope to find string
 lvim.builtin.which_key.vmappings["fw"] = { "<Esc>:lua require('my_funcs').live_grep_raw({default_text=''}, 'v')<cr>",
