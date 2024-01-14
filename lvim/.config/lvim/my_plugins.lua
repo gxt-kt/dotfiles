@@ -950,6 +950,16 @@ M.my_plugins = {
       require("wildfire").setup()
     end,
   },
+  {
+    'kevinhwang91/nvim-hlslens',
+    config = function()
+      require('hlslens').setup({
+        calm_down = true,
+        nearest_only = true,
+        -- nearest_float_when = 'always'
+      })
+    end
+  }
   -- { -- gxt_kt vim-tmux-clipboard : vim tmux clipboard
   --   'roxma/vim-tmux-clipboard',
   -- },
