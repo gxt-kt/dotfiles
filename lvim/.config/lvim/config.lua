@@ -20,6 +20,13 @@ for _, item in ipairs(require('my_plugins').my_plugins) do
   table.insert(lvim.plugins, item)
 end
 
+
+-- 添加snippets内容
+-- Ref: https://www.lunarvim.org/docs/configuration/language-features/custom-snippets
+-- Ref: https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#vs-code 
+-- require("luasnip.loaders.from_vscode").load({paths = "./snippets"})
+
+
 --  options fold from treesitter
 do
   vim.opt.foldlevel = 99
@@ -100,6 +107,12 @@ lvim.builtin.cmp.mapping["<Tab>"] = require("cmp").mapping({
   end,
 })
 
+-- colortheme choose color
+lvim.keys.normal_mode["<leader>C"] = { ":lua require('my_theme').ChooseColors()<CR>"}
+
+-- colortheme choose color
+lvim.keys.normal_mode["<leader>F"] = { ":lua require('my_funcs').SudoWrite()<CR>"}
+
 -- lsp
 lvim.keys.normal_mode["<leader>in"] = ":lua vim.lsp.buf.incoming_calls()<cr>"
 lvim.keys.visual_mode["<leader>lf"] = { ":lua require('my_funcs').range_formatting()<CR>", desc = "Range Format Code" }
@@ -149,12 +162,15 @@ lvim.keys.visual_mode["<leader>r"] = ":'<,'>SnipRun<CR>"
 lvim.builtin.which_key.mappings.f = nil
 lvim.builtin.which_key.mappings["fy"] = { "<cmd>Telescope neoclip<cr>", "Find clipboard" }
 lvim.builtin.which_key.mappings["ff"] =
-{ ":lua require('lvim.core.telescope.custom-finders').find_project_files()<cr>", "Find file" }
+{ ":lua require('lvim.core.telescope.custom-finders').find_project_files()<cr>", "Find file(project)" }
+lvim.builtin.which_key.mappings["fF"] = { ":lua require('telescope.builtin').find_files()<cr>", "Find file" }
 lvim.builtin.which_key.mappings["fs"] = { ":lua require('telescope.builtin').live_grep()<cr>", "Find string" }
 lvim.builtin.which_key.mappings["fp"] = { "<cmd>Telescope projects<CR>", "Recent projects" }
 lvim.builtin.which_key.mappings["fr"] = { ":Telescope oldfiles<cr>", "Recent files" }
 lvim.builtin.which_key.mappings["fk"] = { "<cmd>Telescope keymaps<cr>", "Show all keymaps" }
 lvim.builtin.which_key.mappings["ft"] = { "<cmd>:TodoTelescope<cr>", "Show all TODOs" }
+lvim.builtin.which_key.mappings["fh"] = { ":lua require('telescope.builtin').help_tags()<cr>", "Find helps" }
+lvim.builtin.which_key.mappings["fb"] = { ":lua require('telescope').extensions.bookmarks.list()<cr>", "Find bookmarks" }
 
 -- use telescope to find string
 lvim.builtin.which_key.vmappings["fw"] = { "<Esc>:lua require('my_funcs').live_grep_raw({default_text=''}, 'v')<cr>",
