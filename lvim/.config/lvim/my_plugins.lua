@@ -1,5 +1,8 @@
 local M = {}
 
+local leetcode_enable = true
+local image_enable = true
+
 -- add my plugins
 M.my_plugins = {
   {
@@ -982,6 +985,83 @@ M.my_plugins = {
           map("n", "mp", bm.bookmark_prev)   -- jump to previous mark in local buffer
           map("n", "ml", bm.bookmark_list)   -- show marked file list in quickfix window
         end
+      })
+    end
+  },
+  {
+    enabled = leetcode_enable,
+
+    "kawre/leetcode.nvim",
+    build = ":TSUpdate html",
+    dependencies = {
+      "nvim-telescope/telescope.nvim",
+      "nvim-lua/plenary.nvim", -- required by telescope
+      "MunifTanjim/nui.nvim",
+
+      -- optional
+      "nvim-treesitter/nvim-treesitter",
+      "rcarriga/nvim-notify",
+      "nvim-tree/nvim-web-devicons",
+    },
+    opts = {
+      -- configuration goes here
+      --
+      ---@type lc.lang
+      lang = "cpp",
+      cn = { -- leetcode.cn
+        enabled = true, ---@type boolean
+        translator = false, ---@type boolean
+        translate_problems = true, ---@type boolean
+      },
+      injector = { ---@type table<lc.lang, lc.inject>
+        ["cpp"] = {
+          before = { "#include <bits/stdc++.h>",'#include "/home/gxt_kt/Projects/debugstream/debugstream.hpp"', "using namespace std;" },
+          after = "int main() {}",
+        },
+        ["java"] = {
+          before = "import java.util.*;",
+        },
+      },
+      ---@type boolean
+      image_support = true, -- setting this to `true` will disable question description wrap
+    },
+  },
+  {
+    enabled = image_enable,
+
+    "3rd/image.nvim",
+    config = function()
+      -- -- Example for configuring Neovim to load user-installed installed Lua rocks:
+      package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
+      package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
+      -- default config
+      require("image").setup({
+        backend = "kitty",
+        integrations = {
+          markdown = {
+            enabled = true,
+            clear_in_insert_mode = false,
+            download_remote_images = true,
+            only_render_image_at_cursor = false,
+            filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
+          },
+          neorg = {
+            enabled = true,
+            clear_in_insert_mode = false,
+            download_remote_images = true,
+            only_render_image_at_cursor = false,
+            filetypes = { "norg" },
+          },
+        },
+        max_width = nil,
+        max_height = nil,
+        max_width_window_percentage = nil,
+        max_height_window_percentage = 50,
+        window_overlap_clear_enabled = false,                                     -- toggles images when windows are overlapped
+        window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+        editor_only_render_when_focused = false,                                  -- auto show/hide images when the editor gains/looses focus
+        tmux_show_only_in_active_window = true,                                   -- auto show/hide images in the correct Tmux window (needs visual-activity off)
+        hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp" }, -- render image files as images when opened
       })
     end
   }

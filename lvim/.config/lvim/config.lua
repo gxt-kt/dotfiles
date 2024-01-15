@@ -20,6 +20,13 @@ for _, item in ipairs(require('my_plugins').my_plugins) do
   table.insert(lvim.plugins, item)
 end
 
+
+-- 添加snippets内容
+-- Ref: https://www.lunarvim.org/docs/configuration/language-features/custom-snippets
+-- Ref: https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#vs-code 
+-- require("luasnip.loaders.from_vscode").load({paths = "./snippets"})
+
+
 --  options fold from treesitter
 do
   vim.opt.foldlevel = 99
