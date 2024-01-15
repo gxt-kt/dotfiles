@@ -163,6 +163,7 @@ lvim.builtin.which_key.mappings["fr"] = { ":Telescope oldfiles<cr>", "Recent fil
 lvim.builtin.which_key.mappings["fk"] = { "<cmd>Telescope keymaps<cr>", "Show all keymaps" }
 lvim.builtin.which_key.mappings["ft"] = { "<cmd>:TodoTelescope<cr>", "Show all TODOs" }
 lvim.builtin.which_key.mappings["fh"] = { ":lua require('telescope.builtin').help_tags()<cr>", "Find helps" }
+lvim.builtin.which_key.mappings["fb"] = { ":lua require('telescope').extensions.bookmarks.list()<cr>", "Find bookmarks" }
 
 -- use telescope to find string
 lvim.builtin.which_key.vmappings["fw"] = { "<Esc>:lua require('my_funcs').live_grep_raw({default_text=''}, 'v')<cr>",
