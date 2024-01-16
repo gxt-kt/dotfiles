@@ -1,5 +1,7 @@
 local M = {}
 
+local image_enabled = vim.fn.executable('luarocks') == 1
+
 -- add my plugins
 M.my_plugins = {
   {
@@ -1021,11 +1023,11 @@ M.my_plugins = {
         },
       },
       ---@type boolean
-      image_support = true, -- setting this to `true` will disable question description wrap
+      image_support = image_enabled, -- setting this to `true` will disable question description wrap
     },
   },
   {
-    enabled = (os.execute("which " .. "luarocks" .. ">/dev/null") == 0),
+    enabled = image_enabled,
 
     "3rd/image.nvim",
     config = function()
