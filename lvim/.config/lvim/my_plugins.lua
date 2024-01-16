@@ -1025,7 +1025,7 @@ M.my_plugins = {
     },
   },
   {
-    enabled = (os.execute("which " .. "luarocks") == 0),
+    enabled = (os.execute("which " .. "luarocks" .. ">/dev/null") == 0),
 
     "3rd/image.nvim",
     config = function()
