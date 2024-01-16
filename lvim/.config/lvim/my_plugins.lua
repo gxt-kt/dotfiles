@@ -1,8 +1,5 @@
 local M = {}
 
-local leetcode_enable = true
-local image_enable = true
-
 -- add my plugins
 M.my_plugins = {
   {
@@ -989,7 +986,7 @@ M.my_plugins = {
     end
   },
   {
-    enabled = leetcode_enable,
+    enabled = true,
 
     "kawre/leetcode.nvim",
     build = ":TSUpdate html",
@@ -1015,7 +1012,8 @@ M.my_plugins = {
       },
       injector = { ---@type table<lc.lang, lc.inject>
         ["cpp"] = {
-          before = { "#include <bits/stdc++.h>",'#include "/home/gxt_kt/Projects/debugstream/debugstream.hpp"', "using namespace std;" },
+          before = { "#include <bits/stdc++.h>", '#include "/home/gxt_kt/Projects/debugstream/debugstream.hpp"',
+            "using namespace std;" },
           after = "int main() {}",
         },
         ["java"] = {
@@ -1027,11 +1025,12 @@ M.my_plugins = {
     },
   },
   {
-    enabled = image_enable,
+    enabled = (os.execute("which " .. "luarocks") == 0),
 
     "3rd/image.nvim",
     config = function()
       -- -- Example for configuring Neovim to load user-installed installed Lua rocks:
+      -- at ~ exec $luarocks --local --lua-version=5.1 install magick
       package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?/init.lua;"
       package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
       -- default config
