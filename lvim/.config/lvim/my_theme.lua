@@ -160,7 +160,7 @@ M.ChooseColors = function()
     finder = finders.new_table(all_colors),
     sorter = sorters.get_generic_fuzzy_sorter({}),
 
-    prompt_title="Change Colorscheme: ( <C-n/p> <C-j/k> Enter )",
+    prompt_title = "Change Colorscheme: ( <C-n/p> <C-j/k> Enter )",
 
     attach_mappings = function(prompt_bufnr, map)
       map("i", "<CR>", enter)

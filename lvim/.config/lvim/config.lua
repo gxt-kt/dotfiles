@@ -23,7 +23,7 @@ end
 
 -- 添加snippets内容
 -- Ref: https://www.lunarvim.org/docs/configuration/language-features/custom-snippets
--- Ref: https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#vs-code 
+-- Ref: https://github.com/L3MON4D3/LuaSnip/blob/master/DOC.md#vs-code
 -- require("luasnip.loaders.from_vscode").load({paths = "./snippets"})
 
 
@@ -108,10 +108,10 @@ lvim.builtin.cmp.mapping["<Tab>"] = require("cmp").mapping({
 })
 
 -- colortheme choose color
-lvim.keys.normal_mode["<leader>C"] = { ":lua require('my_theme').ChooseColors()<CR>"}
+lvim.keys.normal_mode["<leader>C"] = { ":lua require('my_theme').ChooseColors()<CR>" }
 
 -- colortheme choose color
-lvim.keys.normal_mode["<leader>F"] = { ":lua require('my_funcs').SudoWrite()<CR>"}
+lvim.keys.normal_mode["<leader>F"] = { ":lua require('my_funcs').SudoWrite()<CR>" }
 
 -- lsp
 lvim.keys.normal_mode["<leader>in"] = ":lua vim.lsp.buf.incoming_calls()<cr>"
@@ -125,10 +125,10 @@ lvim.keys.normal_mode["<leader>R"] = "V:lua require('my_funcs').ExecuteAndPrintC
 -- run go to make file
 lvim.keys.normal_mode["gf"] = ":lua require('my_funcs').ExtractFileInfo()<CR>"
 
--- change default lazygit to gitui 
+-- change default lazygit to gitui
 -- https://github.com/LunarVim/LunarVim/issues/4380
 -- lvim.builtin.which_key.mappings["gg"] = {}
-lvim.builtin.which_key.mappings.g.g= { ":lua require('my_funcs').git_gitui_toggle()<CR>", "gitui" }
+lvim.builtin.which_key.mappings.g.g = { ":lua require('my_funcs').git_gitui_toggle()<CR>", "gitui" }
 -- lvim.builtin.which_key.mappings["gg"] = { ":lua require('my_funcs').git_gitui_toggle()<CR>", "gitui" }
 
 -- spectre
@@ -535,6 +535,6 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd({ "VimLeave" }, {
   callback = function()
     -- do nothing
-    vim.fn.jobstart('', {detach=true})
+    vim.fn.jobstart('', { detach = true })
   end,
 })

@@ -174,7 +174,7 @@ M.my_plugins = {
     -- 这个版本和nvim-treesitter的版本是有关联的
     -- 因为lunarvim会限制nvim-treesitter的版本，所有这里也需要限制
     -- 可能可以在lunarvim跨版本更新之后解除这个限制
-    commit="e1e670a86274d5cb681e475d4891ea1afe605ced",
+    commit = "e1e670a86274d5cb681e475d4891ea1afe605ced",
 
     "nvim-treesitter/nvim-treesitter-textobjects",
     config = function()
@@ -1025,11 +1025,11 @@ M.my_plugins = {
       },
       injector = { ---@type table<lc.lang, lc.inject>
         ["cpp"] = {
-          before = { 
-            "#include <bits/stdc++.h>", 
+          before = {
+            "#include <bits/stdc++.h>",
             "",
             '#include "/home/gxt_kt/Projects/debugstream/debugstream.hpp"',
-            "using namespace std;" 
+            "using namespace std;"
           },
           after = {
             "int main() {",
