@@ -1025,9 +1025,18 @@ M.my_plugins = {
       },
       injector = { ---@type table<lc.lang, lc.inject>
         ["cpp"] = {
-          before = { "#include <bits/stdc++.h>", '#include "/home/gxt_kt/Projects/debugstream/debugstream.hpp"',
-            "using namespace std;" },
-          after = "int main() {}",
+          before = { 
+            "#include <bits/stdc++.h>", 
+            "",
+            '#include "/home/gxt_kt/Projects/debugstream/debugstream.hpp"',
+            "using namespace std;" 
+          },
+          after = {
+            "int main() {",
+            '  std::cout << "hello ";',
+            '  std::cout << "world!" << std::endl;',
+            "}"
+          },
         },
         ["java"] = {
           before = "import java.util.*;",
@@ -1048,7 +1057,7 @@ M.my_plugins = {
       package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
       -- default config
       require("image").setup({
-        backend = "kitty",
+        backend = "ueberzug",
         integrations = {
           markdown = {
             enabled = true,
