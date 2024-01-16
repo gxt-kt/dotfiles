@@ -105,6 +105,9 @@ M.my_plugins = {
   },
   { -- auto save
     "pocco81/auto-save.nvim",
+    config = function()
+      require("auto-save").setup()
+    end,
   },
   {
     "p00f/clangd_extensions.nvim",
