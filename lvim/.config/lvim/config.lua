@@ -368,6 +368,8 @@ lvim.builtin.treesitter.ensure_installed = {
   "python",
   "yaml",
   "rust",
+  "markdown",
+  "markdown_inline",
 }
 -- lvim.builtin.treesitter.auto_install = false
 -- lvim.builtin.treesitter.ensure_installed="all"
