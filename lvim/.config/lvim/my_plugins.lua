@@ -170,6 +170,7 @@ M.my_plugins = {
   },
   {
     -- TODO: 这里这个有一个超级无敌巨大bug，一定要限制版本
+    -- Ref: https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/522
     -- 这个版本和nvim-treesitter的版本是有关联的
     -- 因为lunarvim会限制nvim-treesitter的版本，所有这里也需要限制
     -- 可能可以在lunarvim跨版本更新之后解除这个限制
