@@ -268,13 +268,13 @@ lvim.builtin.telescope.defaults.mappings = {
 
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Trouble",
-  r = { "<cmd>Trouble lsp_references<cr>", "References" },
-  f = { "<cmd>Trouble lsp_definitions<cr>", "Definitions" },
-  d = { "<cmd>Trouble document_diagnostics<cr>", "Diagnostics" },
-  q = { "<cmd>Trouble quickfix<cr>", "QuickFix" },
+  r = { "<cmd>TroubleToggle lsp_references<cr>", "References" },
+  f = { "<cmd>TroubleToggle lsp_definitions<cr>", "Definitions" },
+  d = { "<cmd>TroubleToggle document_diagnostics<cr>", "Diagnostics" },
+  q = { "<cmd>TroubleToggle quickfix<cr>", "QuickFix" },
   -- l = { "<cmd>Trouble loclist<cr>", "LocationList" },
   l = { "<cmd>TroubleToggle loclist<cr>", "LocationList" },
-  w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
+  w = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics" },
   t = { "<cmd>TodoTrouble<cr>", "Todo" },
 }
 
