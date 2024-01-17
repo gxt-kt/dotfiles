@@ -1,26 +1,23 @@
-# 我的nvim终极配置指南
-
-适合nvim版本大于8
-
-当前个人使用nvim版本为9，推荐和我相同版本可以减少各种bug
-
-如果你使用的nvim版本和我不一样，可以看下分支
+# 🚦我的nvim终极配置指南
 
 <font color="#dd0000">基于lunarvim+额外自己的配置</font>
 
 <font color="#0000dd">本文主要是笔记向+教程向，基础比如插件快捷键篇笔记向，一些难配的偏教程向</font>
 
-当然本身基于lunarvim，大量基础配置已经弄好了， 只需要修改一些自己习惯的+增加自己的需求插件就好了
+当然本身基于`lunarvim`，大量基础配置已经弄好了， 只需要修改一些自己习惯的+增加自己的需求插件就好了
 
->参考：
->
->- https://www.youtube.com/watch?v=ctH-a-1eUME&list=RDCMUCS97tchJDq17Qms3cux8wcA&start_radio=1&rv=ctH-a-1eUME&t=1
->- lunarvim https://www.lunarvim.org/
->- 国内大佬的nvim和lunarvim https://github.com/ravenxrz/dotfiles
+# ⚡️ 使用前必读
+
+**适用于neovim版本`0.9`，推荐和我相同版本可以减少各种bug**
+
+**演示示例：** [https://www.bilibili.com/video/BV1ec411s7Vc](https://www.bilibili.com/video/BV1ec411s7Vc)
+
+**安装以及配置教程：** [https://www.bilibili.com/video/BV1nQ4y1L79w](https://www.bilibili.com/video/BV1nQ4y1L79w)
+
+*如果你使用的nvim版本是`0.8`，可以看我之前的历史版本： [https://github.com/gxt-kt/lvim/tree/nvim_8](https://github.com/gxt-kt/lvim/tree/nvim_8)*
 
 
-
-# 所使用的所有插件
+# 📦 使用的所有插件
 
 <font color="#dd0000">分成两部分，分别是lunarvim的和自己的，每个插件后面都有简略介绍</font>
 
@@ -72,44 +69,67 @@
 |**bigfile.nvim**|当打开超大文件时自动关闭一些功能比如lsp,语法高亮等|
 |**telescope-fzf-native.nvim**|强化telescope|
 
+---
 
 
 |我自己的插件|功能|
 |---|---|
+|`trouble.nvim`|可以和其他插件配合强化显示，比如查看所有todo，查看所有lsp提示信息|
+|`nvim-bqf`|强化quickfix窗口显示|
+|`vista.vim`|一种分类的大纲试图|
+|`telescope-live-grep-args.nvim`|支持telescope查找文本时传参，比如--no-ignore不忽略.ignore内容|
+|`hop.nvim`|跳转，和easymotion一样|
+|`flash.nvim`|支持任意字母匹配数跳转，和Jetbrains的ideam跳转一样|
+|`winresizer`|窗口管理，\<C-e\>呼出|
+|`vim-log-highlighting`|可以手动对内容进行高亮，方便自己查看|
+|`nvim-surround`|更好对"({''})"等进行增删改|
+|`todo-comments.nvim`|todo高亮|
 |`auto-save.nvim`|自动保存，":ASToggle"进行开启或关闭|
 |`clangd_extensions.nvim`|clangd扩展|
-|`cmp-nvim-lsp-signature-help`|lsp高亮当前的输入参数|
-|`github-nvim-theme`|github主题比如githublight|
-|`gruvbox`|主题|
-|`hop.nvim`|跳转，和easymotion一样|
-|`litee-calltree.nvim`|显示一个调用树，和大纲不一样|
-|`litee.nvim`|litee显示，配置litee系列插件使用|
-|`nvim-bqf`|强化quickfix窗口显示|
-|`nvim-colorizer.lua`|对于#aabbcc显示颜色，对css等很有用|
-|`nvim-lastplace`|智能回到上次关闭是所在的地方|
-|`nvim-lightbulb`|当lsp存在code|
-|`nvim-neoclip.lua`| 剪切板  |
-|`nvim-spectre`|全局查找和替换插件|
 |`nvim-treesitter-textobjects`|强化treesitter|
-|`nvim-ts-rainbow`|彩虹花括号，需要treesitter|
-|`papercolor-theme`|主题|
-|`sniprun`|可以只跑一段代码，适合python等脚本，也可跑单文件类似vscode的run插件|
-|`symbols-outline.nvim`|真正的大纲试图|
+|`nvim-neoclip.lua`| 剪切板  |
+|`cmp-nvim-lsp-signature-help`|lsp高亮当前的输入参数|
+|`nvim-lastplace`|智能回到上次关闭是所在的地方|
 |`telescope-dap.nvim`|调试强化|
-|`telescope-live-grep-args.nvim`|支持telescope查找文本时传参，比如--no-ignore不忽略.ignore内容|
+|`sniprun`|可以只跑一段代码，适合python等脚本，也可跑单文件类似vscode的run插件|
+|`nvim-colorizer.lua`|对于#aabbcc显示颜色，对css等很有用|
+|`nvim-lightbulb`|当lsp存在code|
+|`symbols-outline.nvim`|真正的大纲试图|
+|`nvim-ts-rainbow`|彩虹花括号，需要treesitter|
 |`tmux.nvim`|在tmux中使用nvim，强化窗口移动兼容等|
-|`todo-comments.nvim`|todo高亮|
 |`vim-autoread`|文件改变时自动加载|
-|`vim-clipper`|云端剪切板|
-|`vim-log-highlighting`|可以手动对内容进行高亮，方便自己查看|
 |`vim-ripgrep`|支持正则表达式的搜索，需要ripgrep，使用":Rp"|
-|`nvim-surround`|更好对"({''})"等进行增删改|
-|`vista.vim`|一种分类的大纲试图|
-|`winresizer`|窗口管理，\<C-e\>呼出|
-|`trouble.nvim`|可以和其他插件配合强化显示，比如查看所有todo，查看所有lsp提示信息|
+|`nvim-spectre`|全局查找和替换插件|
 |`vim-visual-multi`|多光标|
+|`nvim-code-action-menu`|对于lsp action提示使用浮动窗口显示|
 |`nvim-dap-virtual-text`|dap调试时行尾显示变量变化情况|
-|`material`|主题(最推荐)，其中我一直用的palenight包括vscode和clion|
+|`vim-maximizer`|只显示当前buffer，空间更大|
+|`markdown-preview.nvim`|在本地网页中显示markdown内容|
+|`hlchunk.nvim`|显示一条匹配的线当检测到块|
+|`persistent-breakpoints.nvim`|调试时可以打持久断电，重新启动nvim断点还在|
+|`twilight.nvim`|只高亮显示光标在的块|
+|`nvim-ufo`|增强代码块折叠|
+|`statuscol.nvim`|支持自己任意配置左侧状态栏|
+|`headlines.nvim`|增强markdown文件高亮显示|
+|`wildfire.nvim`|支持enter进行块选择，类似Jetbrains的enter|
+|`nvim-hlslens`|增强vim默认的`/*#`搜索|
+|`bookmarks.nvim`|增强书签|
+|`leetcode.nvim`|leetcode刷题插件|
+|`image.nvim`|支持在neovim和tmux中显示图片|
+
+---
+
+|主题|注释|
+|---|---|
+|`tokyonight.nvim`|lvim带的|
+|`catppuccin`|我自己最常用的|
+|`nightfox`||
+|`everforest`||
+|`gruvbox`||
+|`github-nvim-theme`|github主题比如github light|
+|`papercolor-theme`|类纸颜色|
+|`material`|推荐palenight|
+
 
 
 
@@ -203,11 +223,6 @@ text object用t表示 t表示tag
 
 关闭或者再次开启执行 ":ASToggle"
 
-
-# 浮动终端
-
-Alt+\` 开启/关闭浮动终端
-
 # telescope
 | key       | description                                                  |
 | ------------ | ------------------------------------------------------------ |
@@ -215,22 +230,21 @@ Alt+\` 开启/关闭浮动终端
 |\<leader\>fs| 查找文本 |
 |\<leader\>fp| 打开最近的项目 |
 |\<leader\>fr| 打开最近的文件 |
-|\<leader\>fy| 打开剪切板 <font color="#0000dd">使用的neoclip,选择模式好像有问题，需要解决一下</font> |
+|\<leader\>fy| 打开剪切板 <font color="#0000dd">使用的neoclip</font> |
 |\<leader\>fk| 打开按键映射 |
 |\<leader\>fw| 查找当前光标所有的内容 |
 
 
-
 # trouble
 
-查看所有todo内容
+在底部栏显示汇总相关内容
 
 | key       | description                                                  |
 | ------------ | ------------------------------------------------------------ |
 | \<leader\>tt | 查看所有todo <font color="#dd0000">（推荐使用）</font>       |
 | \<leader\>td | 查看当前文件所有lsp诊断 <font color="#dd0000">（推荐使用）</font> |
 | \<leader\>tw | 查看当前工作区所有lsp诊断 <font color="#dd0000">（推荐使用）</font> |
-| \<leader\>tl | 另一种quickfix：locallist 不过现在有bughttps://github.com/folke/trouble.nvim/issues/236  <font color="#0000dd">暂时不用记</font> |
+| \<leader\>tl | 另一种quickfix：locallist 不过现在有bug <font color="#0000dd">暂时不用记</font> |
 | \<leader\>tq | quickfix  有bug,同上 <font color="#0000dd">暂时不用记</font> |
 | \<leader\>tr | 查看所有引用，和lsp的gr差不多，<font color="#0000dd">暂时不用记</font> |
 | \<leader\>tf | 查看定义，和lsp差不多 <font color="#0000dd">暂时不用记</font> |
@@ -240,35 +254,30 @@ Alt+\` 开启/关闭浮动终端
 
 # lsp
 
-
-
 >  lsp和trouble和telescope很多地方都重合了，不同点在于telescope是浮动形式的，trouble则是侧边栏形式（底栏）
-
-
 
 
 | key  | description                                                  | mode   |
 | ---- | ------------------------------------------------------------ | ------ |
-| `K`  | hover information<font color="#dd0000">（推荐使用，浮动查看函数详情）</font> | normal |
+| `gl` | show line diagnostics<font color="#dd0000">（推荐使用，查看诊断信息）</font> | normal |
+| `gh` | hover information<font color="#dd0000">（推荐使用，浮动查看函数详情）</font> | normal |
 | `gd` | go to definition<font color="#dd0000">（推荐使用）</font>    | normal |
 | `gD` | go to declaration<font color="#dd0000">（推荐使用）</font>   | normal |
 | `gr` | go to references<font color="#dd0000">（推荐使用）</font>    | normal |
-| `gI` | go to implementation<font color="#0000dd">暂时还没弄明白咋用，不知道使用场景</font> | normal |
 | `gs` | show signature help<font color="#dd0000">（推荐使用，输入参数时浮动查看输入参数情况）</font> | normal |
-| `gl` | show line diagnostics<font color="#dd0000">（推荐使用，查看诊断信息）</font> | normal |
+| `gI` | go to implementation<font color="#0000dd"> 暂时还没弄明白咋用，不知道使用场景</font> | normal |
 
 
 
 # 浮动终端 toggleterm.nvim
 
-来自lunarvim,已经配好了
 | 终端类型|快捷键|
 |---|---|
-|下边栏终端|"\<A-1\>" <font color="#dd0000">（推荐使用，下边终端常用）</font>|
-|右边栏终端 |"\<A-2\>"|
-|浮动终端1 | "\<A-3\>" <font color="#dd0000">（推荐使用，比如cmake .. make就可以在浮动终端执行）</font>|
-|浮动终端2|"<C-\\>"|
-
+|浮动终端 1|\<Alt-\`\> <font color="#dd0000">（推荐使用，常用）</font>|
+|浮动终端 2|\<Alt-Escape\> <font color="#dd0000">（推荐使用，常用）</font>|
+|右边栏终端 1 |\<A-\\\>|
+|右边栏终端 2 |\<A-BackSpace\>|
+|底部栏终端 |\<A-\-\>|
 
 
 # 光标和窗口相关
@@ -281,31 +290,34 @@ Alt+\` 开启/关闭浮动终端
 
 #### 窗口分屏：
 
-可以使用vim默认的 "\<C-w>s" 和 "\<C-w\>v" 进行左右和上下分屏，不过我还映射了一个
+可以使用vim默认的 `<C-w>v` 和 `<C-w>s` 进行左右和上下分屏，
 
-"\<leader\>\\" 和 "\<leader>-" 进行左右和上下分屏
+不过我还映射了一个`<leader>\` 和 `<leader>-` 进行左右和上下分屏
 
 #### 窗口缩放：
 
-关于窗口缩放，默认使用 "Ctrl+方向键"，同样在tmux中会有冲突，暂时不解决，默认按下后会执行tmux的窗口缩放，这个问题由下面这个插件单独解决。
+关于窗口缩放，默认使用 "Ctrl+方向键"，同样在tmux中会有冲突
+
+默认按下后会执行tmux的窗口缩放，这个问题由下面这个插件单独解决。
 
 #### 插件winresizer：
 
-"\<C-e\>"进入插件窗口缩放模式：
+`<C-e>`进入插件窗口缩放模式：
 
-h\\j\\k\\l可以直接进行窗口移动，并且比默认的移动更加符合直觉。
+`h\j\k\l`可以直接进行窗口移动，并且比默认的移动更加符合直觉。
 
-再次按 "e" 可以切换到窗口移动模式，这时候 h\\j\\k\\l 就是移动当前窗口
+再次按 `e` 可以切换到窗口移动模式，这时候 `h\j\k\l` 就是移动当前窗口
 
-同样再次按 "e" 又切换回窗口缩放模式
+同样再次按 `e` 又切换回窗口缩放模式
 
-按Esc或q退出
+按`Esc`或`q`退出
 
 
 
 # 代码折叠
 
-由treesitter插件提供，lunarvim默认没有开，我已经手动开启了，最大折叠为99层嵌套，肯定用不到这么多
+由treesitter插件提供，lunarvim默认没有开，我已经手动开启了，最大折叠为99层嵌套，但是实际上肯定用不到这么多
+
 | key  | description  |
 | ---- | ------------ |
 | zc   | 折叠         |
@@ -313,13 +325,17 @@ h\\j\\k\\l可以直接进行窗口移动，并且比默认的移动更加符合�
 | zM   | 折叠全部     |
 | zR   | 打开全部折叠 |
 
+实际的折叠效果已经被插件`kevinhwang91/nvim-ufo`所替代，不过快捷键都是一样的
+
 同样这一套快捷键适用在其他可能会有折叠的插件，可以按下尝试一下
 
 
 
 # 代码查找替换
 
-代码查找相关可以使用默认的 "/" 和 telescope，不好用的话可以用 ":Rg string | copen" 把搜索结果给到quickfix
+代码查找相关可以使用默认的 `/` 和 `telescope`
+
+不好用的话可以用 `:Rg string | copen` 把搜索结果给到quickfix
 
 下面主要是使用`spectre`进行代码替换，当然也是兼容查找的
 
@@ -327,19 +343,18 @@ h\\j\\k\\l可以直接进行窗口移动，并且比默认的移动更加符合�
 | ------------------------ | ------------------------------------ |
 | sf                       | 在当前文件进行查找替换               |
 | sF                       | 在当前工作区进行查找替换             |
-| 下面为操作窗口进行的操作 | 特殊的 "H"隐藏文件 "I"忽视文件       |
+| H                        | 不搜索隐藏文件                       |
+| I                        | 不搜索ignore文件                     |
 | r                        | 替换当前行                           |
 | R                        | 替换所有                             |
 | dd                       | 当前行排除在外，也可以"V"选择多行再d |
 | F                        | 将当前搜索结果发送到quickfix         |
-| \<A-v\>                  | 改变预览显示方式                     |
+| \<Alt-v\>                | 改变替换预览显示方式                 |
 | M                        | 显示菜单，一般不用，直接H或者I就好了 |
 
 还有一些其他快捷键配置，但很多貌似都没有用
 
-感觉这个插件还不太成熟，bug不少，基本都得自己注意才能规避掉bug，不过好在大部分功能还是好用的
-
-额外注意几点：
+**额外注意几点**：
 
 1. 在insert模式不会进行搜索，进入normal模式会开始搜索
 2. 搜索一个字符的时候需要使用"()"包起来，提了相关issue作者回答是搜索单个字符出现大量结果会崩溃，不过搜索^$单字符替换时还是很有需求的。
@@ -350,11 +365,12 @@ h\\j\\k\\l可以直接进行窗口移动，并且比默认的移动更加符合�
 
 # 代码片段运行 SnipRun
 
->  初次安装时可能安装不成功，使用 :checkhealth sniprun 查看一下报错，手动 sh install.sh 安装一下
+> 使用Lazy后基本都没什么问题
+> 如果初次安装不成功，使用 :checkhealth sniprun 查看一下报错，手动 `sh install.sh` 安装一下
 
-对脚本语言比如python,lua支持较好
+对脚本语言比如`python`,`lua`支持较好
 
-对于c++，rust这种支持一般，问题主要出现在编译上
+对于`c++`,`rust`这种支持一般，问题主要出现在编译上
 
 已经映射好了快捷键
 
@@ -362,11 +378,7 @@ h\\j\\k\\l可以直接进行窗口移动，并且比默认的移动更加符合�
 | ----------- | -------------------------------------------------------- |
 | \<leader\>r | normal模式下运行当前文件，（行）visual模式下运行选择的行 |
 
-消除SnipRun高亮内容使用手动 “:SnipClose” ,这个没有映射快捷键，需要是手动snip,会自动补全的
-
-暂时关于这个插件发现一个bug：关闭显示的buffer后就打不开了，暂时不知道原因，github上浅浅扫了一下没有类似issue,后面有机会再研究一下
-
-
+消除SnipRun高亮内容使用手动 “:SnipClose” ,这个没有映射快捷键，需要是手动snip
 
 
 
@@ -383,17 +395,19 @@ h\\j\\k\\l可以直接进行窗口移动，并且比默认的移动更加符合�
 | C-d C-u        | 翻半页               |
 | C-f C-b        | 翻整页               |
 | $ ^ 0          | 行尾，行首非空，行首 |
-|                |                      |
-|                |                      |
 
 
 
 # vim剪切板使用
 
-\+ \* 系统剪切板，已经和tmu，系统无缝使用
+\+ \* 系统剪切板，已经和tmux，系统无缝使用
+
 "  无名剪切板
+
 0-9 其他剪切板
+
 也可以自己定义剪切板，使用其他字符
+
 使用：reg查看寄存器详情
 
 使用寄存器都需要` " ` 前缀
@@ -412,7 +426,7 @@ h\\j\\k\\l可以直接进行窗口移动，并且比默认的移动更加符合�
 
 :"1p 粘贴1寄存器
 
-alacritty还支持\<C-S-v\> 粘贴
+alacritty/kitty还支持`<C-S-v>` 粘贴
 
 tmux也有自己的粘贴方法
 
@@ -430,8 +444,8 @@ tmux也有自己的粘贴方法
 | n N                                | 选中当前的并移动到上/下一个位置                            |
 | q Q                                | 取消选中当前的并移动到上/下一个位置                        |
 | \[   \]                            | 去往上/下一个已经选中的位置                                |
-| 选择完成后就可以iIaA进入插入模式了 |                                                            |
 
+ 选择完成后就可以`i/I/a/A/c`进入插入模式了
 
 
 # 代码调试debug
@@ -440,7 +454,7 @@ tmux也有自己的粘贴方法
 
 默认lunarvim没有开启dap，不过我的配置里已经active=true了
 
-首先需要安装debug-adapter，默认直接使用lunarvim安装 `<leader>lI`就可以打开Mason Info窗口，选择3找到dap， 选择对应语言的调试器，按`i`安装就可以了
+首先需要安装debug-adapter，默认直接使用lunarvim安装 `<leader>lI`就可以打开`Mason Info`窗口，选择3找到dap， 选择对应语言的调试器，按`i`安装就可以了
 
 我这里选择：
 
@@ -448,6 +462,8 @@ tmux也有自己的粘贴方法
 -  c/c++/rust -> cpptools
 
 然后需要相关调试器配置。
+
+---
 
 #### python配置（简单）
 
@@ -565,10 +581,25 @@ dap.configurations.rust = dap.configurations.cpp
 
 # 其他
 
-#### bug
+## 🐞 bug
 
-1. 默认的treesitter打开rust文件会报错 (已经修复)
-参考：https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/316
-解决方法：`touch ~/.config/lvim/queries/rust/textobjects.scm`
+1. **neovim 0.9.5在退出时会输出`uv__is_closing`的报错**
 
+    > Ref: https://github.com/neovim/neovim/issues/21856
 
+    已解决： 添加以下内容
+    ```lua
+    -- Sovle txt bug use kitty+tmux and show image
+    -- https://github.com/neovim/neovim/issues/21856
+    vim.api.nvim_create_autocmd({ "VimLeave" }, {
+      callback = function()
+        -- do nothing
+        vim.fn.jobstart('', { detach = true })
+      end,
+    })
+    ```
+
+# 🎉 Reference
+
+- [Neovim IDE from Scratch (youtube)](https://www.youtube.com/watch?v=ctH-a-1eUME&list=RDCMUCS97tchJDq17Qms3cux8wcA&index=1)
+- [lunarvim website](https://www.lunarvim.org)
