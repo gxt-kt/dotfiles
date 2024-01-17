@@ -69,7 +69,7 @@ M.range_formatting = function()
 end
 
 
-M.ExecuteAndPrintCmd = function()
+M.execute_and_print_cmd = function()
   local start_pos = vim.fn.getpos("'<")
   local end_pos = vim.fn.getpos("'>")
 
@@ -105,12 +105,12 @@ M.ExecuteAndPrintCmd = function()
   end
 end
 
-M.RetNullIfInputPoint = function(string)
+M.ret_null_if_input_point = function(string)
   return string == '.' and '' or string
 end
 
 
-M.ExtractFileInfo = function()
+M.extract_file_info = function()
   local current_line = vim.api.nvim_get_current_line()
   local file_path, line_num, col_num = current_line:match('(%S+):(%d+):(%d+)')
   if not file_path and not line_num and not col_num then
@@ -123,10 +123,10 @@ M.ExtractFileInfo = function()
     vim.api.nvim_err_writeln("[ERROR]:", file_path, "not exist")
     return
   end
-  M.GoToFile(file_path, line_num, col_num)
+  M.go_to_file(file_path, line_num, col_num)
 end
 
-M.GoToFile = function(file, line, col)
+M.go_to_file = function(file, line, col)
   local cur_buf = vim.api.nvim_get_current_buf()
   local cur_file_type = vim.api.nvim_buf_get_option(cur_buf, 'filetype')
   if (cur_file_type == "toggleterm") then
@@ -191,13 +191,13 @@ M.git_gitui_toggle = function()
   gitui:toggle()
 end
 
-M.GetBufFullPath = function()
+M.get_buf_fullpath = function()
   -- print(vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()))
   return vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
 end
 
 M.GetBufRelativePath = function()
-  local path = string.gsub(M.GetBufFullPath(), vim.fn.getcwd(), "")
+  local path = string.gsub(M.get_buf_fullpath(), vim.fn.getcwd(), "")
   -- Remove leading backslash if it exists
   if string.sub(path, 1, 1) == "/" then
     path = string.sub(path, 2)
@@ -206,7 +206,7 @@ M.GetBufRelativePath = function()
   return path
 end
 
-M.GetBufName = function()
+M.get_buf_name = function()
   -- print(vim.fn.fnamemodify(vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()), ":t"))
   return vim.fn.fnamemodify(vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()), ":t")
 end
@@ -214,7 +214,7 @@ end
 
 -- Use like ":w !sudo tee %" to save file without root
 -- Ref: https://github.com/neovim/neovim/issues/12103
-M.SudoWrite = function(tmpfile, filepath)
+M.sudo_write = function(tmpfile, filepath)
   if not tmpfile then tmpfile = vim.fn.tempname() end
   if not filepath then filepath = vim.fn.expand("%") end
   if not filepath or #filepath == 0 then
@@ -228,14 +228,14 @@ M.SudoWrite = function(tmpfile, filepath)
     vim.fn.shellescape(filepath))
   -- no need to check error as this fails the entire function
   vim.api.nvim_exec(string.format("write! %s", tmpfile), true)
-  if M.SudoExec(cmd) then
+  if M.sudo_exec(cmd) then
     -- vim.notify("\n\n\n", vim.log.levels.INFO, {})
     vim.notify("\n" .. string.format([["%s" write successful!]], filepath), vim.log.levels.INFO, {})
     vim.cmd("e!")
   end
   vim.fn.delete(tmpfile)
 end
-M.SudoExec = function(cmd, print_output)
+M.sudo_exec = function(cmd, print_output)
   vim.fn.inputsave()
   local password = vim.fn.inputsecret("Password: ")
   vim.fn.inputrestore()

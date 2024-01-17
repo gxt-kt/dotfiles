@@ -108,10 +108,10 @@ lvim.builtin.cmp.mapping["<Tab>"] = require("cmp").mapping({
 })
 
 -- colortheme choose color
-lvim.keys.normal_mode["<leader>C"] = { ":lua require('my_theme').ChooseColors()<CR>" }
+lvim.keys.normal_mode["<leader>C"] = { ":lua require('my_theme').choose_colors()<CR>" }
 
 -- colortheme choose color
-lvim.keys.normal_mode["<leader>F"] = { ":lua require('my_funcs').SudoWrite()<CR>" }
+lvim.keys.normal_mode["<leader><C-s>"] = { ":lua require('my_funcs').sudo_write()<CR>" }
 
 -- lsp
 lvim.keys.normal_mode["<leader>in"] = ":lua vim.lsp.buf.incoming_calls()<cr>"
@@ -119,11 +119,11 @@ lvim.keys.visual_mode["<leader>lf"] = { ":lua require('my_funcs').range_formatti
 lvim.builtin.which_key.mappings["la"] = { ":CodeActionMenu<CR>", "My code action" }
 
 -- run bash cmd and print
-lvim.keys.visual_mode["<leader>R"] = ":lua require('my_funcs').ExecuteAndPrintCmd()<CR>"
-lvim.keys.normal_mode["<leader>R"] = "V:lua require('my_funcs').ExecuteAndPrintCmd()<CR>"
+lvim.keys.visual_mode["<leader>R"] = ":lua require('my_funcs').execute_and_print_cmd()<CR>"
+lvim.keys.normal_mode["<leader>R"] = "V:lua require('my_funcs').execute_and_print_cmd()<CR>"
 
--- run go to make file
-lvim.keys.normal_mode["gf"] = ":lua require('my_funcs').ExtractFileInfo()<CR>"
+-- run go to file
+lvim.keys.normal_mode["gf"] = ":lua require('my_funcs').extract_file_info()<CR>"
 
 -- change default lazygit to gitui
 -- https://github.com/LunarVim/LunarVim/issues/4380
@@ -178,11 +178,11 @@ lvim.builtin.which_key.vmappings["fw"] = { "<Esc>:lua require('my_funcs').live_g
 lvim.builtin.which_key.mappings["fw"] = {
   ":lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>')})<cr>", "Find word" }
 lvim.builtin.which_key.mappings["fd"] = {
-  ":lua require('my_funcs').live_grep_raw({default_text =  '-g' .. require('my_funcs').RetNullIfInputPoint(vim.fn.fnamemodify(vim.fn.expand('%'), ':.:h')) .. '/*' .. ' ' .. vim.fn.expand('<cword>')})<cr>",
+  ":lua require('my_funcs').live_grep_raw({default_text =  '-g' .. require('my_funcs').ret_null_if_input_point(vim.fn.fnamemodify(vim.fn.expand('%'), ':.:h')) .. '/*' .. ' ' .. vim.fn.expand('<cword>')})<cr>",
   "Find in the file directory"
 }
 lvim.builtin.which_key.vmappings["fd"] = {
-  ":lua require('my_funcs').live_grep_raw({default_text =  '-g' .. require('my_funcs').RetNullIfInputPoint(vim.fn.fnamemodify(vim.fn.expand('%'), ':.:h')) .. '/*' .. ' '},'v')<cr>",
+  ":lua require('my_funcs').live_grep_raw({default_text =  '-g' .. require('my_funcs').ret_null_if_input_point(vim.fn.fnamemodify(vim.fn.expand('%'), ':.:h')) .. '/*' .. ' '},'v')<cr>",
   "Find in the file directory"
 }
 -- lvim.builtin.which_key.mappings["fe"] = { ":lua require('my_funcs').live_grep_raw({default_text =''})<cr>", "Find null" }

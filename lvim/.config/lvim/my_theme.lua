@@ -123,8 +123,8 @@ M.plugins_theme = {
 -- CycleColors
 -- Ref: https://neovim.discourse.group/t/creating-a-color-picker-using-telescope/1986
 -- In order to mapp this function you have to map the command below:
--- :lua require('${file}').ChooseColors()
-M.ChooseColors = function()
+-- :lua require('${file}').choose_colors()
+M.choose_colors = function()
   local actions = require "telescope.actions"
   local actions_state = require "telescope.actions.state"
   local pickers = require "telescope.pickers"
