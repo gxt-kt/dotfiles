@@ -102,6 +102,7 @@ bindsym $mod+s exec --no-startup-id rofi -show drun -show-icons
 
 bindsym $mod+Escape exec --no-startup-id $python $HOME/.config/i3/scratchpad.py scratchpad
 bindsym $mod+grave exec --no-startup-id $python $HOME/.config/i3/scratchpad.py scratchpad
+bindsym $mod+t exec --no-startup-id $python $HOME/.config/i3/scratchpad.py scratchpad_term
 
 bindsym $mod+m exec --no-startup-id $python ~/.config/i3/scratchpad.py yesplaymusic
 bindsym $mod+w exec --no-startup-id $python $HOME/.config/i3/scratchpad.py WeChat
