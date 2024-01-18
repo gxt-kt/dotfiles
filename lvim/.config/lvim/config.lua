@@ -41,6 +41,7 @@ vim.opt.relativenumber = true -- set relative numbered lines
 lvim.leader = ","
 lvim.keys.insert_mode["jk"] = "<Esc>"
 lvim.keys.normal_mode["<leader>\\"] = "<C-w>v"
+lvim.keys.normal_mode["<leader><BS>"] = "<C-w>v"
 lvim.keys.normal_mode["<leader>-"] = "<C-w>s"
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<S-h>"] = false -- default combine to ^
