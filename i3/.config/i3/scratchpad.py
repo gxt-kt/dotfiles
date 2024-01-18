@@ -12,6 +12,7 @@ scratchpad_user = {
     "scratchpad":"kitty -T scratchpad --class FloatingTerminal tmux",
     "WeChat" :"/opt/apps/com.qq.weixin.deepin/files/run.sh",
     "QQ":" ",
+    "yesplaymusic":"/opt/YesPlayMusic/yesplaymusic ",
 }
 
 
@@ -28,7 +29,7 @@ def find_scratchpad_window(title: str, cmd: str = ""):
             print("---")  
     find = 0
     for con in i3.get_tree():
-        if con.window_title == title:
+        if con.window_title == title or con.window_class == title:
             find = 1
             print(con.window_class)
             print(con.workspace().name)

@@ -103,6 +103,7 @@ bindsym $mod+s exec --no-startup-id rofi -show drun -show-icons
 bindsym $mod+Escape exec --no-startup-id $python $HOME/.config/i3/scratchpad.py scratchpad
 bindsym $mod+grave exec --no-startup-id $python $HOME/.config/i3/scratchpad.py scratchpad
 
+bindsym $mod+m exec --no-startup-id $python ~/.config/i3/scratchpad.py yesplaymusic
 bindsym $mod+w exec --no-startup-id $python $HOME/.config/i3/scratchpad.py WeChat
 bindsym $mod+q exec --no-startup-id $python $HOME/.config/i3/scratchpad.py QQ
 
@@ -239,7 +240,7 @@ bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
 
 bindsym $mod+c workspace number $ws11  exec --no-startup-id $python ~/.config/i3/OpenApplication.py 'Google-chrome' 'google-chrome-stable' $ws11  >> $log_file
-bindsym $mod+m workspace number $ws12  exec --no-startup-id $python ~/.config/i3/OpenApplication.py 'YesPlayMusic' '/opt/YesPlayMusic/yesplaymusic' $ws12  >> $log_file
+# bindsym $mod+m workspace number $ws12  exec --no-startup-id $python ~/.config/i3/OpenApplication.py 'YesPlayMusic' '/opt/YesPlayMusic/yesplaymusic' $ws12  >> $log_file
 bindsym $mod+r workspace number $ws13  exec --no-startup-id $python ~/.config/i3/OpenApplication.py 'obs' 'obs' $ws13  >> $log_file
 
 # move focused container to workspace
