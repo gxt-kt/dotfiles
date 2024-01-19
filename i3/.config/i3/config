@@ -305,6 +305,7 @@ for_window [title="QQ"]         floating enable
 for_window [title="钉钉"]         floating enable
 for_window [title="图片查看"]         floating enable
 for_window [title="WeChat"]         floating enable
+for_window [class="yesplaymusic"]   floating enable
 # for_window [class="wechat.exe"]         floating enable
 # for_window [class="Wine"]         floating enable
 for_window [class="dolphin"]         floating enable
