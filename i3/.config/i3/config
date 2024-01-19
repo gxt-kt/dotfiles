@@ -32,6 +32,7 @@ exec --no-startup-id picom
 # exec --no-startup-id xfce4-power-manager &
 exec --no-startup-id cfw &
 exec --no-startup-id crow &
+exec --no-startup-id pkill -9 dunst; dunst
 # exec --no-startup-id blueman-manager &
 exec --no-startup-id copyq &
 exec --no-startup-id nitrogen --set-scaled ~/my_desktop/backgrouds/ai/暮雨_青い瞳の猫_105138153_p0.png
