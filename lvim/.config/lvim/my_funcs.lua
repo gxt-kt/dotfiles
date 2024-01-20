@@ -110,20 +110,61 @@ M.ret_null_if_input_point = function(string)
 end
 
 
-M.extract_file_info = function()
-  local current_line = vim.api.nvim_get_current_line()
-  local file_path, line_num, col_num = current_line:match('(%S+):(%d+):(%d+)')
-  if not file_path and not line_num and not col_num then
-    vim.api.nvim_err_writeln("[ERROR]: cannot find the correspond file and line")
+M.extract_file_info = function(string)
+  local current_line
+  if string then
+    current_line = string
+  else
+    current_line = vim.api.nvim_get_current_line()
+  end
+
+  local home_directory = os.getenv("HOME")
+
+  -- local file_path, line_num, col_num = current_line:match('(%S+):(%d+):(%d+)')
+  local file_path, line_num, col_num = current_line:match('(~?$?H?O?M?E?/[^ ]+[%w]+/?):(%d+):(%d+)')
+  if not (not file_path and not line_num and not col_num) then
+    -- print(file_path, line_num, col_num)
+    file_path = file_path:gsub("~", home_directory)
+    file_path = file_path:gsub("$HOME", home_directory)
+    local file = io.open(file_path, "r")
+    if not file then
+      vim.api.nvim_err_writeln("[ERROR]: " .. file_path .. " not exist")
+      return
+    end
+    M.go_to_file(file_path, line_num, col_num)
     return
   end
-  print(file_path, line_num, col_num)
-  local file = io.open(file_path, "r")
-  if not file then
-    vim.api.nvim_err_writeln("[ERROR]:", file_path, "not exist")
+
+  -- file_path, line_num = current_line:match('(%S+):(%d+)')
+  file_path, line_num = current_line:match('(~?$?H?O?M?E?/[^ ]+[%w]+/?):(%d+)')
+  if not (not file_path and not line_num) then
+    -- print(file_path, line_num)
+    file_path = file_path:gsub("~", home_directory)
+    file_path = file_path:gsub("$HOME", home_directory)
+    local file = io.open(file_path, "r")
+    if not file then
+      vim.api.nvim_err_writeln("[ERROR]: " .. file_path .. " not exist")
+      return
+    end
+    M.go_to_file(file_path, line_num, 0)
     return
   end
-  M.go_to_file(file_path, line_num, col_num)
+
+  file_path = current_line:match('(~?$?H?O?M?E?/[^ ]+[%w]+/?)')
+  if not (not file_path) then
+    -- print(file_path)
+    file_path = file_path:gsub("~", home_directory)
+    file_path = file_path:gsub("$HOME", home_directory)
+    local file = io.open(file_path, "r")
+    if not file then
+      vim.api.nvim_err_writeln("[ERROR]: " .. file_path .. " not exist")
+      return
+    end
+    M.go_to_file(file_path)
+    return
+  end
+
+  vim.api.nvim_err_writeln("[ERROR]: cannot find the correspond file")
 end
 
 M.go_to_file = function(file, line, col)
@@ -154,7 +195,9 @@ M.go_to_file = function(file, line, col)
     if (buf_type == "") then
       -- vim.api.nvim_set_current_buf(buf)
       vim.api.nvim_command('edit ' .. file)
-      vim.api.nvim_win_set_cursor(0, { tonumber(line), tonumber(col) })
+      if line then
+        vim.api.nvim_win_set_cursor(0, { tonumber(line), tonumber(col) })
+      end
       return
     end
 
@@ -167,7 +210,9 @@ M.go_to_file = function(file, line, col)
     -- print("-------------------------")
   end
   vim.api.nvim_command('edit ' .. file)
-  vim.api.nvim_win_set_cursor(0, { tonumber(line), tonumber(col) })
+  if line then
+    vim.api.nvim_win_set_cursor(0, { tonumber(line), tonumber(col) })
+  end
 end
 
 

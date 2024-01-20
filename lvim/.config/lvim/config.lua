@@ -125,6 +125,7 @@ lvim.keys.normal_mode["<leader>R"] = "V:lua require('my_funcs').execute_and_prin
 
 -- run go to file
 lvim.keys.normal_mode["gf"] = ":lua require('my_funcs').extract_file_info()<CR>"
+lvim.keys.visual_mode["gf"] = ":lua require('my_funcs').extract_file_info(require('my_funcs').get_text('v'))<CR>"
 
 -- change default lazygit to gitui
 -- https://github.com/LunarVim/LunarVim/issues/4380
