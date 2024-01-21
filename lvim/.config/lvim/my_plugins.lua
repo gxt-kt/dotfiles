@@ -852,33 +852,43 @@ M.my_plugins = {
         -- statuscolumn to benefit from the performance optimizations in this plugin.
         -- builtin.lnumfunc number string options
         thousands = false,   -- or line number thousands separator string ("." / ",")
-        relculright = false, -- whether to right-align the cursor line number with 'relativenumber' set
+        relculright = true, -- whether to right-align the cursor line number with 'relativenumber' set
         -- Builtin 'statuscolumn' options
-        ft_ignore = nil,     -- lua table with filetypes for which 'statuscolumn' will be unset
-        bt_ignore = nil,     -- lua table with 'buftype' values for which 'statuscolumn' will be unset
+        ft_ignore = nil,    -- lua table with filetypes for which 'statuscolumn' will be unset
+        bt_ignore = nil,    -- lua table with 'buftype' values for which 'statuscolumn' will be unset
         -- Default segments (fold -> sign -> line number + separator), explained below
         segments = {
           -- { text = { builtin.foldfunc }, click = "v:lua.ScSa" },
           {
             sign = {
+              name = { ".*" },
               namespace = { ".*" },
               max_width = 2,
               colwidth = 2,
               auto = false,
             },
-            -- condition = { true, builtin.not_empty },
+            condition = { true, builtin.not_empty },
             click = "v:lua.ScLa",
           },
+          -- {
+          --   sign = {
+          --     name = { "Diagnostic" },
+          --     max_width = 1,
+          --     colwidth = 1,
+          --     auto = false,
+          --   },
+          --   click = "v:lua.ScLa",
+          -- },
           {
             text = { builtin.lnumfunc, " " },
-            condition = { true, builtin.not_empty },
+            -- condition = { true, builtin.not_empty },
             click = "v:lua.ScLa",
           },
           {
             -- Ref: https://github.com/luukvbaal/statuscol.nvim/issues/71
             sign = {
-              namespace = { "GitSign" },
-              -- namespace = { "gitsign" },
+              name = { "GitSign" },
+              namespace = { "gitsign" },
               max_width = 1,
               colwidth = 1,
               auto = false,
