@@ -861,7 +861,7 @@ M.my_plugins = {
           -- { text = { builtin.foldfunc }, click = "v:lua.ScSa" },
           {
             sign = {
-              name = { ".*" },
+              namespace = { ".*" },
               max_width = 2,
               colwidth = 2,
               auto = false,
@@ -877,7 +877,7 @@ M.my_plugins = {
           {
             -- Ref: https://github.com/luukvbaal/statuscol.nvim/issues/71
             sign = {
-              name = { "GitSign" },
+              namespace = { "GitSign" },
               -- namespace = { "gitsign" },
               max_width = 1,
               colwidth = 1,
