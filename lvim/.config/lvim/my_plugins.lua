@@ -676,13 +676,14 @@ M.my_plugins = {
           },
         },
         indent = {
-          enable = true,
+          enable = true, --
           -- chars = { "│", "¦", "┆", "┊" },
-          chars = { " ", " ", " ", " " },
+          chars = { "▏" },
+          -- chars = { " ", " ", " ", " " },
           use_treesitter = false,
           style = {
             -- { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui") }
-            { fg = "#a1a1a1", }
+            { fg = "#51576e" }
           },
         },
         line_num = {
@@ -851,7 +852,7 @@ M.my_plugins = {
         -- Although I recommend just using the segments field below to build your
         -- statuscolumn to benefit from the performance optimizations in this plugin.
         -- builtin.lnumfunc number string options
-        thousands = false,   -- or line number thousands separator string ("." / ",")
+        thousands = false,  -- or line number thousands separator string ("." / ",")
         relculright = true, -- whether to right-align the cursor line number with 'relativenumber' set
         -- Builtin 'statuscolumn' options
         ft_ignore = nil,    -- lua table with filetypes for which 'statuscolumn' will be unset
