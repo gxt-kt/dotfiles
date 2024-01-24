@@ -103,7 +103,7 @@ bindsym $mod+s exec --no-startup-id rofi -show drun -show-icons
 
 bindsym $mod+Escape exec --no-startup-id $python $HOME/.config/i3/scratchpad.py scratchpad
 bindsym $mod+grave exec --no-startup-id $python $HOME/.config/i3/scratchpad.py scratchpad
-bindsym $mod+t exec --no-startup-id $python $HOME/.config/i3/scratchpad.py scratchpad_term
+bindsym $mod+u exec --no-startup-id $python $HOME/.config/i3/scratchpad.py scratchpad_term
 
 bindsym $mod+m exec --no-startup-id $python ~/.config/i3/scratchpad.py yesplaymusic
 bindsym $mod+w exec --no-startup-id $python $HOME/.config/i3/scratchpad.py WeChat
@@ -112,6 +112,7 @@ bindsym $mod+q exec --no-startup-id $python $HOME/.config/i3/scratchpad.py QQ
 # bindsym --release Ctrl+n exec --no-startup-id bash $HOME/.config/i3/ctrl_n_p.sh
 
 bindsym $mod+e exec --no-startup-id dolphin
+bindsym $mod+i exec --no-startup-id systemsettings
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a

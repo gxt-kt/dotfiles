@@ -1,0 +1,142 @@
+env:
+  TERM: xterm-256color
+
+# JetBrainsMono Nerd series
+# font:
+#  size: 15.0
+#  normal:
+#    family: "JetBrainsMono Nerd Font"
+#    style: "Regular"
+#  bold:
+#    family: "JetBrainsMono Nerd Font"
+#    style: "Bold"
+#  italic:
+#    family: "JetBrainsMono Nerd Font"
+#    style: "Italic"
+#  bold_italic:
+#    family: "JetBrainsMono Nerd Font"
+#    style: "Bold Italic"
+# Hack Nerd series
+# font:
+#   size: 15.0
+#   normal:
+#     family: "Hack Nerd Font"
+#     style: "Regular"
+#   bold:
+#     family: "Hack Nerd Font"
+#     style: "Bold"
+#   italic:
+#     family: "Hack Nerd Font"
+#     style: "Italic"
+#   bold_italic:
+#     family: "Hack Nerd Font"
+#     style: "Bold Italic"
+# Monaco series
+font:
+  size: 12.0
+  normal:
+    family: "Monaco"
+    style: "Regular"
+  bold:
+    family: "MonacoB"
+    style: "Bold"
+  italic:
+    family: "Monaco"
+    style: "Italic"
+  bold_italic:
+    family: "JetBrainsMono Nerd Font" # becasue monao series haven't bold&italic
+    style: "Bold Italic"
+    # family: "MonacoB"
+    # style: "Regular"
+
+# # Cascadia Code series
+# font:
+#  size: 15.0
+#  normal:
+#    family: "Cascadia Code"
+#    style: "Regular"
+#  bold:
+#    family: "Cascadia Code"
+#    style: "Bold"
+#  italic:
+#    family: "Cascadia Code"
+#    style: "Italic"
+#  bold_italic:
+#    family: "Cascadia Code"
+#    style: "Bold Italic"
+# Source Code Pro series
+# font:
+#  size: 15.0
+#  normal:
+#    family: "Source Code Pro"
+#    style: "Regular"
+#  bold:
+#    family: "Source Code Pro"
+#    style: "Bold"
+#  italic:
+#    family: "Source Code Pro"
+#    style: "Italic"
+#  bold_italic:
+#    family: "Source Code Pro"
+#    style: "Bold Italic"
+window:
+  #  opacity: 0.8
+  dimensions:
+    columns: 90
+    lines: 28
+    #selection:
+    #save_to_clipboard: true
+
+colors:
+  primary:
+    background: '#282a36'
+    foreground: '#f8f8f2'
+    bright_foreground: '#ffffff'
+  cursor:
+    text: CellBackground
+    cursor: CellForeground
+  vi_mode_cursor:
+    text: CellBackground
+    cursor: CellForeground
+  search:
+    matches:
+      foreground: '#44475a'
+      background: '#50fa7b'
+    focused_match:
+      foreground: '#44475a'
+      background: '#ffb86c'
+    footer_bar:
+      background: '#282a36'
+      foreground: '#f8f8f2'
+  hints:
+    start:
+      foreground: '#282a36'
+      background: '#f1fa8c'
+    end:
+      foreground: '#f1fa8c'
+      background: '#282a36'
+  line_indicator:
+    foreground: None
+    background: None
+  selection:
+    text: CellForeground
+    background: '#44475a'
+  normal:
+    black: '#21222c'
+    red: '#ff5555'
+    green: '#50fa7b'
+    yellow: '#f1fa8c'
+    blue: '#bd93f9'
+    magenta: '#ff79c6'
+    cyan: '#8be9fd'
+    white: '#f8f8f2'
+  bright:
+    black: '#6272a4'
+    red: '#ff6e6e'
+    green: '#69ff94'
+    yellow: '#ffffa5'
+    blue: '#d6acff'
+    magenta: '#ff92df'
+    cyan: '#a4ffff'
+    white: '#ffffff'
+theme: Dracula
