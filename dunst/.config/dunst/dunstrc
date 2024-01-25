@@ -13,7 +13,7 @@
     origin = top-right
     offset = 20x40
 
-    transparency=0
+    transparency=20
 
     progress_bar = true
     progress_bar_height = 13
@@ -177,11 +177,11 @@
 
 [urgency_normal]
     # script = ~/.scripts/dunst/sound-normal.sh
-    background = "#171B20"
+    background = "#FDF4F3"
+    # background = "#B6C3F3"
     highlight = "#70a5eb"
-
     frame_color = "#242931"
-    foreground = "#b6beca"
+    foreground = "#020C0B"
     timeout = 5
 
 [urgency_critical]
