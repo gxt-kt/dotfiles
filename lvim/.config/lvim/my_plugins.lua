@@ -1022,6 +1022,7 @@ M.my_plugins = {
             "int main() {",
             '  std::cout << "hello ";',
             '  std::cout << "world!" << std::endl;',
+            '  Solution solution;',
             "}"
           },
         },
