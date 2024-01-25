@@ -1072,6 +1072,18 @@ M.my_plugins = {
         hijack_file_patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp" }, -- render image files as images when opened
       })
     end
+  },
+  {
+    "sindrets/diffview.nvim"
+  },
+  {
+    "FabijanZulj/blame.nvim",
+    config = function()
+      require('blame').setup({
+        width = 45,
+        merge_consecutive = true
+      })
+    end
   }
   -- { -- gxt_kt vim-tmux-clipboard : vim tmux clipboard
   --   'roxma/vim-tmux-clipboard',

@@ -132,6 +132,8 @@ lvim.keys.visual_mode["gf"] = ":lua require('my_funcs').extract_file_info(requir
 -- lvim.builtin.which_key.mappings["gg"] = {}
 lvim.builtin.which_key.mappings.g.g = { ":lua require('my_funcs').git_gitui_toggle()<CR>", "gitui" }
 -- lvim.builtin.which_key.mappings["gg"] = { ":lua require('my_funcs').git_gitui_toggle()<CR>", "gitui" }
+-- add git Blame function
+lvim.builtin.which_key.mappings.g.B = { "<cmd>:ToggleBlame<CR>", "Git Blame" }
 
 -- spectre
 -- open in current file
