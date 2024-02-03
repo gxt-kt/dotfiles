@@ -242,6 +242,28 @@ lvim.builtin.which_key.mappings.s = nil
 lvim.keys.normal_mode["<leader>s"] = "<cmd>lua require('flash').jump()<cr>"
 
 
+-- Ref: https://github.com/nanotee/nvim-lua-guide/blob/a118d6f585683a94364167d46274595b1959f089/README.md#defining-user-commands
+vim.api.nvim_create_user_command('Conda',
+  function(opts)
+    -- print(string.upper(opts.args))
+    local opt = opts.args
+    if opt == "switch" then
+      require('swenv.api').pick_venv()
+    elseif opt == "show" then
+      -- Cannot show? https://github.com/AckslD/swenv.nvim/issues/3
+      -- require('swenv.api').get_current_venv()
+      vim.api.nvim_command("!which python")
+    end
+  end,
+  {
+    nargs = 1,
+    complete = function(ArgLead, CmdLine, CursorPos)
+      -- return completion candidates as a list-like table
+      return { 'switch', 'show' }
+    end,
+  })
+
+
 -- auto pairs
 lvim.builtin.autopairs.disable_filetype = { "TelescopePrompt", "spectre_panel", "repl" }
 
@@ -395,7 +417,7 @@ lvim.builtin.treesitter.ensure_installed = {
 lvim.builtin.treesitter.highlight.enable = true
 
 -- About treesitter config my rainbow color see https://github.com/p00f/nvim-ts-rainbow/issues/104
-lvim.builtin.treesitter.rainbow.enable = false
+lvim.builtin.treesitter.rainbow.enable = true
 lvim.builtin.treesitter.rainbow.extended_mode = true
 lvim.builtin.treesitter.rainbow.max_file_lines = 500 -- default is 1000
 lvim.builtin.treesitter.rainbow.colors = {

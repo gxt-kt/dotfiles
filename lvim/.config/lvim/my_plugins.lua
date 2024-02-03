@@ -1095,7 +1095,10 @@ M.my_plugins = {
         merge_consecutive = true
       })
     end
-  }
+  },
+  {
+    "AckslD/swenv.nvim",
+  },
   -- { -- gxt_kt vim-tmux-clipboard : vim tmux clipboard
   --   'roxma/vim-tmux-clipboard',
   -- },
