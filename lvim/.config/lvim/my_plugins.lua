@@ -1030,6 +1030,16 @@ M.my_plugins = {
           before = "import java.util.*;",
         },
       },
+      keys = {
+        toggle = { "q", "<Esc>" }, ---@type string|string[]
+        confirm = { "<CR>" }, ---@type string|string[]
+
+        reset_testcases = "r", ---@type string
+        use_testcase = "U", ---@type string
+        focus_testcases = "<C-h>", ---@type string
+        focus_result = "<C-l>", ---@type string
+      },
+
       ---@type boolean
       image_support = image_enabled, -- setting this to `true` will disable question description wrap
     },

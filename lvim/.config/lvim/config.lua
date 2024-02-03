@@ -135,6 +135,19 @@ lvim.builtin.which_key.mappings.g.g = { ":lua require('my_funcs').git_gitui_togg
 -- add git Blame function
 lvim.builtin.which_key.mappings.g.B = { "<cmd>:ToggleBlame<CR>", "Git Blame" }
 
+-- leetcode
+lvim.builtin.which_key.mappings.L = nil
+lvim.builtin.which_key.mappings["Ll"] = { "<cmd>:Leet list<CR>", "Leet list" }
+lvim.builtin.which_key.mappings["Lm"] = { "<cmd>:Leet menu<CR>", "Leet menui" }
+lvim.builtin.which_key.mappings["Lt"] = { "<cmd>:Leet tabs<CR>", "Leet tabs" }
+lvim.builtin.which_key.mappings["Lr"] = { "<cmd>:Leet run<CR>", "Leet run" }
+-- lvim.builtin.which_key.mappings["Lt"] = { "<cmd>:Leet test<CR>", "Leet test" }
+lvim.builtin.which_key.mappings["Ls"] = { "<cmd>:Leet submit<CR>", "Leet submit" }
+lvim.builtin.which_key.mappings["Lc"] = { "<cmd>:Leet cache<CR>", "Leet cache" }
+lvim.builtin.which_key.mappings["Li"] = { "<cmd>:Leet info<CR>", "Leet info" }
+lvim.builtin.which_key.mappings["Lz"] = { "<cmd>:Leet desc<CR>", "Leet desc" }
+lvim.builtin.which_key.mappings["Lv"] = { "<cmd>:Leet console<CR>", "Leet console" }
+
 -- spectre
 -- open in current file
 lvim.keys.normal_mode["sf"] = ":lua require('spectre').open_file_search()<CR>"
@@ -175,6 +188,7 @@ lvim.builtin.which_key.mappings["fk"] = { "<cmd>Telescope keymaps<cr>", "Show al
 lvim.builtin.which_key.mappings["ft"] = { "<cmd>:TodoTelescope<cr>", "Show all TODOs" }
 lvim.builtin.which_key.mappings["fh"] = { ":lua require('telescope.builtin').help_tags()<cr>", "Find helps" }
 lvim.builtin.which_key.mappings["fb"] = { ":lua require('telescope').extensions.bookmarks.list()<cr>", "Find bookmarks" }
+lvim.builtin.which_key.mappings["fc"] = { ":lua require('telescope.builtin').command_history()<cr>", "History cmd" }
 
 -- use telescope to find string
 lvim.builtin.which_key.vmappings["fw"] = { "<Esc>:lua require('my_funcs').live_grep_raw({default_text=''}, 'v')<cr>",
