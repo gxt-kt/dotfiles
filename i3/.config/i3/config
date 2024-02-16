@@ -172,6 +172,7 @@ bindsym $mod+z fullscreen toggle
 
 # toggle tiling / floating
 bindsym $mod+f floating toggle
+bindsym $mod+t sticky toggle
 bindsym $mod+Shift+f focus mode_toggle
 
 # change focus between tiling / floating windows

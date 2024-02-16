@@ -13,7 +13,7 @@
     origin = top-right
     offset = 20x40
 
-    transparency=20
+    transparency=15
 
     progress_bar = true
     progress_bar_height = 13
