@@ -72,7 +72,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec light -A 5 ; exec --no-startup-id "bash $HOME/.config/i3/command.sh backlight &"
 bindsym XF86MonBrightnessDown exec light -U 5 ; exec --no-startup-id "bash $HOME/.config/i3/command.sh backlight &"
 
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause 
+# bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause 
+bindsym XF86AudioPlay exec --no-startup-id bash -c "pgrep yesplaymusic > /dev/null && playerctl play-pause -p yesplaymusic || playerctl play-pause"
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous 
 
