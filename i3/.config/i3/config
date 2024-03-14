@@ -111,7 +111,10 @@ bindsym $mod+grave exec --no-startup-id $python $HOME/.config/i3/scratchpad.py s
 bindsym $mod+u exec --no-startup-id $python $HOME/.config/i3/scratchpad.py scratchpad_term
 
 bindsym $mod+m exec --no-startup-id $python ~/.config/i3/scratchpad.py yesplaymusic
-bindsym $mod+w exec --no-startup-id $python $HOME/.config/i3/scratchpad.py WeChat
+# wechat for wine
+# bindsym $mod+w exec --no-startup-id $python $HOME/.config/i3/scratchpad.py WeChat 
+# wechat wechat-universal-bwrap
+bindsym $mod+w exec --no-startup-id $python $HOME/.config/i3/scratchpad.py wechat
 bindsym $mod+q exec --no-startup-id $python $HOME/.config/i3/scratchpad.py QQ
 
 # bindsym --release Ctrl+n exec --no-startup-id bash $HOME/.config/i3/ctrl_n_p.sh

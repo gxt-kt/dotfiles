@@ -11,7 +11,8 @@ scratchpad_user = {
     # "scratchpad":"alacritty -t scratchpad --class FloatingTerminal -e tmux",
     "scratchpad":"kitty -T scratchpad --class FloatingTerminal tmux",
     "scratchpad_term":"kitty -T scratchpad_term --class FloatingTerminal -o initial_window_width=130c -o initial_window_height=40c tmux",
-    "WeChat" :"/opt/apps/com.qq.weixin.deepin/files/run.sh",
+    "WeChat" :"/opt/apps/com.qq.weixin.deepin/files/run.sh", # wechat with wine
+    "wechat" :"wechat-universal", # wechat-universal-bwrap 
     "QQ":" ",
     "yesplaymusic":"/opt/YesPlayMusic/yesplaymusic ",
 }
