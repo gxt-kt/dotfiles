@@ -1099,6 +1099,21 @@ M.my_plugins = {
   {
     "AckslD/swenv.nvim",
   },
+  {
+    "robitx/gp.nvim",
+    config = function()
+      -- require("gp").setup()
+      require("gp").setup({
+        openai_api_key = { "cat", os.getenv("HOME") .. "/.config/lvim/.openai_api_key" },
+        curl_params = { "--proxy", "127.0.0.1:7890" },
+        -- openai_api_key = os.getenv("OPENAI_API_KEY"),
+      })
+      -- or setup with your own config (see Install > Configuration in Readme)
+      -- require("gp").setup(config)
+
+      -- shortcuts might be setup here (see Usage > Shortcuts in Readme)
+    end,
+  }
   -- { -- gxt_kt vim-tmux-clipboard : vim tmux clipboard
   --   'roxma/vim-tmux-clipboard',
   -- },

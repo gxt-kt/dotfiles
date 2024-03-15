@@ -148,6 +148,17 @@ lvim.builtin.which_key.mappings["Li"] = { "<cmd>:Leet info<CR>", "Leet info" }
 lvim.builtin.which_key.mappings["Lz"] = { "<cmd>:Leet desc<CR>", "Leet desc" }
 lvim.builtin.which_key.mappings["Lv"] = { "<cmd>:Leet console<CR>", "Leet console" }
 
+
+lvim.builtin.which_key.mappings.G = nil
+lvim.builtin.which_key.mappings["Gn"] = { "<cmd>:GpChatNew tabnew<CR>", "Gpt Newtab" }
+lvim.builtin.which_key.mappings["Gv"] = { "<cmd>:GpChatNew vsplit<CR>", "Gpt Usplit" }
+lvim.builtin.which_key.mappings["Gs"] = { "<cmd>:GpChatNew split<CR>", "Gpt Split" }
+lvim.builtin.which_key.mappings["Gp"] = { "<cmd>:GpChatNew popup<CR>", "Gpt Popup" }
+lvim.builtin.which_key.mappings["Gf"] = { "<cmd>:GpChatFinder<CR>", "Gpt Find" }
+lvim.builtin.which_key.mappings["GS"] = { "<cmd>:GpStop<CR>", "Gpt Stop" }
+lvim.builtin.which_key.mappings["Gt"] = { "<cmd>:GpChatToggle<CR>", "Gpt Toggle" }
+
+
 -- spectre
 -- open in current file
 lvim.keys.normal_mode["sf"] = ":lua require('spectre').open_file_search()<CR>"
