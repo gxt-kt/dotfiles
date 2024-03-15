@@ -84,6 +84,7 @@ plugins=(
 	zsh-completions
 	zsh-syntax-highlighting
 	autojump
+  sudo
 	extract
 	fzf
   z

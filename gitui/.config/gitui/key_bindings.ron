@@ -1,22 +1,21 @@
 (
-    move_left: Some(( code: Char('h'), modifiers: ( bits: 0,),)),
-    move_right: Some(( code: Char('l'), modifiers: ( bits: 0,),)),
-    move_up: Some(( code: Char('k'), modifiers: ( bits: 0,),)),
-    move_down: Some(( code: Char('j'), modifiers: ( bits: 0,),)),
+    open_help: Some(( code: F(1), modifiers: "")),
 
-    focus_right: Some(( code: Char('l'), modifiers: ( bits: 0,),)),
-    focus_left: Some(( code: Char('h'), modifiers: ( bits: 0,),)),
-    focus_above: Some(( code: Char('k'), modifiers: ( bits: 0,),)),
-    focus_below: Some(( code: Char('j'), modifiers: ( bits: 0,),)),
+    move_left: Some(( code: Char('h'), modifiers: "")),
+    move_right: Some(( code: Char('l'), modifiers: "")),
+    move_up: Some(( code: Char('k'), modifiers: "")),
+    move_down: Some(( code: Char('j'), modifiers: "")),
+    
+    popup_up: Some(( code: Char('p'), modifiers: "CONTROL")),
+    popup_down: Some(( code: Char('n'), modifiers: "CONTROL")),
+    page_up: Some(( code: Char('b'), modifiers: "CONTROL")),
+    page_down: Some(( code: Char('f'), modifiers: "CONTROL")),
+    home: Some(( code: Char('g'), modifiers: "")),
+    end: Some(( code: Char('G'), modifiers: "SHIFT")),
+    shift_up: Some(( code: Char('K'), modifiers: "SHIFT")),
+    shift_down: Some(( code: Char('J'), modifiers: "SHIFT")),
 
-    page_up: Some(( code: Char('u'), modifiers: ( bits: 0,),)),
-    page_down: Some(( code: Char('d'), modifiers: ( bits: 0,),)),
-    home: Some(( code: Char('g'), modifiers: ( bits: 0,),)),
-    end: Some(( code: Char('G'), modifiers: ( bits: 1,),)),
+    stash_open: Some(( code: Char('l'), modifiers: "")),
 
-    stash_open: Some(( code: Char('l'), modifiers: ( bits: 0,),)),
-
-    open_help: Some(( code: F(1), modifiers: ( bits: 0,),)),
-
-    exit_popup: Some(( code: Char('q'), modifiers: ( bits: 0,),)),
+    exit_popup: Some(( code: Char('q'), modifiers: "")),
 )
