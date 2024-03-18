@@ -1,0 +1,6 @@
+[Desktop Entry]
+Exec=bash -c "xrandr --output DP-0 --off --output DP-1 --off --output DP-2 --off --output DP-3 --off --output HDMI-0 --primary --mode 1920x1080 --rate 60 --scale 2.0x2.0 --pos 3840x0 --rotate normal --output eDP-1-0 --mode 3840x2160 --rate 60 --dpi 192 --scale 1.0x1.0 --pos 0x0 --rotate normal"
+Name=xrandr_4k_1k (gxt_kt)
+Icon=apper
+Type=Application
+
