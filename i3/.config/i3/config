@@ -30,7 +30,8 @@ exec --no-startup-id sh ~/.config/polybar/launch.sh
 # exec --no-startup-id picom --experimental-backends
 exec --no-startup-id picom
 # exec --no-startup-id xfce4-power-manager &
-exec --no-startup-id cfw &
+# clash for windows
+exec --no-startup-id /opt/clash-for-windows-bin/cfw &
 exec --no-startup-id crow &
 exec --no-startup-id pkill -9 dunst; dunst
 # exec --no-startup-id blueman-manager &
