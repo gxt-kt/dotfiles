@@ -140,6 +140,9 @@ fi
 # if set this , home and end in tmux will be strange, need remap home and end in tmux.
 # export TERM=xterm-256color
 
+alias tmux-ls="tmux list-sessions"
+alias tmux-cd="tmux attach-session -t"
+
 # default set TMUX in tmux. 
 # if [[ -v TMUX ]];
 # then
