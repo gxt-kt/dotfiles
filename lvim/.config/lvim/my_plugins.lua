@@ -1,6 +1,19 @@
 local M = {}
 
-local image_enabled = vim.fn.executable('luarocks') == 1
+local status, module = pcall(require, "my_config")
+
+local image_enabled
+
+if status then
+  if module.image_enabled == nil then
+    image_enabled = vim.fn.executable('luarocks') == 1
+  else
+    image_enabled = module.image_enabled
+  end
+else
+  image_enabled = vim.fn.executable('luarocks') == 1
+end
+
 
 -- add my plugins
 M.my_plugins = {

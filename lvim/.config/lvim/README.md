@@ -17,6 +17,23 @@
 *如果你使用的nvim版本是`0.8`，可以看我之前的历史版本： [https://github.com/gxt-kt/lvim/tree/nvim_8](https://github.com/gxt-kt/lvim/tree/nvim_8)*
 
 
+# 你自己可能添加的配置
+1. chatgpt的插件**gp.nvim**，需要提供openai的api
+  同目录创建一个文件`.openai_api_key`，在这个文件里写入你的key，形式应该是`sk-****`
+
+2. 创建一个你自己的配置文件（可选）
+  同目录创建一个文件`my_config.lua`，
+  内容是
+  ```
+local M = {}
+
+-- 是否使能neovim显示图片，涉及插件有leetcode.nvim和image.nvim
+M.image_enabled = false
+
+return M
+  ```
+
+
 # 📦 使用的所有插件
 
 <font color="#dd0000">分成两部分，分别是lunarvim的和自己的，每个插件后面都有简略介绍</font>
