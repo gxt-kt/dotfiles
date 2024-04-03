@@ -60,9 +60,9 @@ lvim.keys.normal_mode["<leader>j"] = ":ClangdSwitchSourceHeader<cr>"
 lvim.builtin.which_key.mappings.o = nil
 lvim.builtin.which_key.mappings["o"] = {
   name = "+outline",
-  s = { "<cmd>SymbolsOutline <cr>", "Outline" },
-  v = { "<cmd>Vista!! <cr>", "Vista" },
-  h = { "<cmd>ClangdTypeHierarchy<cr>", "Hierarchy" },
+  ["s"] = { "<cmd>SymbolsOutline <cr>", "Outline" },
+  ["<tab>"] = { "<cmd>Vista!! <cr>", "Vista" },
+  ["h"] = { "<cmd>ClangdTypeHierarchy<cr>", "Hierarchy" },
 }
 -- This will not change the clipboard content in V mode
 lvim.keys.visual_mode["p"] = '"_dP'
@@ -145,7 +145,7 @@ lvim.builtin.which_key.mappings["Lr"] = { "<cmd>:Leet run<CR>", "Leet run" }
 lvim.builtin.which_key.mappings["Ls"] = { "<cmd>:Leet submit<CR>", "Leet submit" }
 lvim.builtin.which_key.mappings["Lc"] = { "<cmd>:Leet cache<CR>", "Leet cache" }
 lvim.builtin.which_key.mappings["Li"] = { "<cmd>:Leet info<CR>", "Leet info" }
-lvim.builtin.which_key.mappings["Lz"] = { "<cmd>:Leet desc<CR>", "Leet desc" }
+lvim.builtin.which_key.mappings["L<tab>"] = { "<cmd>:Leet desc<CR>", "Leet desc" }
 lvim.builtin.which_key.mappings["Lv"] = { "<cmd>:Leet console<CR>", "Leet console" }
 
 
