@@ -171,7 +171,6 @@ hash proxychains 2>/dev/null && { alias pro='proxychains'; }
 # reference https://wiki.archlinux.org/title/Proxy_server
 local proxy="127.0.0.1:7890"
 function proxy_on() {
-    export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com"
     if (( $# > 0 )); then
         valid=$(echo $@ | sed -n 's/\([0-9]\{1,3\}.\?\)\{4\}:\([0-9]\+\)/&/p')
         if [[ $valid != $@ ]]; then
@@ -179,28 +178,19 @@ function proxy_on() {
             return 1
         fi
         local proxy=$1
-        export http_proxy="$proxy" \
-               https_proxy=$proxy \
-        echo "Proxy environment variable set."
-        return 0
     fi
 
-    if [ -z ${no_proxy+x} ] ;
-    then
-    	echo -n "Input server: "; read server
-    	echo -n "Input port: "; read port
-    	#echo -n "Input server:port like 192.168.123.123 : ";  read server_port
-    	#server=$(echo ${server_port} | grep -Po '((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})(\.((2(5[0-5]|[0-4]\d))|[0-1]?\d{1,2})){3}')
-    	#port=$(echo ${server_port} | grep -Po '(?<=:)[\d]{1,5}')
-    	local proxy=$server:$port
-    fi 
-
-    echo -e "Proxy environment variable seted."
-    echo "proxy=$proxy"
-    export http_proxy="$proxy" \
+    export http_proxy=$proxy \
            https_proxy=$proxy \
            HTTP_PROXY=$proxy \
-           HTTPS_PROXY=$proxy 
+           HTTPS_PROXY=$proxy \
+           ftp_proxy=$proxy \
+           FTP_PROXY=$proxy \
+           rsync_proxy=$proxy \
+           RSYNC_PROXY=$proxy
+    echo -e "Proxy environment variable seted."
+    echo "Note that sudo will not use proxy"
+    echo "proxy=$proxy"
 }
 function proxy_off(){
     unset http_proxy https_proxy ftp_proxy rsync_proxy \
@@ -215,9 +205,13 @@ function proxy_status(){
     	echo -e "Have Proxy environment."
     fi 
     echo -e "http_proxy: ${http_proxy}"
+    echo -e "HTTP_PROXY: ${HTTP_PROXY}"
     echo -e "https_proxy: ${https_proxy}"
+    echo -e "HTTPS_PROXY: ${HTTPS_PROXY}"
     echo -e "ftp_proxy: ${ftp_proxy}"
+    echo -e "FTP_PROXY: ${FTP_PROXY}"
     echo -e "rsync_proxy: ${rsync_proxy}"
+    echo -e "RSYNC_PROXY: ${RSYNC_PROXY}"
 }
 #🔼🔼🔼
 
