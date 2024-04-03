@@ -237,7 +237,9 @@ export EDITOR=$(bash -c 'if command -v lvim >/dev/null 2>&1; then echo "lvim"; e
 # fzf
 local fzf_ignore=".wine,.git,.idea,.vscode,node_modules,build"
 export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude={${fzf_ignore}} "
-export FZF_DEFAULT_OPTS="--height 80% --layout=reverse --preview 'echo {} | ~/.config/fzf/fzf_preview.py' --preview-window=down --border "
+export FZF_DEFAULT_OPTS="--height 80% --layout=reverse --preview 'echo {} | ~/.config/fzf/fzf_preview.py' --preview-window=down --border \
+  --bind ctrl-d:page-down,ctrl-u:page-up \
+  "
 _fzf_compgen_path() {
   fd --hidden --follow --exclude={${fzf_ignore}}
 }
