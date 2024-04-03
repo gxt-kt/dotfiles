@@ -218,8 +218,7 @@ function proxy_status(){
 #🔽🔽🔽
 # alias
 alias r="ranger"
-alias cat="ccat"
-# alias tr="trash" # need install trash-cli. And files move to ~/.local/share/Trash/
+command -v ccat &>/dev/null && alias cat="ccat"
 # 依次检测lvim/nvim是否存在，存在替换成对应的
 alias v='bash -c '\''my_vim=""; if command -v lvim >/dev/null 2>&1; then my_vim="lvim"; else if command -v nvim >/dev/null 2>&1; then my_vim="nvim"; else my_vim="vim"; fi; fi; if [ $# -gt 0 ]; then $my_vim "$@"; else $my_vim .; fi'\'' bash'
 alias vim='bash -c '\''my_vim=""; if command -v lvim >/dev/null 2>&1; then my_vim="lvim"; else if command -v nvim >/dev/null 2>&1; then my_vim="nvim"; else my_vim="vim"; fi; fi; if [ $# -gt 0 ]; then $my_vim "$@"; else $my_vim .; fi'\'' bash'
