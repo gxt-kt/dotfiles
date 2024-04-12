@@ -67,6 +67,7 @@ lvim.builtin.which_key.mappings["o"] = {
 -- This will not change the clipboard content in V mode
 lvim.keys.visual_mode["p"] = '"_dP'
 lvim.keys.normal_mode["<leader>q"] = ":bd<cr>"
+lvim.keys.normal_mode["<leader>Q"] = ":bd!<cr>"
 lvim.keys.normal_mode["<leader>c"] = ":q<cr>"
 -- 禁用vim中的宏
 lvim.keys.normal_mode["q"] = "<Nop>"
