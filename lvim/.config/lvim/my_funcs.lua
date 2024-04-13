@@ -221,9 +221,9 @@ M.git_gitui_toggle = function()
     hidden = true,
     direction = "float",
     float_opts = {
-      border = "double",
-      width = 100000,
-      height = 100000,
+      border = "curved",
+      -- width = 100000,
+      -- height = 100000,
     },
     on_open = function(_)
       vim.cmd "startinsert!"
