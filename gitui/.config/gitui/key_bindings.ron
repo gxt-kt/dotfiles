@@ -17,5 +17,5 @@
 
     stash_open: Some(( code: Char('l'), modifiers: "")),
 
-    exit_popup: Some(( code: Char('q'), modifiers: "")),
+    exit_popup: Some(( code: Char('q'), modifiers: "CONTROL")),
 )
