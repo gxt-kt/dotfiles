@@ -77,6 +77,10 @@ lvim.keys.normal_mode["N"] = "Nzzzv"
 -- 让下一行加到当前行末尾，删掉所有缩进，并加一个空格
 lvim.keys.normal_mode["J"] = "mzJ`z"
 
+
+lvim.keys.normal_mode["<leader>Db"] = { ":lua require('my_funcs').DebugBuffer(vim.api.nvim_get_current_buf())<CR>" }
+lvim.keys.normal_mode["<leader>DB"] = { ":lua require('my_funcs').DebugAllBuffers()<CR>" }
+
 -- 支持%跳转"<>"
 vim.opt.matchpairs:append("<:>")
 
