@@ -5,12 +5,15 @@ import codecs
 type_lines_list={}
 
 
+# 数单个文件的行号
 def count_lines(file_path):
     with codecs.open(file_path, "r", encoding="utf-8", errors="ignore") as file:  
         lines = file.readlines()
         return len(lines)
 
 
+# 数一个目录中文件的行号
+# 可以指定是否递归，排除的文件或目录，搜索的文件或目录，指定文件类型
 def count_code_lines(directory, recursive: bool = True, exclude_files=[],file_types=[],searchs=[]):
     total_lines = 0
     file_list = searchs if searchs else os.listdir(directory)  
@@ -24,6 +27,18 @@ def count_code_lines(directory, recursive: bool = True, exclude_files=[],file_ty
             total_lines += count_code_lines(file_path, recursive, exclude_files, file_types, None)
     return total_lines
 
+# 递归查找一个目录中所有的文件后缀类型
+# 返回到一个列表里
+def get_all_file_extensions(directory, extensions=set()):  
+    for item in os.listdir(directory):  
+        item_path = os.path.join(directory, item)  
+        if os.path.isfile(item_path):  
+            _, extension = os.path.splitext(item)  
+            if extension:  
+                extensions.add(extension[1:])  
+        elif os.path.isdir(item_path):  
+            get_all_file_extensions(item_path, extensions)  
+    return list(extensions)  
 
 # 创建命令行参数解析器
 parser = argparse.ArgumentParser(description="Count code lines in a directory.")
@@ -31,6 +46,7 @@ parser.add_argument("--recursive", "-r", type=str, choices=["True", "False"], de
 parser.add_argument("--searchs", "-s", nargs="*", help="List of files to count")
 parser.add_argument("--type", "-t", nargs="*", help="List of file types, if not the default is py cpp cc c h hpp md")
 parser.add_argument("--exclude", "-e", nargs="*", help="List of files to exclude")
+parser.add_argument("--all", action="store_true", help="Include all file types")
 
 # 解析命令行参数
 args = parser.parse_args()
@@ -51,8 +67,12 @@ for search_ in searchs_list :
 
 # init the file type and 
 file_types = args.type if args.type else ['py','cpp','cc','c','h','hpp','md']
+# 如果指定了查找所有，就查找所有的文件类型
+if args.all:
+    file_types = get_all_file_extensions(current_directory)
 for file_type in file_types:
     type_lines_list[file_type]=0
+
 
 total_code_lines=0 
 total_code_lines = count_code_lines( current_directory, recursive_check, exclude_files_list,file_types,searchs_list)
