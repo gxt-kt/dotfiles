@@ -106,7 +106,7 @@ if total_code_lines > 0:
     # 按照代码行数降序排序
     df = df.sort_values(by="code lines", ascending=False)
     # 添加最多出现子目录的列
-    df["occur most directory"] = [type_directory_list[type_] for type_ in df["types"]]
+    df["occur most sub directory"] = [type_directory_list[type_] for type_ in df["types"]]
     # 打印表格
     print(tabulate(df, headers="keys", tablefmt="github", showindex=False))
 
