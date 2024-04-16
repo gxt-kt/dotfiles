@@ -17,7 +17,7 @@ def count_lines(file_path):
 
 # 数一个目录中文件的行号
 # 可以指定是否递归，排除的文件或目录，搜索的文件或目录，指定文件类型
-def count_code_lines(directory, recursive: bool = True, exclude_files=[],file_types=[],searchs=[]):
+def count_code_lines(directory, recursive: bool = True, exclude_files=[],exclude_dirs=[],file_types=[],searchs=[]):
     total_lines = 0
     file_list = searchs if searchs else os.listdir(directory)  
     for file in file_list:
@@ -36,8 +36,11 @@ def count_code_lines(directory, recursive: bool = True, exclude_files=[],file_ty
             type_directory_list[str(os.path.splitext(file)[-1][1:])] = directory
 
             total_lines += lines
-        elif os.path.isdir(file_path) and recursive:
-            total_lines += count_code_lines(file_path, recursive, exclude_files, file_types, None)
+        elif os.path.isdir(file_path) and recursive and file not in exclude_dirs:
+            # 排除exlude_dirs
+            if any(exclude_dir in file_path for exclude_dir in exclude_dirs):
+                continue
+            total_lines += count_code_lines(file_path, recursive, exclude_files, exclude_dirs, file_types, None)
     return total_lines
 
 # 递归查找一个目录中所有的文件后缀类型
@@ -58,7 +61,8 @@ parser = argparse.ArgumentParser(description="Count code lines in a directory.")
 parser.add_argument("--recursive", "-r", type=str, choices=["True", "False"], default="True", help="Recursive flag",)
 parser.add_argument("--searchs", "-s", nargs="*", help="List of files to count")
 parser.add_argument("--type", "-t", nargs="*", help="List of file types, if not the default is py cpp cc c h hpp md")
-parser.add_argument("--exclude", "-e", nargs="*", help="List of files to exclude")
+parser.add_argument("--exclude_files", "-e", nargs="*", help="List of files to exclude")
+parser.add_argument("--exclude_dirs", "-E", nargs="*", help="List of dires to exclude")
 parser.add_argument("--all", action="store_true", help="Include all file types")
 
 # 解析命令行参数
@@ -67,7 +71,8 @@ args = parser.parse_args()
 current_directory = os.getcwd()  # 获取当前脚本所在路径
 recursive_str = args.recursive  # 是否递归检查子目录
 recursive_check = True if args.recursive == "True" else False
-exclude_files_list = args.exclude if args.exclude else []  # 要排除的文件列表，如果没有传入参数则为空列表
+exclude_files_list = args.exclude_files if args.exclude_files else []  # 要排除的文件列表，如果没有传入参数则为空列表
+exclude_dirs_list = args.exclude_dirs if args.exclude_dirs else []  # 要排除的文件夹列表，如果没有传入参数则为空列表
 searchs_list = args.searchs if args.searchs else []
 
 # check searchs_list is exist
@@ -87,7 +92,7 @@ for file_type in file_types:
     type_directory_list[file_type] = ""
 
 total_code_lines = count_code_lines(
-    current_directory, recursive_check, exclude_files_list, file_types, searchs_list
+    current_directory, recursive_check, exclude_files_list, exclude_dirs_list, file_types, searchs_list
 )
 
 if total_code_lines > 0:
