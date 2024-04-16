@@ -14,6 +14,18 @@ else
   image_enabled = vim.fn.executable('luarocks') == 1
 end
 
+-- openai 软件是否使能，根据是否存在.openai_api_key文件判断
+local gp_enabled
+local gp_openai_key_file_path = os.getenv("HOME") .. "/.config/lvim/.openai_api_key"
+local gp_proxy = "127.0.0.1:7890"
+local f = io.open(gp_openai_key_file_path, "r")
+if f ~= nil then
+  io.close(f)
+  gp_enabled = true
+else
+  gp_enabled = false
+end
+
 
 -- add my plugins
 M.my_plugins = {
@@ -1113,12 +1125,14 @@ M.my_plugins = {
     "AckslD/swenv.nvim",
   },
   {
+    enabled = gp_enabled,
+
     "robitx/gp.nvim",
     config = function()
       -- require("gp").setup()
       require("gp").setup({
         openai_api_key = { "cat", os.getenv("HOME") .. "/.config/lvim/.openai_api_key" },
-        curl_params = { "--proxy", "127.0.0.1:7890" },
+        curl_params = { "--proxy", gp_proxy },
         -- openai_api_key = os.getenv("OPENAI_API_KEY"),
       })
       -- or setup with your own config (see Install > Configuration in Readme)
