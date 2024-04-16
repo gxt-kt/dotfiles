@@ -1,6 +1,8 @@
 import os
 import argparse
 import codecs
+from tabulate import tabulate
+import pandas as pd
 
 type_lines_list={}
 
@@ -78,10 +80,21 @@ total_code_lines=0
 total_code_lines = count_code_lines( current_directory, recursive_check, exclude_files_list,file_types,searchs_list)
 
 if(total_code_lines>0):
-    for item in type_lines_list :  
-        count = type_lines_list[item]  
-        percentage = round(count / total_code_lines * 100, 4)  
-        output = "{}:\t{}\t{:.2f}%".format(item, count, percentage)  
-        print(output)  
+    # 原始版本
+    # for item in type_lines_list :  
+    #     count = type_lines_list[item]  
+    #     percentage = round(count / total_code_lines * 100, 4)  
+    #     output = "{}:\t{}\t{:.2f}%".format(item, count, percentage)  
+    #     print(output)  
+
+    # 使用pandas和tabulate的版本
+    # 创建 DataFrame  
+    df = pd.DataFrame(list(type_lines_list.items()), columns=["types", "code lines"])  
+    # 计算百分比  
+    df['percentage'] = (df['code lines'] / df['code lines'].sum() * 100).round(2).astype(str) + '%'  
+    # 按照代码行数降序排序  
+    df = df.sort_values(by='code lines', ascending=False)  
+    # 打印表格  
+    print(tabulate(df, headers='keys', tablefmt='github', showindex=False))  
 print()
 print(f"Total code lines: {total_code_lines}")
