@@ -22,8 +22,8 @@
   同目录创建一个文件`.openai_api_key`，在这个文件里写入你的key，形式应该是`sk-****`
 
 2. 创建一个你自己的配置文件（可选）
-  同目录创建一个文件`my_config.lua`，
-  内容是
+  `cp my_config_example.lua my_config.lua`，
+  然后就可以修改`my_config.lua`，内容示例:
   ```
 local M = {}
 
