@@ -4,7 +4,8 @@ import codecs
 from tabulate import tabulate
 import pandas as pd
 
-type_lines_list={}
+type_lines_list = {}
+type_directory_list = {}
 
 
 # 数单个文件的行号
@@ -21,9 +22,19 @@ def count_code_lines(directory, recursive: bool = True, exclude_files=[],file_ty
     file_list = searchs if searchs else os.listdir(directory)  
     for file in file_list:
         file_path = os.path.join(directory, file)
-        if ( os.path.isfile(file_path) and str(os.path.splitext(file)[-1][1:]) in file_types and file not in exclude_files):
+        if (
+            os.path.isfile(file_path)
+            and str(os.path.splitext(file)[-1][1:]) in file_types
+            and file not in exclude_files
+        ):
             lines = count_lines(file_path)
-            type_lines_list[str(os.path.splitext(file)[-1][1:])]=type_lines_list[str(os.path.splitext(file)[-1][1:])]+lines
+            type_lines_list[str(os.path.splitext(file)[-1][1:])] = type_lines_list.get(
+                str(os.path.splitext(file)[-1][1:]), 0
+            ) + lines
+
+            # Track the directory with the highest occurrence for each code type
+            type_directory_list[str(os.path.splitext(file)[-1][1:])] = directory
+
             total_lines += lines
         elif os.path.isdir(file_path) and recursive:
             total_lines += count_code_lines(file_path, recursive, exclude_files, file_types, None)
@@ -53,7 +64,6 @@ parser.add_argument("--all", action="store_true", help="Include all file types")
 # 解析命令行参数
 args = parser.parse_args()
 
-
 current_directory = os.getcwd()  # 获取当前脚本所在路径
 recursive_str = args.recursive  # 是否递归检查子目录
 recursive_check = True if args.recursive == "True" else False
@@ -61,10 +71,10 @@ exclude_files_list = args.exclude if args.exclude else []  # 要排除的文件�
 searchs_list = args.searchs if args.searchs else []
 
 # check searchs_list is exist
-for search_ in searchs_list :
+for search_ in searchs_list:
     path = os.path.join(current_directory, search_)
-    if not os.path.isdir(path) and not os.path.isfile(path):  
-        print(path+" is not exist."+" Please check the '-s' parameters.")
+    if not os.path.isdir(path) and not os.path.isfile(path):
+        print(path + " is not exist." + " Please check the '-s' parameters.")
         exit(1)
 
 # init the file type and 
@@ -73,28 +83,27 @@ file_types = args.type if args.type else ['py','cpp','cc','c','h','hpp','md']
 if args.all:
     file_types = get_all_file_extensions(current_directory)
 for file_type in file_types:
-    type_lines_list[file_type]=0
+    type_lines_list[file_type] = 0
+    type_directory_list[file_type] = ""
 
+total_code_lines = count_code_lines(
+    current_directory, recursive_check, exclude_files_list, file_types, searchs_list
+)
 
-total_code_lines=0 
-total_code_lines = count_code_lines( current_directory, recursive_check, exclude_files_list,file_types,searchs_list)
-
-if(total_code_lines>0):
-    # 原始版本
-    # for item in type_lines_list :  
-    #     count = type_lines_list[item]  
-    #     percentage = round(count / total_code_lines * 100, 4)  
-    #     output = "{}:\t{}\t{:.2f}%".format(item, count, percentage)  
-    #     print(output)  
-
+if total_code_lines > 0:
     # 使用pandas和tabulate的版本
-    # 创建 DataFrame  
-    df = pd.DataFrame(list(type_lines_list.items()), columns=["types", "code lines"])  
-    # 计算百分比  
-    df['percentage'] = (df['code lines'] / df['code lines'].sum() * 100).round(2).astype(str) + '%'  
-    # 按照代码行数降序排序  
-    df = df.sort_values(by='code lines', ascending=False)  
-    # 打印表格  
-    print(tabulate(df, headers='keys', tablefmt='github', showindex=False))  
+    # 创建 DataFrame
+    df = pd.DataFrame(list(type_lines_list.items()), columns=["types", "code lines"])
+    # 计算百分比
+    df["percentage"] = (
+        df["code lines"]/ total_code_lines * 100
+    ).round(2).astype(str) + "%"
+    # 按照代码行数降序排序
+    df = df.sort_values(by="code lines", ascending=False)
+    # 添加最多出现子目录的列
+    df["occur most directory"] = [type_directory_list[type_] for type_ in df["types"]]
+    # 打印表格
+    print(tabulate(df, headers="keys", tablefmt="github", showindex=False))
+
 print()
 print(f"Total code lines: {total_code_lines}")
