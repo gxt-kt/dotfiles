@@ -17,7 +17,7 @@ def count_lines(file_path):
 
 # 数一个目录中文件的行号
 # 可以指定是否递归，排除的文件或目录，搜索的文件或目录，指定文件类型
-def count_code_lines(directory, recursive: bool = True, exclude_files=[],exclude_dirs=[],file_types=[],searchs=[]):
+def count_code_lines(directory, recursive: bool = True, search_hide = False, exclude_files=[],exclude_dirs=[],file_types=[],searchs=[]):
     total_lines = 0
     file_list = searchs if searchs else os.listdir(directory)  
     for file in file_list:
@@ -26,6 +26,7 @@ def count_code_lines(directory, recursive: bool = True, exclude_files=[],exclude
             os.path.isfile(file_path)
             and str(os.path.splitext(file)[-1][1:]) in file_types
             and file not in exclude_files
+            and (search_hide or not file.startswith('.'))
         ):
             lines = count_lines(file_path)
             type_lines_list[str(os.path.splitext(file)[-1][1:])] = type_lines_list.get(
@@ -36,11 +37,16 @@ def count_code_lines(directory, recursive: bool = True, exclude_files=[],exclude
             type_directory_list[str(os.path.splitext(file)[-1][1:])] = directory
 
             total_lines += lines
-        elif os.path.isdir(file_path) and recursive and file not in exclude_dirs:
+        elif (
+            os.path.isdir(file_path) 
+            and recursive 
+            and file not in exclude_dirs
+            and (search_hide or not file.startswith('.'))
+        ):
             # 排除exlude_dirs
             if any(exclude_dir in file_path for exclude_dir in exclude_dirs):
                 continue
-            total_lines += count_code_lines(file_path, recursive, exclude_files, exclude_dirs, file_types, None)
+            total_lines += count_code_lines(file_path, search_hide, recursive, exclude_files, exclude_dirs, file_types, None)
     return total_lines
 
 # 递归查找一个目录中所有的文件后缀类型
@@ -63,7 +69,9 @@ parser.add_argument("--searchs", "-s", nargs="*", help="List of files to count")
 parser.add_argument("--type", "-t", nargs="*", help="List of file types, if not the default is py cpp cc c h hpp md")
 parser.add_argument("--exclude_files", "-e", nargs="*", help="List of files to exclude")
 parser.add_argument("--exclude_dirs", "-E", nargs="*", help="List of dires to exclude")
-parser.add_argument("--all", action="store_true", help="Include all file types")
+parser.add_argument("--search_hide", "-H", action="store_true", help="search hide dirs and files")
+parser.add_argument("--occur_sub_dirs", "-o", action="store_true", help="print occur most sub directory")
+parser.add_argument("--all", "-a", action="store_true", help="Include all file types")
 
 # 解析命令行参数
 args = parser.parse_args()
@@ -91,8 +99,13 @@ for file_type in file_types:
     type_lines_list[file_type] = 0
     type_directory_list[file_type] = ""
 
+# 是否搜索隐藏文件
+search_hide=False
+if args.search_hide:
+    search_hide=True
+
 total_code_lines = count_code_lines(
-    current_directory, recursive_check, exclude_files_list, exclude_dirs_list, file_types, searchs_list
+    current_directory, search_hide, recursive_check, exclude_files_list, exclude_dirs_list, file_types, searchs_list
 )
 
 if total_code_lines > 0:
@@ -106,7 +119,8 @@ if total_code_lines > 0:
     # 按照代码行数降序排序
     df = df.sort_values(by="code lines", ascending=False)
     # 添加最多出现子目录的列
-    df["occur most sub directory"] = [type_directory_list[type_] for type_ in df["types"]]
+    if args.occur_sub_dirs:
+        df["occur most sub directory"] = [type_directory_list[type_] for type_ in df["types"]]
     # 打印表格
     print(tabulate(df, headers="keys", tablefmt="github", showindex=False))
 
