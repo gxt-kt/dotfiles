@@ -30,6 +30,7 @@ end
 -- add my plugins
 M.my_plugins = {
   {
+    -- 和telescope相似但是固定的插件
     "folke/trouble.nvim",
     config = function()
       require("trouble").setup({
@@ -41,6 +42,7 @@ M.my_plugins = {
     -- cmd = "TroubleToggle",
   },
   {
+    -- 增强neovim中的quick fix
     -- better quick fix
     "kevinhwang91/nvim-bqf",
     config = function()
@@ -53,6 +55,7 @@ M.my_plugins = {
     end,
   },
   {
+    -- 大纲视图插件
     -- only works on https://github.com/universal-ctags/ctags
     "liuchengxu/vista.vim",
     config = function()
@@ -63,10 +66,12 @@ M.my_plugins = {
     end,
 
   },
-  { -- telescope instant searching
+  {
+    -- telescope增强插件
     "nvim-telescope/telescope-live-grep-args.nvim",
   },
-  {                -- hop
+  {
+    -- 光标跳转插件
     "phaazon/hop.nvim",
     branch = "v2", -- optional but strongly recommended
     config = function()
@@ -74,7 +79,8 @@ M.my_plugins = {
       require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
     end,
   },
-  { -- flash
+  {
+    -- 最好用的光标跳转插件
     "folke/flash.nvim",
     config = function()
       require("flash").setup({
@@ -89,10 +95,12 @@ M.my_plugins = {
       })
     end,
   },
-  { -- resize window
+  {
+    -- 增强调整各个窗口大小
     "simeji/winresizer",
   },
-  { -- log file content highlighting
+  {
+    -- 高亮log结尾的文件
     'fei6409/log-highlight.nvim',
     config = function()
       require('log-highlight').setup {
@@ -110,6 +118,7 @@ M.my_plugins = {
     end,
   },
   {
+    -- 括号对引号对快速修改插件
     "kylechui/nvim-surround",
     version = "*",
     config = function()
@@ -118,6 +127,7 @@ M.my_plugins = {
     end,
   },
   {
+    -- 高亮TODO等显示
     "folke/todo-comments.nvim",
     config = function()
       require("todo-comments").setup(
@@ -128,13 +138,15 @@ M.my_plugins = {
         })
     end,
   },
-  { -- auto save
+  {
+    -- 支持修改后自动保存文件
     "pocco81/auto-save.nvim",
     config = function()
       require("auto-save").setup()
     end,
   },
   {
+    -- c/c++的增强lsp插件
     "p00f/clangd_extensions.nvim",
     dependencies = "mason-lspconfig.nvim", -- make sure to load after mason-lspconfig
     config = function()
@@ -194,6 +206,7 @@ M.my_plugins = {
     end,
   },
   {
+    -- neovim treesitter 增强
     -- TODO: 这里这个有一个超级无敌巨大bug，一定要限制版本
     -- Ref: https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/522
     -- 这个版本和nvim-treesitter的版本是有关联的
@@ -274,6 +287,7 @@ M.my_plugins = {
     end,
   },
   {
+    -- 在telescope显示剪切板
     "AckslD/nvim-neoclip.lua",
     config = function()
       require("neoclip").setup({
@@ -306,9 +320,11 @@ M.my_plugins = {
     end,
   },
   {
+    -- 增强lsp cmp补全
     "hrsh7th/cmp-nvim-lsp-signature-help",
   },
   {
+    -- 支持回到上次推出neovim的位置
     "ethanholz/nvim-lastplace",
   },
   -- { -- json parser for dap launch.json
@@ -317,13 +333,14 @@ M.my_plugins = {
   --   run = './install.sh'
   -- },
   {
+    -- 增强dap 命令到telescope
     "nvim-telescope/telescope-dap.nvim",
     config = function()
       require("telescope").load_extension("dap")
     end,
   },
   {
-    -- gxt_kt sniprun : run code
+    -- 支持快速片段化运行代码
     "michaelb/sniprun",
     build = "bash ./install.sh",
     config = function()
@@ -343,14 +360,14 @@ M.my_plugins = {
     end,
   },
   {
-    -- gxt_kt nvim-colorizer  for like #ff00ff css color
+    -- 增强颜色代码的颜色显示 #ff00ff
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup()
     end,
   },
   {
-    -- gxt_kt nvim-lightbulb  : Show a blub if there a lsp code action
+    -- 在有code action的地方显示灯泡
     "kosayoda/nvim-lightbulb",
     config = function()
       require("nvim-lightbulb").setup({
@@ -401,7 +418,7 @@ M.my_plugins = {
     end,
   },
   {
-    -- gxt_kt symbols-outline.nvim : show outline
+    -- 大纲视图显示
     "simrat39/symbols-outline.nvim",
     config = function()
       require("symbols-outline").setup({
@@ -470,12 +487,13 @@ M.my_plugins = {
       })
     end,
   },
-  { -- gxt_kt nvim-ts-rainbow : Show rainbow bracket
+  {
+    -- 增强彩虹花括号显示
     -- NOTE: this plugin had been deprecated. Need move to new fork like https://github.com/HiPhish/nvim-ts-rainbow2
     "p00f/nvim-ts-rainbow",
   },
   {
-    -- gxt_kt tmux.nvim: Use tmux and nvim better
+    -- 增强在tmux中使用neovim
     "aserowy/tmux.nvim",
     config = function()
       require("tmux").setup({
@@ -539,17 +557,19 @@ M.my_plugins = {
   --     }
   --   end
   -- },
-  { -- gxt_kt vim-autoread : Auto load file if file changes
+  {
+    -- 缓冲区更新自动更新
     "djoshea/vim-autoread",
   },
   -- { -- gxt_kt far.vim : Search and substitute plugin
   --   'brooth/far.vim'
   -- },
-  { -- gxt_kt brooth/far.vim : Search use ripgrep
+  {
+    -- 增强正则表达式搜索
     "jremmen/vim-ripgrep",
   },
   {
-    -- gxt_kt nvim-spectre : Search and substitute
+    -- 增强搜索和替换
     "windwp/nvim-spectre",
     config = function()
       require("spectre").setup({
@@ -621,9 +641,11 @@ M.my_plugins = {
     end,
   },
   {
+    -- 多光标支持
     "mg979/vim-visual-multi",
   },
   {
+    -- 增强code action浮空显示
     "weilbith/nvim-code-action-menu",
     config = function()
       vim.g.code_action_menu_show_details = false
@@ -632,6 +654,7 @@ M.my_plugins = {
     end,
   },
   {
+    -- 增强debug调试时在右侧显示变量值
     "theHamsta/nvim-dap-virtual-text",
     config = function()
       require("nvim-dap-virtual-text").setup({
@@ -663,9 +686,11 @@ M.my_plugins = {
     end,
   },
   {
+    -- 支持当前buffer最大化
     "szw/vim-maximizer",
   },
   {
+    -- 可以再浏览器中预览markdown文件
     "iamcco/markdown-preview.nvim",
     config = function()
       vim.fn["mkdp#util#install"]()
@@ -673,6 +698,7 @@ M.my_plugins = {
     end,
   },
   {
+    -- 增强代码块 {} 指示显示
     "shellRaining/hlchunk.nvim",
     config = function()
       vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
@@ -729,6 +755,7 @@ M.my_plugins = {
     end,
   },
   -- {
+  --   -- 增强缩进栏彩色显示
   --   'lukas-reineke/indent-blankline.nvim',
   --   config = function()
   --     vim.opt.termguicolors = true
@@ -757,6 +784,7 @@ M.my_plugins = {
   --   end
   -- },
   {
+    -- 打的断点可以保留下来，推出neovim再打开还在
     "Weissle/persistent-breakpoints.nvim",
     config = function()
       require("persistent-breakpoints").setup({
@@ -765,13 +793,15 @@ M.my_plugins = {
       })
     end,
   },
-  { -- highlight code block on cursor block
+  {
+    -- 只高亮光标所在代码块
     "folke/twilight.nvim",
     opts = {
       context = 3,
     },
   },
   {
+    -- 增强折叠显示
     'kevinhwang91/nvim-ufo',
     dependencies = 'kevinhwang91/promise-async',
     config = function()
@@ -868,6 +898,7 @@ M.my_plugins = {
   --   end
   -- }
   {
+    -- 定义自己的状态栏，比如让git标识显示在行号右侧
     "luukvbaal/statuscol.nvim",
     config = function()
       local builtin = require("statuscol.builtin")
@@ -948,8 +979,9 @@ M.my_plugins = {
       })
     end,
   },
-  -- show latex on markdown file can use plugin "jbyuki/nabla.nvim"
   {
+    -- 增强笔记文件显示，markdown, orgmode, neorg
+    -- show latex on markdown file can use plugin "jbyuki/nabla.nvim"
     'lukas-reineke/headlines.nvim',
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
@@ -957,6 +989,7 @@ M.my_plugins = {
     end,
   },
   {
+    -- visual自动选择，按enter增加，backspace减少
     "sustech-data/wildfire.nvim",
     event = "VeryLazy",
     dependencies = { "nvim-treesitter/nvim-treesitter" },
@@ -965,6 +998,7 @@ M.my_plugins = {
     end,
   },
   {
+    -- 增强/高亮搜索（在右侧显示检测到多少个，当前在第几个）
     'kevinhwang91/nvim-hlslens',
     config = function()
       require('hlslens').setup({
@@ -986,6 +1020,7 @@ M.my_plugins = {
     end
   },
   {
+    -- 书签插件
     'tomasky/bookmarks.nvim',
     config = function()
       require('bookmarks').setup({
@@ -1011,6 +1046,7 @@ M.my_plugins = {
     end
   },
   {
+    -- 在neovim中刷leetcode
     enabled = true,
 
     "kawre/leetcode.nvim",
@@ -1070,6 +1106,7 @@ M.my_plugins = {
     },
   },
   {
+    -- 在neovim中显示图片
     enabled = image_enabled,
 
     "3rd/image.nvim",
@@ -1110,9 +1147,11 @@ M.my_plugins = {
     end
   },
   {
+    -- git 增强插件
     "sindrets/diffview.nvim"
   },
   {
+    -- git 增强插件
     "FabijanZulj/blame.nvim",
     config = function()
       require('blame').setup({
@@ -1122,9 +1161,11 @@ M.my_plugins = {
     end
   },
   {
+    -- 切换python虚拟环境（conda）
     "AckslD/swenv.nvim",
   },
   {
+    -- chatgpt openai插件
     enabled = gp_enabled,
 
     "robitx/gp.nvim",
