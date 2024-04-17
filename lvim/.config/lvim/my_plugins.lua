@@ -1140,7 +1140,13 @@ M.my_plugins = {
 
       -- shortcuts might be setup here (see Usage > Shortcuts in Readme)
     end,
-  }
+  },
+  {
+    -- rust增强插件，替换掉 rust-tools.nvim
+    'mrcjkb/rustaceanvim',
+    version = '^4', -- Recommended
+    lazy = false,   -- This plugin is already lazy
+  },
   -- { -- gxt_kt vim-tmux-clipboard : vim tmux clipboard
   --   'roxma/vim-tmux-clipboard',
   -- },
