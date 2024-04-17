@@ -128,7 +128,7 @@ M.extract_file_info = function(string)
     file_path = file_path:gsub("$HOME", home_directory)
     local file = io.open(file_path, "r")
     if not file then
-      print("[ERROR]: " .. file_path .. " not exist")
+      -- print("[ERROR]: " .. file_path .. " not exist")
       -- return
     else
       M.go_to_file(file_path, line_num, col_num)
@@ -144,7 +144,7 @@ M.extract_file_info = function(string)
     file_path = file_path:gsub("$HOME", home_directory)
     local file = io.open(file_path, "r")
     if not file then
-      print("[ERROR]: " .. file_path .. " not exist")
+      -- print("[ERROR]: " .. file_path .. " not exist")
       -- return
     else
       M.go_to_file(file_path, line_num, 0)
@@ -159,7 +159,7 @@ M.extract_file_info = function(string)
     file_path = file_path:gsub("$HOME", home_directory)
     local file = io.open(file_path, "r")
     if not file then
-      print("[ERROR]: " .. file_path .. " not exist")
+      -- print("[ERROR]: " .. file_path .. " not exist")
       -- return
     else
       M.go_to_file(file_path)
@@ -177,7 +177,7 @@ M.extract_file_info = function(string)
     -- print(file_path)
     local file = io.open(file_path, "r")
     if not file then
-      print("[ERROR]: " .. file_path .. " not exist")
+      -- print("[ERROR]: " .. file_path .. " not exist")
       -- return
     else
       M.go_to_file(file_path, line_num, col_num)
