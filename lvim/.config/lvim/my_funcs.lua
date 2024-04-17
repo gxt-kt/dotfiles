@@ -128,11 +128,12 @@ M.extract_file_info = function(string)
     file_path = file_path:gsub("$HOME", home_directory)
     local file = io.open(file_path, "r")
     if not file then
-      vim.api.nvim_err_writeln("[ERROR]: " .. file_path .. " not exist")
+      print("[ERROR]: " .. file_path .. " not exist")
+      -- return
+    else
+      M.go_to_file(file_path, line_num, col_num)
       return
     end
-    M.go_to_file(file_path, line_num, col_num)
-    return
   end
 
   -- file_path, line_num = current_line:match('(%S+):(%d+)')
@@ -143,11 +144,12 @@ M.extract_file_info = function(string)
     file_path = file_path:gsub("$HOME", home_directory)
     local file = io.open(file_path, "r")
     if not file then
-      vim.api.nvim_err_writeln("[ERROR]: " .. file_path .. " not exist")
+      print("[ERROR]: " .. file_path .. " not exist")
+      -- return
+    else
+      M.go_to_file(file_path, line_num, 0)
       return
     end
-    M.go_to_file(file_path, line_num, 0)
-    return
   end
 
   file_path = current_line:match('(~?$?H?O?M?E?/[^ ]+[%w]+/?)')
@@ -157,11 +159,30 @@ M.extract_file_info = function(string)
     file_path = file_path:gsub("$HOME", home_directory)
     local file = io.open(file_path, "r")
     if not file then
-      vim.api.nvim_err_writeln("[ERROR]: " .. file_path .. " not exist")
+      print("[ERROR]: " .. file_path .. " not exist")
+      -- return
+    else
+      M.go_to_file(file_path)
       return
     end
-    M.go_to_file(file_path)
-    return
+  end
+
+
+  -- rust的编译报错结果是相对的 比如 src/main.rs:4:12
+  -- 也就是我们要先找到git目录，再进行相对路径的搜索
+  file_path, line_num, col_num = current_line:match('([^%s]+):(%d+):(%d+)')
+  -- print(file_path, line_num, col_num)
+  if not (not file_path) then
+    file_path = vim.fn.getcwd() .. "/" .. file_path
+    -- print(file_path)
+    local file = io.open(file_path, "r")
+    if not file then
+      print("[ERROR]: " .. file_path .. " not exist")
+      -- return
+    else
+      M.go_to_file(file_path, line_num, col_num)
+      return
+    end
   end
 
   vim.api.nvim_err_writeln("[ERROR]: cannot find the correspond file")
