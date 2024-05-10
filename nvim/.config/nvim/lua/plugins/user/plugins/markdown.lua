@@ -16,6 +16,7 @@ return {
     -- show latex on markdown file can use plugin "jbyuki/nabla.nvim"
     'lukas-reineke/headlines.nvim',
     enabled = require("my_sys").GetConfig("config", "markdown.highlight_by_headlines", true),
+    ft = "markdown",
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()
       vim.cmd [[highlight Headline1 guibg=#3B4736]]
