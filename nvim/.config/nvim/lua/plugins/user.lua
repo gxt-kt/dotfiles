@@ -7,6 +7,13 @@ local current_file_path = current_file_name:match("(.*[/\\])")
 -- 添加当前路径/user
 package.path = package.path .. ";" .. current_file_path .. "user/?.lua"
 
+
+-- 添加配置文件所在路径下的lua文件
+package.path = package.path .. ";" .. vim.fn.stdpath("config") .. "/?.lua"
+-- 添加配置文件
+require("config")
+-- require("my_sys").DEBUG("package.path", package.path)
+
 local res = require("my_sys").GetDirectoryLuaFileContents(current_file_path .. "user")
 -- 返回user_config
 return res

@@ -56,7 +56,7 @@ function M.GetDirectoryLuaFileContents(dire_path)
   local res = {}
   -- 加载user目录下的所有lua文件
   for _, file in ipairs(file_tables) do
-    require("my_sys").DEBUG("file:", file)
+    -- require("my_sys").DEBUG("file:", file)
     local content = require(file)
     -- 针对有return情况
     if content and type(content) == "table" then
