@@ -76,4 +76,25 @@ function M.GetDirectoryLuaFileContents(dire_path)
   return res
 end
 
+-- 读取配置文件并检查特定的配置项
+function M.GetConfig(config_path, field, default_value)
+  -- 加载配置文件
+  local config = require(config_path)
+
+  -- 检查配置项是否存在
+  local value = config
+  for part in field:gmatch("[^.]+") do
+    value = value[part]
+    if value == nil then
+      -- print("Configuration field '" .. field .. "' not found or incomplete")
+      return default_value
+    end
+  end
+
+  -- 配置项存在
+  -- print("Value of " .. field .. ":", value)
+  -- 这里可以执行相关操作
+  return value
+end
+
 return M
