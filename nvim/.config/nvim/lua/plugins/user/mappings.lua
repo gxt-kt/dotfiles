@@ -37,15 +37,29 @@ return {
           ["<Leader>b"] = { name = "Buffers" },
 
           -- gitui
-          ["<Leader>gg"] = { "require('my_funcs').git_gitui_toggle()", desc = "gitui", noremap = true, silent = true },
+          ["<Leader>gg"] = { ":lua require('my_funcs').git_gitui_toggle()<cr>", desc = "gitui", noremap = true, silent = true },
 
           -- save file
           ["<leader>w"] = { ":w<cr>", desc = "Save File", noremap = true, silent = true },
           ["<C-s>"] = { ":w<cr>", desc = "Save File", noremap = true, silent = true },
-          ["<Leader><C-s>"] = { ":lua require('my_funcs').sudo_write()<CR>", desc = "Write with root", noremap = true, silent = true },
+          ["<Leader><C-s>"] = { ":lua require('my_funcs').sudo_write()<cr>", desc = "Write with root", noremap = true, silent = true },
 
           -- run cmd
           ["<Leader>R"] = { "V:lua require('my_funcs').execute_and_print_cmd()<cr>", desc = "Run cmd", noremap = true, silent = true },
+
+          -- gitsigns
+          ["<Leader>gj"] = { ":lua require('gitsigns').nav_hunk('next')<cr>", desc = "Hunk next", noremap = true, silent = true },
+          ["<Leader>gk"] = { ":lua require('gitsigns').nav_hunk('prev')<cr>", desc = "Hunk prev", noremap = true, silent = true },
+          ["<Leader>gr"] = { ":lua require('gitsigns').reset_hunk()<cr>", desc = "Reset hunk", noremap = true, silent = true },
+          ["<Leader>gR"] = { ":lua require('gitsigns').reset_buffer()<cr>", desc = "Reset buffer", noremap = true, silent = true },
+          ["<Leader>gp"] = { ":lua require('gitsigns').preview_hunk()<cr>", desc = "Preview Hunk", noremap = true, silent = true },
+          ["<Leader>gh"] = { function() require('gitsigns').blame_line { full = true } end, desc = "Blame hunk", noremap = true, silent = true },
+          ["<Leader>gl"] = { ":lua require('gitsigns').toggle_current_line_blame()<cr>", desc = "Blame line", noremap = true, silent = true },
+          ["<Leader>gd"] = { ":lua require('gitsigns').diffthis()<cr>", desc = "git diff", noremap = true, silent = true },
+          ["<Leader>gD"] = { function() require('gitsigns').diffthis('~') end, desc = "git diff!", noremap = true, silent = true },
+          ["<Leader>gt"] = { ":lua require('gitsigns').toggle_deleted()<cr>", desc = "toggle deleted", noremap = true, silent = true },
+
+
 
           -- remove all toggle terminal keymap
           ["<F7>"] = false,
@@ -66,6 +80,10 @@ return {
         },
         v = {
           ["<Leader>R"] = { ":lua require('my_funcs').execute_and_print_cmd()<cr>", desc = "Run cmd", noremap = true, silent = true },
+
+          -- gitsigns
+          ["<Leader>gr"] = { function() require('gitsigns').reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end, desc = "Run cmd", noremap = true, silent = true },
+          ["<Leader>gs"] = { function() require('gitsigns').stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end, desc = "Run cmd", noremap = true, silent = true },
         },
         t = {
           -- setting a mapping to false will disable it

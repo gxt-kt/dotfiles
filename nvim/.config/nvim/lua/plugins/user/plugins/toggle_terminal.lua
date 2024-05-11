@@ -6,7 +6,7 @@
 local M = {}
 
 
-local terminal_execs = {
+local terminal_maps = {
   { vim.o.shell, "<M-`>",         "Float Terminal",      "float",      nil },
   { vim.o.shell, "<M-Esc>",       "Float Terminal",      "float",      nil },
   { vim.o.shell, "<M-->",         "Horizontal Terminal", "horizontal", 0.3 },
@@ -85,7 +85,7 @@ M._exec_toggle = function(opts)
 end
 
 
-M.init(terminal_execs)
+M.init(terminal_maps)
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
