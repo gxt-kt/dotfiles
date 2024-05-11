@@ -94,10 +94,10 @@ M.execute_and_print_cmd = function()
 
     vim.fn.setpos('.', end_pos)
 
-    vim.api.nvim_put({ "{>>>>>>>>>>>>>>>>>>>>>>>>>>" }, 'l', true, false)
+    vim.api.nvim_put({ "{==========================" }, 'l', true, false)
     vim.fn.setreg('+', contents) -- 将输出内容放入寄存器 +
     -- vim.cmd('normal! "+p')
-    table.insert(contents, "}<<<<<<<<<<<<<<<<<<<<<<<<<<")
+    table.insert(contents, "}==========================")
     vim.api.nvim_put(contents, 'l', true, false)
     -- vim.api.nvim_put({"}<<<<<<<<<<<<<<<<<<<<<<<"}, 'l', true , false)
   else
