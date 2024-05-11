@@ -1,6 +1,9 @@
 -- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 return {
+  notify = {
+    notify_enabled = false,
+  },
   gp = {
     gp_enabled = true,
     gp_proxy = "127.0.0.1:7890",
