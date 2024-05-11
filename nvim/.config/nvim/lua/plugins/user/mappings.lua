@@ -12,12 +12,7 @@ keymap.set("n", "<S-h>", ":bnext<CR>", opts)
 keymap.set("n", "<S-l>", ":bpre<CR>", opts)
 
 
-keymap.set("n", "<leader>h", ":nohl<cr>", opts)
 keymap.set("n", "<leader>H", ":Twilight<cr>", opts)
-keymap.set("n", "<leader>W", ":set wrap!<cr>", opts)
-keymap.set("n", "<leader>S", ":set invspell<cr>", opts) -- https://vimtricks.com/p/vim-spell-check/
-keymap.set("n", "<leader>n", ":set relativenumber!<cr>", opts)
-
 
 
 -- vim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
@@ -32,8 +27,14 @@ return {
       mappings = {
         -- first key is the mode
         n = {
+          -- universal
+          ["<Leader>h"] = { "nohl<cr>", desc = ":nohl", noremap = true, silent = true },
+          ["<leader>W"] = { "set wrap!<cr>", desc = "set wrap!", noremap = true, silent = true },
+          -- keymap.set("n", "<leader>S", ":set invspell<cr>", opts) -- https://vimtricks.com/p/vim-spell-check/
+          ["<leader>n"] = { ":set relativenumber!<cr>", desc = "set relativenumber!", noremap = true, silent = true },
+          ["<leader>b<C-n>"] = { "<cmd>enew<cr>", desc = "New file", noremap = true, silent = true },
+
           ["<Leader>b"] = { name = "Buffers" },
-          ["<Leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab", noremap = true, silent = true },
 
           -- gitui
           ["<Leader>gg"] = { "require('my_funcs').git_gitui_toggle()", desc = "gitui", noremap = true, silent = true },
@@ -56,6 +57,12 @@ return {
           ["<Leader>tn"] = false,
           ["<Leader>tp"] = false,
           ["<Leader>tt"] = false,
+
+          -- change to tab
+          ["<Leader>t"] = { name = "Tabs" },
+          ["<Leader>t<C-n>"] = { "<cmd>tabnew<cr>", desc = "New tab", noremap = true, silent = true },
+          ["<Leader>tn"] = { "<cmd>tabnext<cr>", desc = "New tab", noremap = true, silent = true },
+          ["<Leader>tp"] = { "<cmd>tabprevious<cr>", desc = "New tab", noremap = true, silent = true },
         },
         v = {
           ["<Leader>R"] = { ":lua require('my_funcs').execute_and_print_cmd()<cr>", desc = "Run cmd", noremap = true, silent = true },
@@ -63,6 +70,7 @@ return {
         t = {
           -- setting a mapping to false will disable it
           -- ["<esc>"] = false,
+          -- ["<Leader>h"] = false,
         },
       },
     },
