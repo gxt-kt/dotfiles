@@ -2,6 +2,15 @@
 
 return {
   "nvim-telescope/telescope.nvim",
+  dependencies = {
+    {
+      "nvim-telescope/telescope-live-grep-args.nvim",
+      version = "^1.0.0",
+    },
+  },
+  config = function()
+    require("telescope").load_extension("live_grep_args")
+  end,
   opts = function(_, opts)
     -- local _, actions = pcall(require, "telescope.actions")
     local actions = require "telescope.actions"

@@ -18,16 +18,23 @@ end
 
 M.live_grep_raw = function(opts, mode)
   opts = opts or {}
-  opts.prompt_title = 'Live Grep Raw (-t[ty] include, -T exclude -g"[!] [glob])"'
-  -- if not opts.default_text then
-  --   if mode then
-  --     opts.default_text = '"' .. M.escape_rg_text(M.get_text(mode)) .. '"'
-  --   else
-  --     opts.default_text = '"'
-  --   end
-  -- end
+  opts.prompt_title = '"search_string" [--hidden] [--no-ignore] [--iglob] (search_path)'
+  -- for normal mode
+  if not opts.default_text then
+    opts.default_text = '"' .. M.escape_rg_text(M.get_text(mode)) .. '"'
+  else
+    if opts.default_text ~= "" then
+      opts.default_text = '"' .. opts.default_text .. '"'
+    end
+  end
+  -- for visual mode
   if mode then
     opts.default_text = opts.default_text .. '"' .. M.escape_rg_text(M.get_text(mode)) .. '"'
+  end
+
+  -- whether search all files
+  if (opts.search_all) then
+    opts.default_text = "--hidden --no-ignore " .. opts.default_text
   end
 
   require('telescope').extensions.live_grep_args.live_grep_args(

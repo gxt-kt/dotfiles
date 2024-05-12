@@ -77,6 +77,13 @@ return {
           ["<Leader>t<C-n>"] = { "<cmd>tabnew<cr>", desc = "New tab", noremap = true, silent = true },
           ["<Leader>tn"] = { "<cmd>tabnext<cr>", desc = "New tab", noremap = true, silent = true },
           ["<Leader>tp"] = { "<cmd>tabprevious<cr>", desc = "New tab", noremap = true, silent = true },
+
+
+          -- telescope
+          ["<Leader>fw"] = { ":lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>')})<cr>", desc = "Find words", noremap = true, silent = true },
+          ["<Leader>fW"] = { ":lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>'),search_all=true})<cr>", desc = "Find all words", noremap = true, silent = true },
+          ["<Leader>fs"] = { ":lua require('my_funcs').live_grep_raw({default_text = ''})<cr>", desc = "Find string", noremap = true, silent = true },
+          ["<Leader>fS"] = { ":lua require('my_funcs').live_grep_raw({default_text = '',search_all=true})<cr>", desc = "Find all string", noremap = true, silent = true },
         },
         v = {
           ["<Leader>R"] = { ":lua require('my_funcs').execute_and_print_cmd()<cr>", desc = "Run cmd", noremap = true, silent = true },
@@ -84,6 +91,10 @@ return {
           -- gitsigns
           ["<Leader>gr"] = { function() require('gitsigns').reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end, desc = "Run cmd", noremap = true, silent = true },
           ["<Leader>gs"] = { function() require('gitsigns').stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end, desc = "Run cmd", noremap = true, silent = true },
+
+          -- telescope
+          ["<Leader>fw"] = { "<Esc>:lua require('my_funcs').live_grep_raw({default_text=''}, 'v')<cr>", desc = "Find words", noremap = true, silent = true },
+          ["<Leader>fW"] = { "<Esc>:lua require('my_funcs').live_grep_raw({default_text='',search_all=true}, 'v')<cr>", desc = "Find all words", noremap = true, silent = true },
         },
         t = {
           -- setting a mapping to false will disable it
