@@ -2,7 +2,7 @@
 
 return {
   {
-    'mrjones2014/smart-splits.nvim',
+    "mrjones2014/smart-splits.nvim",
     -- enabled = false,
     opts = function(plugin, opts)
       -- 不希望穿越
