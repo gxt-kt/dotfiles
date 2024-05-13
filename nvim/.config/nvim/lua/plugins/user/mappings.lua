@@ -7,13 +7,13 @@ keymap.set("i", "jk", "<Esc>", opts)
 keymap.set("n", "<leader>\\", "<C-w>v", opts)
 keymap.set("n", "<leader><BS>", "<C-w>v", opts)
 keymap.set("n", "<leader>-", "<C-w>s", opts)
-keymap.set("n", "<C-s>", ":w<cr>", opts)
-keymap.set("n", "<S-h>", ":bpre<CR>", opts)
-keymap.set("n", "<S-l>", ":bnext<CR>", opts)
+keymap.set("n", "<C-s>", "<cmd>w<cr>", opts)
+keymap.set("n", "<S-h>", "<cmd>bpre<cr>", opts)
+keymap.set("n", "<S-l>", "<cmd>bnext<cr>", opts)
 
-keymap.set("n", "<leader>H", ":Twilight<cr>", opts)
+keymap.set("n", "<leader>H", "<cmd>Twilight<cr>", opts)
 
--- vim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+-- vim.keys.normal_mode["<S-h>"] = "<cmd>BufferLineCyclePrev<cr>"
 
 -- require("my_sys").DEBUG("123")
 
@@ -29,9 +29,9 @@ return {
         -- first key is the mode
         n = {
           -- universal
-          ["<Leader>h"] = { "<cmd>nohl<cr>", desc = ":nohl", noremap = true, silent = true },
+          ["<Leader>h"] = { "<cmd>nohl<cr>", desc = "<cmd>nohl", noremap = true, silent = true },
           ["<leader>W"] = { "<cmd>set wrap!<cr>", desc = "set wrap!", noremap = true, silent = true },
-          -- keymap.set("n", "<leader>S", ":set invspell<cr>", opts) -- https://vimtricks.com/p/vim-spell-check/
+          -- keymap.set("n", "<leader>S", "<cmd>set invspell<cr>", opts) -- https<cmd>//vimtricks.com/p/vim-spell-check/
           ["<leader>n"] = {
             "<cmd>set relativenumber!<cr>",
             desc = "set relativenumber!",
@@ -70,6 +70,14 @@ return {
             silent = true,
           },
 
+          -- sniprun
+          ["<Leader>r"] = {
+            "<cmd>%SnipRun<cr>",
+            desc = "Sniprun",
+            noremap = true,
+            silent = true,
+          },
+
           -- save file
           ["<leader>w"] = { "<cmd>w<cr>", desc = "Save File", noremap = true, silent = true },
           ["<C-s>"] = { "<cmd>w<cr>", desc = "Save File", noremap = true, silent = true },
@@ -82,7 +90,7 @@ return {
 
           -- run cmd
           ["<Leader>R"] = {
-            "V:lua require('my_funcs').execute_and_print_cmd()<cr>",
+            "V<cmd>lua require('my_funcs').execute_and_print_cmd()<cr>",
             desc = "Run cmd",
             noremap = true,
             silent = true,
@@ -90,31 +98,31 @@ return {
 
           -- gitsigns
           ["<Leader>gj"] = {
-            ":lua require('gitsigns').nav_hunk('next')<cr>",
+            "<cmd>lua require('gitsigns').nav_hunk('next')<cr>",
             desc = "Hunk next",
             noremap = true,
             silent = true,
           },
           ["<Leader>gk"] = {
-            ":lua require('gitsigns').nav_hunk('prev')<cr>",
+            "<cmd>lua require('gitsigns').nav_hunk('prev')<cr>",
             desc = "Hunk prev",
             noremap = true,
             silent = true,
           },
           ["<Leader>gr"] = {
-            ":lua require('gitsigns').reset_hunk()<cr>",
+            "<cmd>lua require('gitsigns').reset_hunk()<cr>",
             desc = "Reset hunk",
             noremap = true,
             silent = true,
           },
           ["<Leader>gR"] = {
-            ":lua require('gitsigns').reset_buffer()<cr>",
+            "<cmd>lua require('gitsigns').reset_buffer()<cr>",
             desc = "Reset buffer",
             noremap = true,
             silent = true,
           },
           ["<Leader>gp"] = {
-            ":lua require('gitsigns').preview_hunk()<cr>",
+            "<cmd>lua require('gitsigns').preview_hunk()<cr>",
             desc = "Preview Hunk",
             noremap = true,
             silent = true,
@@ -126,13 +134,13 @@ return {
             silent = true,
           },
           ["<Leader>gl"] = {
-            ":lua require('gitsigns').toggle_current_line_blame()<cr>",
+            "<cmd>lua require('gitsigns').toggle_current_line_blame()<cr>",
             desc = "Blame line",
             noremap = true,
             silent = true,
           },
           ["<Leader>gd"] = {
-            ":lua require('gitsigns').diffthis()<cr>",
+            "<cmd>lua require('gitsigns').diffthis()<cr>",
             desc = "git diff",
             noremap = true,
             silent = true,
@@ -144,7 +152,7 @@ return {
             silent = true,
           },
           ["<Leader>gt"] = {
-            ":lua require('gitsigns').toggle_deleted()<cr>",
+            "<cmd>lua require('gitsigns').toggle_deleted()<cr>",
             desc = "toggle deleted",
             noremap = true,
             silent = true,
@@ -169,33 +177,67 @@ return {
 
           -- telescope
           ["<Leader>fw"] = {
-            ":lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>')})<cr>",
+            "<cmd>lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>')})<cr>",
             desc = "Find words",
             noremap = true,
             silent = true,
           },
           ["<Leader>fW"] = {
-            ":lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>'),search_all=true})<cr>",
+            "<cmd>lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>'),search_all=true})<cr>",
             desc = "Find all words",
             noremap = true,
             silent = true,
           },
           ["<Leader>fs"] = {
-            ":lua require('my_funcs').live_grep_raw({default_text = ''})<cr>",
+            "<cmd>lua require('my_funcs').live_grep_raw({default_text = ''})<cr>",
             desc = "Find string",
             noremap = true,
             silent = true,
           },
           ["<Leader>fS"] = {
-            ":lua require('my_funcs').live_grep_raw({default_text = '',search_all=true})<cr>",
+            "<cmd>lua require('my_funcs').live_grep_raw({default_text = '',search_all=true})<cr>",
             desc = "Find all string",
+            noremap = true,
+            silent = true,
+          },
+
+          -- spectre
+          ["sf"] = {
+            "<cmd>lua require('spectre').open_file_search({select_word=false})<cr>",
+            desc = "Search on current file",
+            noremap = true,
+            silent = true,
+          },
+          ["sF"] = {
+            "<cmd>lua require('spectre').open_visual({select_word=false})<cr>",
+            desc = "Search on whole directory",
+            noremap = true,
+            silent = true,
+          },
+          ["sw"] = {
+            "<cmd>lua require('spectre').open_file_search({select_word=true})<cr>",
+            desc = "Search on current file",
+            noremap = true,
+            silent = true,
+          },
+          ["sW"] = {
+            "<cmd>lua require('spectre').open_visual({select_word=true})<cr>",
+            desc = "Search on whole directory",
             noremap = true,
             silent = true,
           },
         },
         v = {
+          -- This will not change the clipboard content in V mode
+          ["p"] = {
+            '"_dP',
+            desc = "",
+            noremap = true,
+            silent = true,
+          },
+
           ["<Leader>R"] = {
-            ":lua require('my_funcs').execute_and_print_cmd()<cr>",
+            "<cmd>lua require('my_funcs').execute_and_print_cmd()<cr>",
             desc = "Run cmd",
             noremap = true,
             silent = true,
@@ -215,16 +257,38 @@ return {
             silent = true,
           },
 
+          -- sniprun
+          ["<Leader>r"] = {
+            "<cmd>'<,'>SnipRun<cr>",
+            desc = "Sniprun",
+            noremap = true,
+            silent = true,
+          },
+
           -- telescope
           ["<Leader>fw"] = {
-            "<Esc>:lua require('my_funcs').live_grep_raw({default_text=''}, 'v')<cr>",
+            "<Esc><cmd>lua require('my_funcs').live_grep_raw({default_text=''}, 'v')<cr>",
             desc = "Find words",
             noremap = true,
             silent = true,
           },
           ["<Leader>fW"] = {
-            "<Esc>:lua require('my_funcs').live_grep_raw({default_text='',search_all=true}, 'v')<cr>",
+            "<Esc><cmd>lua require('my_funcs').live_grep_raw({default_text='',search_all=true}, 'v')<cr>",
             desc = "Find all words",
+            noremap = true,
+            silent = true,
+          },
+
+          -- spectre
+          ["sw"] = {
+            '<esc><cmd>lua require("spectre").open({ search_text=require("my_funcs").get_text("v"), path=require("my_funcs").GetBufRelativePath()})<cr>',
+            desc = "Search on current file",
+            noremap = true,
+            silent = true,
+          },
+          ["sW"] = {
+            '<esc><cmd>lua require("spectre").open({ search_text=require("my_funcs").get_text("v") })<cr>',
+            desc = "Search on whole directory",
             noremap = true,
             silent = true,
           },
@@ -249,7 +313,7 @@ return {
             desc = "Hover symbol details",
           },
           ["<Leader>j"] = {
-            ":ClangdSwitchSourceHeader<cr>",
+            "<cmd>ClangdSwitchSourceHeader<cr>",
             desc = "Jump between source and head file",
           },
           -- condition for only server with declaration capabilities
