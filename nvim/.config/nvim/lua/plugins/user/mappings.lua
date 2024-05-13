@@ -11,9 +11,21 @@ keymap.set("n", "<C-s>", "<cmd>w<cr>", opts)
 keymap.set("n", "<S-h>", "<cmd>bpre<cr>", opts)
 keymap.set("n", "<S-l>", "<cmd>bnext<cr>", opts)
 
-keymap.set("n", "<leader>H", "<cmd>Twilight<cr>", opts)
+-- Visual --
+-- Stay in indent mode
+keymap.set("v", "<", "<gv", opts)
+keymap.set("v", ">", ">gv", opts)
+-- Move text up and down
+keymap.set("v", "<A-j>", ":m .+1<CR>==", opts)
+keymap.set("v", "<A-k>", ":m .-2<CR>==", opts)
+-- Visual Block --
+-- Move text up and down
+keymap.set("x", "J", ":move '>+1<CR>gv-gv", opts)
+keymap.set("x", "K", ":move '<-2<CR>gv-gv", opts)
+keymap.set("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
+keymap.set("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
--- vim.keys.normal_mode["<S-h>"] = "<cmd>BufferLineCyclePrev<cr>"
+keymap.set("n", "<leader>H", "<cmd>Twilight<cr>", opts)
 
 -- require("my_sys").DEBUG("123")
 
@@ -229,12 +241,7 @@ return {
         },
         v = {
           -- This will not change the clipboard content in V mode
-          ["p"] = {
-            '"_dP',
-            desc = "",
-            noremap = true,
-            silent = true,
-          },
+          ["p"] = { '"_dP', desc = "", noremap = true, silent = true },
 
           ["<Leader>R"] = {
             "<cmd>lua require('my_funcs').execute_and_print_cmd()<cr>",

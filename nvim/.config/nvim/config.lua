@@ -2,7 +2,7 @@
 
 return {
   notify = {
-    notify_enabled = false,
+    notify_enabled = true,
   },
   gp = {
     gp_enabled = true,
