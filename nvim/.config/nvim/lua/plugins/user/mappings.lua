@@ -294,6 +294,24 @@ return {
             noremap = true,
             silent = true,
           },
+
+          -- go to file
+          ["gf"] = {
+            "<cmd>lua require('my_funcs').extract_file_info()<cr>",
+            desc = "Goto file",
+            noremap = true,
+            silent = true,
+          },
+
+          -- gpt
+          ["<Leader>G"] = { name = "Gpt" },
+          ["<Leader>Gn"] = { "<cmd>GpChatNew tabnew<CR>", desc = "Gpt Newtab", noremap = true, silent = true },
+          ["<Leader>Gv"] = { "<cmd>GpChatNew vsplit<CR>", desc = "Gpt Usplit", noremap = true, silent = true },
+          ["<Leader>Gs"] = { "<cmd>GpChatNew split<CR>", desc = "Gpt Split", noremap = true, silent = true },
+          ["<Leader>Gp"] = { "<cmd>GpChatNew popup<CR>", desc = "Gpt Popup", noremap = true, silent = true },
+          ["<Leader>Gf"] = { "<cmd>GpChatFinder<CR>", desc = "Gpt Find", noremap = true, silent = true },
+          ["<Leader>GS"] = { "<cmd>GpStop<CR>", desc = "Gpt Stop", noremap = true, silent = true },
+          ["<Leader>Gt"] = { "<cmd>GpChatToggle<CR>", desc = "Gpt Toggle", noremap = true, silent = true },
         },
         v = {
           -- This will not change the clipboard content in V mode
@@ -352,6 +370,14 @@ return {
           ["sW"] = {
             '<esc><cmd>lua require("spectre").open({ search_text=require("my_funcs").get_text("v") })<cr>',
             desc = "Search on whole directory",
+            noremap = true,
+            silent = true,
+          },
+
+          -- go to file
+          ["gf"] = {
+            "<cmd>lua require('my_funcs').extract_file_info(require('my_funcs').get_text('v'))<cr>",
+            desc = "Goto file",
             noremap = true,
             silent = true,
           },
