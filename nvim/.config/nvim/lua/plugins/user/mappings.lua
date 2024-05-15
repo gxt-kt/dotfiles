@@ -38,7 +38,6 @@ return {
         n = {
           -- universal
           ["<Leader>h"] = { "<cmd>nohl<cr>", desc = "<cmd>nohl", noremap = true, silent = true },
-          ["<leader>W"] = { "<cmd>set wrap!<cr>", desc = "set wrap!", noremap = true, silent = true },
           -- keymap.set("n", "<leader>S", "<cmd>set invspell<cr>", opts) -- https<cmd>//vimtricks.com/p/vim-spell-check/
           ["<leader>n"] = {
             "<cmd>set relativenumber!<cr>",
@@ -97,7 +96,7 @@ return {
           -- save file
           ["<leader>w"] = { "<cmd>w<cr>", desc = "Save File", noremap = true, silent = true },
           ["<C-s>"] = { "<cmd>w<cr>", desc = "Save File", noremap = true, silent = true },
-          ["<Leader><C-s>"] = {
+          ["<Leader>W"] = {
             "<cmd>lua require('my_funcs').sudo_write()<cr>",
             desc = "Write with root",
             noremap = true,
@@ -288,6 +287,13 @@ return {
           ["<leader>L<tab>"] = { "<cmd>Leet desc<CR>", desc = "Leet desc", noremap = true, silent = true },
           ["<leader>Lv"] = { "<cmd>Leet console<CR>", desc = "Leet console", noremap = true, silent = true },
 
+          -- ui
+          ["<Leader>ut"] = {
+            "<cmd>lua require('color_scheme').ChooseColors()<cr>",
+            desc = "toggle theme",
+            noremap = true,
+            silent = true,
+          },
         },
         v = {
           -- This will not change the clipboard content in V mode
