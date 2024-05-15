@@ -2,7 +2,10 @@
 
 return {
   notify = {
-    notify_enabled = true,
+    notify_enabled = false,
+  },
+  image = {
+    image_enabled = false,
   },
   gp = {
     gp_enabled = true,
@@ -11,5 +14,15 @@ return {
   },
   markdown = {
     highlight_by_headlines = true,
-  }
+  },
+  leetcode = {
+    leetcode_enabled = true,
+    show_image = true,
+    lang = "cpp",
+    cn = {
+      cn_enabled = true,
+      translator = false,
+      translate_problems = true,
+    },
+  },
 }

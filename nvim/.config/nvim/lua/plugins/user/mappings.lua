@@ -25,10 +25,6 @@ keymap.set("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap.set("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap.set("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
-keymap.set("n", "<leader>H", "<cmd>Twilight<cr>", opts)
-
--- require("my_sys").DEBUG("123")
-
 -- 支持%跳转"<>"
 vim.opt.matchpairs:append "<:>"
 
@@ -55,6 +51,8 @@ return {
 
           ["<Leader>b"] = { name = "Buffers" },
 
+          ["<Leader>H"] = { "<cmd>Twilight<cr>", desc = "Twilight", noremap = true, silent = true },
+
           -- max current buffer
           ["<Leader>z"] = { "<cmd>MaximizerToggle<cr>", desc = "Max current buffer", noremap = true, silent = true },
 
@@ -65,6 +63,12 @@ return {
             noremap = true,
             silent = true,
           },
+
+          -- outline view
+          ["<Leader>v"] = { name = "Outlines" },
+          ["<Leader>va"] = { "<cmd>AerialToggle<cr>", desc = "Aerial", noremap = true, silent = true },
+          ["<Leader>vo"] = { "<cmd>Outline<cr>", desc = "Outline", noremap = true, silent = true },
+          ["<Leader>vv"] = { "<cmd>Vista!!<cr>", desc = "Vista", noremap = true, silent = true },
 
           -- smart-splists
           ["<C-e>"] = {
@@ -139,6 +143,9 @@ return {
             noremap = true,
             silent = true,
           },
+          ["<Leader>gB"] = { name = "Git Blame" },
+          ["<Leader>gBw"] = { "<cmd>BlameToggle window<cr>", desc = "Blame window", noremap = true, silent = true },
+          ["<Leader>gBv"] = { "<cmd>BlameToggle virtual<cr>", desc = "Blame virtual", noremap = true, silent = true },
           ["<Leader>gh"] = {
             function() require("gitsigns").blame_line { full = true } end,
             desc = "Blame hunk",
@@ -187,7 +194,27 @@ return {
           ["<Leader>tn"] = { "<cmd>tabnext<cr>", desc = "New tab", noremap = true, silent = true },
           ["<Leader>tp"] = { "<cmd>tabprevious<cr>", desc = "New tab", noremap = true, silent = true },
 
-          -- telescope
+          --telescope
+          ["<Leader>fr"] = {
+            "<cmd> lua require('telescope.builtin').oldfiles()<cr>",
+            desc = "Find history file",
+            noremap = true,
+            silent = true,
+          },
+          ["<Leader>fy"] = { "<cmd>Telescope neoclip<cr>", desc = "Find clipboard", noremap = true, silent = true },
+          ["<Leader>fc"] = {
+            "<cmd>lua require('telescope.builtin').command_history()<cr>",
+            desc = "Find cmd history",
+            noremap = true,
+            silent = true,
+          },
+          ["<Leader>fp"] = {
+            "<cmd>lua require'telescope'.extensions.project.project{}<cr>",
+            desc = "Find projects",
+            noremap = true,
+            silent = true,
+          },
+          ["<Leader>ft"] = { "<cmd>TodoTelescope<cr>", desc = "Find todos", noremap = true, silent = true },
           ["<Leader>fw"] = {
             "<cmd>lua require('my_funcs').live_grep_raw({default_text = vim.fn.expand('<cword>')})<cr>",
             desc = "Find words",
