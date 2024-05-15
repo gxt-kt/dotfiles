@@ -30,10 +30,6 @@ return {
     end,
   },
   {
-    "nvim-telescope/telescope-project.nvim",
-    config = function() require("telescope").load_extension "project" end,
-  },
-  {
     "AckslD/nvim-neoclip.lua",
     requires = {
       -- you'll need at least one of these
@@ -51,7 +47,7 @@ return {
               ["<C-p>"] = require("telescope.actions").move_selection_previous,
               paste = "<CR>",
               delete = "<c-d>", -- delete an entry
-              edit = "<c-e>", -- edit an entry
+              edit = "<c-e>",   -- edit an entry
               custom = {},
             },
             n = {
@@ -61,7 +57,7 @@ return {
               ["<C-p>"] = require("telescope.actions").move_selection_previous,
               paste = "<CR>",
               delete = "d", -- delete an entry
-              edit = "e", -- edit an entry
+              edit = "e",   -- edit an entry
               custom = {},
             },
           },

@@ -209,7 +209,7 @@ return {
             silent = true,
           },
           ["<Leader>fp"] = {
-            "<cmd>lua require'telescope'.extensions.project.project{}<cr>",
+            "<cmd>ProjectMgr<cr>",
             desc = "Find projects",
             noremap = true,
             silent = true,
@@ -265,6 +265,29 @@ return {
             noremap = true,
             silent = true,
           },
+
+          -- markdown preview
+          ["md"] = {
+            "<cmd>MarkdownPreview<cr>",
+            desc = "markdown preview",
+            noremap = true,
+            silent = true,
+          },
+
+          -- leetcode
+          -- lvim.builtin.which_key.mappings.L = nil
+          ["<Leader>L"] = { name = "Leetcode" },
+          ["<Leader>Ll"] = { "<cmd>Leet list<CR>", desc = "Leet list", noremap = true, silent = true },
+          ["<Leader>Lm"] = { "<cmd>Leet menu<CR>", desc = "Leet menui", noremap = true, silent = true },
+          -- [<Leader>"Lt"] = { "<cmd>Leet tabs<CR>", "desc = Leet tabs" , noremap = true, silent = true},
+          ["<leader>Lr"] = { "<cmd>Leet run<CR>", desc = "Leet run", noremap = true, silent = true },
+          ["<leader>Lt"] = { "<cmd>Leet test<CR>", desc = "Leet test", noremap = true, silent = true },
+          ["<leader>Ls"] = { "<cmd>Leet submit<CR>", desc = "Leet submit", noremap = true, silent = true },
+          ["<leader>Lc"] = { "<cmd>Leet cache<CR>", desc = "Leet cache", noremap = true, silent = true },
+          ["<leader>Li"] = { "<cmd>Leet info<CR>", desc = "Leet info", noremap = true, silent = true },
+          ["<leader>L<tab>"] = { "<cmd>Leet desc<CR>", desc = "Leet desc", noremap = true, silent = true },
+          ["<leader>Lv"] = { "<cmd>Leet console<CR>", desc = "Leet console", noremap = true, silent = true },
+
         },
         v = {
           -- This will not change the clipboard content in V mode

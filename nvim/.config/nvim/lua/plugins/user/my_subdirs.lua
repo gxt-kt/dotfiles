@@ -6,7 +6,6 @@ local res = {}
 -- NOTE: 只需要更改这里，添加你需要添加的文件夹
 local dires = {
   "plugins",
-  "file_types",
 }
 
 local current_file_name = debug.getinfo(1, "S").source:sub(2)
