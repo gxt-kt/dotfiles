@@ -142,6 +142,8 @@ fi
 
 alias tmux-ls="tmux list-sessions"
 alias tmux-cd="tmux attach-session -t"
+alias tmux-rm="tmux kill-session -t"
+alias tmux-reboot="tmux kill-server && tmux || tmux"
 
 # default set TMUX in tmux. 
 # if [[ -v TMUX ]];
@@ -222,8 +224,8 @@ alias r="ranger"
 # command -v ccat &>/dev/null && alias cat="ccat"
 alias cat='bash -c '\''my_cat=""; if command -v bat >/dev/null 2>&1; then my_cat="bat --style=plain"; else if command -v ccat >/dev/null 2>&1; then my_cat="ccat"; else my_cat="cat"; fi; fi; if [ $# -gt 0 ]; then $my_cat "$@"; else $my_cat .; fi'\'' bash'
 # 依次检测lvim/nvim是否存在，存在替换成对应的
-alias v='bash -c '\''my_vim=""; if command -v lvim >/dev/null 2>&1; then my_vim="lvim"; else if command -v nvim >/dev/null 2>&1; then my_vim="nvim"; else my_vim="vim"; fi; fi; if [ $# -gt 0 ]; then $my_vim "$@"; else $my_vim .; fi'\'' bash'
-alias vim='bash -c '\''my_vim=""; if command -v lvim >/dev/null 2>&1; then my_vim="lvim"; else if command -v nvim >/dev/null 2>&1; then my_vim="nvim"; else my_vim="vim"; fi; fi; if [ $# -gt 0 ]; then $my_vim "$@"; else $my_vim .; fi'\'' bash'
+alias v='bash -c '\''my_vim=""; if command -v nvim >/dev/null 2>&1; then my_vim="nvim"; else if command -v lvim >/dev/null 2>&1; then my_vim="lvim"; else my_vim="vim"; fi; fi; if [ $# -gt 0 ]; then $my_vim "$@"; else $my_vim .; fi'\'' bash'
+alias vim='bash -c '\''my_vim=""; if command -v nvim >/dev/null 2>&1; then my_vim="nvim"; else if command -v lvim >/dev/null 2>&1; then my_vim="lvim"; else my_vim="vim"; fi; fi; if [ $# -gt 0 ]; then $my_vim "$@"; else $my_vim .; fi'\'' bash'
 alias cf="cd \$(fd --type d --hidden | fzf)"
 alias cfh="cd ~ && cd \$(fd --type d --hidden | fzf)" # search from home
 #🔼🔼🔼
@@ -231,8 +233,8 @@ alias cfh="cd ~ && cd \$(fd --type d --hidden | fzf)" # search from home
 #🔽🔽🔽
 # lunarvim
 export PATH="$HOME/.local/bin":$PATH
-export EDITOR=$(bash -c 'if command -v lvim >/dev/null 2>&1; then echo "lvim"; elif command -v nvim >/dev/null 2>&1; then echo "nvim"; else echo "vim"; fi')
-# export EDITOR='lvim'
+export EDITOR=$(bash -c 'if command -v nvim >/dev/null 2>&1; then echo "nvim"; elif command -v lvim >/dev/null 2>&1; then echo "lvim"; else echo "vim"; fi')
+# export EDITOR='nvim'
 #🔼🔼🔼
 
 #🔽🔽🔽
