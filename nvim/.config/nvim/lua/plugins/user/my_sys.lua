@@ -79,7 +79,11 @@ end
 -- 读取配置文件并检查特定的配置项
 function M.GetConfig(config_path, field, default_value)
   -- 加载配置文件
-  local config = require(config_path)
+  -- local config = require(config_path)
+  local status_ok, config = pcall(require, "config_")
+  if not status_ok then
+    return default_value
+  end
 
   -- 检查配置项是否存在
   local value = config

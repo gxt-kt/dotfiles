@@ -2,7 +2,7 @@
 
 return {
   -- 在neovim中刷leetcode
-  enabled = require("my_sys").GetConfig("config", "leetcode.leetcode_enabled", true),
+  enabled = require("my_sys").GetConfig("config_", "leetcode.leetcode_enabled", true),
 
   "kawre/leetcode.nvim",
   build = ":TSUpdate html",
@@ -21,14 +21,14 @@ return {
     --
     ---@type lc.lang
     -- lang = "cpp",
-    lang = require("my_sys").GetConfig("config", "leetcode.lang", "cpp"),
+    lang = require("my_sys").GetConfig("config_", "leetcode.lang", "cpp"),
     cn = { -- leetcode.cn
       -- enabled = true, ---@type boolean
       -- translator = false, ---@type boolean
       -- translate_problems = true, ---@type boolean
-      enabled = require("my_sys").GetConfig("config", "leetcode.cn.cn_enabled", true),
-      translator = require("my_sys").GetConfig("config", "leetcode.cn.translator", false),
-      translate_problems = require("my_sys").GetConfig("config", "leetcode.cn.translate_problems", true),
+      enabled = require("my_sys").GetConfig("config_", "leetcode.cn.cn_enabled", true),
+      translator = require("my_sys").GetConfig("config_", "leetcode.cn.translator", false),
+      translate_problems = require("my_sys").GetConfig("config_", "leetcode.cn.translate_problems", true),
     },
     injector = { ---@type table<lc.lang, lc.inject>
       ["cpp"] = {
@@ -62,8 +62,8 @@ return {
 
     ---@type boolean
     image_support = (function()
-      local leetcode_show_image = require("my_sys").GetConfig("config", "leetcode.show_image", false)
-      local image_enabled = require("my_sys").GetConfig("config", "image.image_enabled", false)
+      local leetcode_show_image = require("my_sys").GetConfig("config_", "leetcode.show_image", false)
+      local image_enabled = require("my_sys").GetConfig("config_", "image.image_enabled", false)
       return image_enabled and leetcode_show_image
     end)(), -- setting this to `true` will disable question description wrap
   },

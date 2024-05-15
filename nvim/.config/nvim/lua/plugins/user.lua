@@ -11,7 +11,7 @@ package.path = package.path .. ";" .. current_file_path .. "user/?.lua"
 -- 添加配置文件所在路径下的lua文件
 package.path = package.path .. ";" .. vim.fn.stdpath("config") .. "/?.lua"
 -- 添加配置文件
-require("config")
+local _, _ = pcall(require, "config_")
 -- require("my_sys").DEBUG("package.path", package.path)
 
 local res = require("my_sys").GetDirectoryLuaFileContents(current_file_path .. "user")

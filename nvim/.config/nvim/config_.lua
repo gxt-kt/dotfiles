@@ -1,5 +1,16 @@
 -- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
+
+-- vim.opt.colorcolumn = "80" -- a line at 80 column postion -- 80 for google c++ style
+
+-- vim.api.nvim_command([[
+--   augroup AutoFormat
+--     autocmd!
+--     autocmd FileType cpp,c,cxx,h,hpp,python,sh setlocal cc=120
+--   augroup END
+-- ]])
+
+
 return {
   notify = {
     notify_enabled = false,

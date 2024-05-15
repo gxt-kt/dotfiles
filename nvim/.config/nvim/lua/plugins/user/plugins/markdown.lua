@@ -15,7 +15,7 @@ return {
     -- 增强笔记文件显示，markdown, orgmode, neorg
     -- show latex on markdown file can use plugin "jbyuki/nabla.nvim"
     'lukas-reineke/headlines.nvim',
-    enabled = require("my_sys").GetConfig("config", "markdown.highlight_by_headlines", true),
+    enabled = require("my_sys").GetConfig("config_", "markdown.highlight_by_headlines", true),
     ft = "markdown",
     dependencies = "nvim-treesitter/nvim-treesitter",
     config = function()

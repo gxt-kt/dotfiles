@@ -7,14 +7,14 @@ return {
   {
     "vhyrro/luarocks.nvim",
     priority = 1000, -- this plugin needs to run before anything else
-    enabled = require("my_sys").GetConfig("config", "image.image_enabled", false),
+    enabled = require("my_sys").GetConfig("config_", "image.image_enabled", false),
     opts = {
       rocks = { "magick" },
     },
   },
   {
     "3rd/image.nvim",
-    enabled = require("my_sys").GetConfig("config", "image.image_enabled", false),
+    enabled = require("my_sys").GetConfig("config_", "image.image_enabled", false),
     dependencies = { "luarocks.nvim" },
     config = function()
       -- -- Example for configuring Neovim to load user-installed installed Lua rocks:
