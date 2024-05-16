@@ -10,8 +10,9 @@ return {
         ["<Space>"] = "copy_to_clipboard", -- disable space until we figure out which-key disabling
         -- ["<S-h>"] = "prev_source",
         -- ["<S-l>"] = "next_source",
-        p = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
-        P = false,
+        P = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
+        -- P = false,
+        p = "paste_from_clipboard",
         o = "system_open",
         y = "copy_selector",
         h = "parent_or_close",
