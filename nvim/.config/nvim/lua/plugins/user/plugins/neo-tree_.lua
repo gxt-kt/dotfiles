@@ -23,11 +23,16 @@ return {
       },
     }
     opts.filesystem = {
+      follow_current_file = {
+        enabled = true,
+        leave_dirs_open = false,
+      },
+      hijack_netrw_behavior = "open_current",
       filtered_items = {
         -- set always show hidden file
         visible = true,
-      }
+      },
     }
     return opts
-  end
+  end,
 }

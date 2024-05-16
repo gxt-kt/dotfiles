@@ -208,7 +208,7 @@ return {
             silent = true,
           },
           ["<Leader>fp"] = {
-            "<cmd>ProjectMgr<cr>",
+            "<cmd>lua require'telescope'.extensions.projects.projects{}<cr>",
             desc = "Find projects",
             noremap = true,
             silent = true,
