@@ -208,10 +208,13 @@ return {
             silent = true,
           },
           ["<Leader>fp"] = {
-            "<cmd>lua require'telescope'.extensions.projects.projects{}<cr>",
+            function()
+              vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(":CdProject", true, true, true), "n", true)
+              vim.api.nvim_input "<Tab>"
+            end,
             desc = "Find projects",
-            noremap = true,
-            silent = true,
+            -- noremap = true,
+            -- silent = true,
           },
           ["<Leader>ft"] = { "<cmd>TodoTelescope<cr>", desc = "Find todos", noremap = true, silent = true },
           ["<Leader>fw"] = {
