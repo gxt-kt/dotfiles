@@ -1,4 +1,4 @@
-if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
+-- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
 require "dap.c_cpp_rust"
 require "dap.dap-lldb"
@@ -12,9 +12,7 @@ return {
     },
   },
   {
-    "jay-babu/mason-nvim-dap.nvim",
-    opts = {
-      handlers = {},
-    },
+    "theHamsta/nvim-dap-virtual-text",
+    config = function() require("nvim-dap-virtual-text").setup() end,
   },
 }
