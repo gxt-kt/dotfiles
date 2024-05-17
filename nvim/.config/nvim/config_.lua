@@ -1,6 +1,5 @@
 -- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
-
 -- vim.opt.colorcolumn = "80" -- a line at 80 column postion -- 80 for google c++ style
 
 return {
@@ -13,7 +12,9 @@ return {
   gp = {
     gp_enabled = true,
     gp_proxy = "127.0.0.1:7890",
-    -- gp_openai_key_file_path = vim.fn.stdpath("config") .. "/.openai_api_key"
+    openai_api_key_string = "111", -- 有string优先str，没有就cat file_path文件
+    -- gp_openai_key_file_path = ""
+    -- gp_openai_key_file_path = vim.fn.stdpath "config" .. "/.openai_api_key",
   },
   markdown = {
     highlight_by_headlines = true,
