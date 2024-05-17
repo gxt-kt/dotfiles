@@ -7,8 +7,9 @@ local openai_api_key_string = require("my_sys").GetConfig("config_", "gp.openai_
 -- require("my_sys").DEBUG("openai_api_key_file_path", openai_api_key_file_path)
 -- require("my_sys").DEBUG("openai_api_key_string", openai_api_key_string)
 
-local openai_api_key = (openai_api_key_string ~= "") and { openai_api_key_string }
+local openai_api_key = (openai_api_key_string ~= "") and openai_api_key_string
   or ((openai_api_key_file_path == "") and { "" } or { "cat", openai_api_key_file_path })
+-- require("my_sys").DEBUG("openai_api_key", openai_api_key)
 
 -- chatgpt openai插件
 return {
