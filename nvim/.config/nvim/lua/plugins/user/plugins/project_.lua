@@ -13,7 +13,6 @@ return {
   -- },
   {
     "LintaoAmons/cd-project.nvim",
-    dependencies = { "folke/noice.nvim" },
     config = function() end,
   },
 }
