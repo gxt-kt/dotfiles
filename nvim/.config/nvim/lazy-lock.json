@@ -77,6 +77,7 @@
   "nvim-window-picker": { "branch": "main", "commit": "41cfaa428577c53552200a404ae9b3a0b5719706" },
   "outline.nvim": { "branch": "main", "commit": "dbd836893fb99cfc33119d7c4abbdb700210f54b" },
   "papercolor-theme": { "branch": "master", "commit": "0cfe64ffb24c21a6101b5f994ca342a74c977aef" },
+  "persistent-breakpoints.nvim": { "branch": "main", "commit": "01e43512ef8d137f2b9e5c1c74fd35c37e787b59" },
   "plenary.nvim": { "branch": "master", "commit": "50012918b2fc8357b87cff2a7f7f0446e47da174" },
   "promise-async": { "branch": "main", "commit": "38a4575da9497326badd3995e768b4ccf0bb153e" },
   "resession.nvim": { "branch": "master", "commit": "cc819b0489938d03e4f3532a583354f0287c015b" },
