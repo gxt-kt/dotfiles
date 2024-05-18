@@ -8,8 +8,11 @@ keymap.set("n", "<leader>\\", "<C-w>v", opts)
 keymap.set("n", "<leader><BS>", "<C-w>v", opts)
 keymap.set("n", "<leader>-", "<C-w>s", opts)
 keymap.set("n", "<C-s>", "<cmd>w<cr>", opts)
-keymap.set("n", "<S-h>", "<cmd>bpre<cr>", opts)
-keymap.set("n", "<S-l>", "<cmd>bnext<cr>", opts)
+-- keymap.set("n", "<S-h>", "<cmd>bpre<cr>", opts)
+-- keymap.set("n", "<S-l>", "<cmd>bnext<cr>", opts)
+keymap.set("n", "<S-h>", "<cmd>lua require('astrocore.buffer').nav(vim.v.count1)<cr>", opts)
+keymap.set("n", "<S-l>", "<cmd>lua require('astrocore.buffer').nav(-vim.v.count1)<cr>", opts)
+--
 
 -- Visual --
 -- Stay in indent mode
