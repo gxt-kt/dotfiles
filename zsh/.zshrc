@@ -218,6 +218,7 @@ function proxy_status(){
 #🔽🔽🔽
 # alias
 alias r="ranger"
+command -v lolcat &>/dev/null && alias neofetch="neofetch | lolcat"
 # 依次检测bat/cat是否存在，存在替换成对应的，推荐使用bat，并且使用--style=plain更朴素一点
 # command -v ccat &>/dev/null && alias cat="ccat"
 alias cat='bash -c '\''my_cat=""; if command -v bat >/dev/null 2>&1; then my_cat="bat --style=plain"; else if command -v ccat >/dev/null 2>&1; then my_cat="ccat"; else my_cat="cat"; fi; fi; if [ $# -gt 0 ]; then $my_cat "$@"; else $my_cat .; fi'\'' bash'
