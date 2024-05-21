@@ -83,11 +83,9 @@ plugins=(
 	zsh-autosuggestions
 	zsh-completions
 	zsh-syntax-highlighting
-	autojump
-  sudo
+    sudo
 	extract
 	fzf
-  z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -309,18 +307,14 @@ alias trash-ll='trash-ls'
 alias clion='nohup /opt/clion/clion-2023.2.1/bin/clion.sh&>/dev/null'
 #🔼🔼🔼
 
-# autojump
+# zoxide
 #🔽🔽🔽
-j() {
-  local preview_cmd="ls {2..}"
-  if command -v exa &> /dev/null; then
-    preview_cmd="exa -l {2}"
-  fi
-
+eval "$(zoxide init zsh)"
+z() {
   if [[ $# -eq 0 ]]; then
-    cd "$(autojump -s | sort -k1gr | awk -F : '$1 ~ /[0-9]/ && $2 ~ /^\s*\// {print $1 $2}' | fzf --height 80% --reverse --inline-info --preview "$preview_cmd" --preview-window down:50% | cut -d$'\t' -f2- | sed 's/^\s*//')"
+    __zoxide_zi
   else
-    cd $(autojump $@)
+    __zoxide_z $@
   fi
 }
 #🔼🔼🔼
