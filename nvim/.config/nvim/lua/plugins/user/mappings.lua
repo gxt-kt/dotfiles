@@ -203,6 +203,7 @@ return {
             noremap = true,
             silent = true,
           },
+          ["<Leader>fn"] = { "<cmd>Telescope noice<cr>", desc = "Find noice history", noremap = true, silent = true },
           ["<Leader>fy"] = { "<cmd>Telescope neoclip<cr>", desc = "Find clipboard", noremap = true, silent = true },
           ["<Leader>fc"] = {
             "<cmd>lua require('telescope.builtin').command_history()<cr>",
