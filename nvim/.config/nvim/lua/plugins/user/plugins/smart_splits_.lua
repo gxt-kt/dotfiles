@@ -10,10 +10,10 @@ return {
       -- 交换窗口时光标跟着动
       opts.cursor_follows_swapped_bufs = true
       -- ctrl+alt+hjkl to swap window
-      vim.keymap.set('n', '<c-a-h>', require('smart-splits').swap_buf_left)
-      vim.keymap.set('n', '<c-a-j>', require('smart-splits').swap_buf_down)
-      vim.keymap.set('n', '<c-a-k>', require('smart-splits').swap_buf_up)
-      vim.keymap.set('n', '<c-a-l>', require('smart-splits').swap_buf_right)
+      vim.keymap.set("n", "<c-a-h>", require("smart-splits").swap_buf_left)
+      vim.keymap.set("n", "<c-a-j>", require("smart-splits").swap_buf_down)
+      vim.keymap.set("n", "<c-a-k>", require("smart-splits").swap_buf_up)
+      vim.keymap.set("n", "<c-a-l>", require("smart-splits").swap_buf_right)
     end,
   },
   -- {
