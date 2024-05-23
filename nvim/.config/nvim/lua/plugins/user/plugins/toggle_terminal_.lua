@@ -97,11 +97,19 @@ function _G.set_terminal_keymaps()
   vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
   -- vim.keymap.set('t', 'jj', [[<C-\><C-n>]], opts) // inconvenient in ranger
   -- vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts) // inconvenient in ranger
-  vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
-  vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
-  vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
-  vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
   -- vim.keymap.set("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
+  if pcall(require, "smart-splits") then
+    -- for smart-splits
+    vim.keymap.set("t", "<C-h>", [[<cmd>lua require('smart-splits').move_cursor_left()<cr>]], opts)
+    vim.keymap.set("t", "<C-j>", [[<cmd>lua require('smart-splits').move_cursor_down()<cr>]], opts)
+    vim.keymap.set("t", "<C-k>", [[<cmd>lua require('smart-splits').move_cursor_up()<cr>]], opts)
+    vim.keymap.set("t", "<C-l>", [[<cmd>lua require('smart-splits').move_cursor_right()<cr>]], opts)
+  else
+    vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], opts)
+    vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], opts)
+    vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], opts)
+    vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], opts)
+  end
 end
 
 return M
