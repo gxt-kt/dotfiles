@@ -21,30 +21,18 @@ ubuntu() {
   
 }
 
-# # Detect whether current is Archlinux
-# if [ "$(grep -E '^ID=' /etc/os-release | cut -d'=' -f2)" = "arch" ]; then
-#     archlinux
-# fi
-#
-# # Detect whether current is Ubuntu
-# if [ "$(grep -E '^ID=' /etc/os-release | cut -d'=' -f2)" = "ubuntu" ]; then
-#     ubuntu
-# fi
-#
-# # Detect whether current is macos
-# if [ "$(grep -E '^ID=' /etc/os-release | cut -d'=' -f2)" = "darwin" ]; then
-#     macos
-# fi
-# # Detect whether current is macos
-# if [ "$(uname)" = "Darwin" ]; then
-#   macos
-# fi
+if [ -f "/etc/os-release" ]; then
+  # Detect whether current is Archlinux
+  if [ "$(grep -E '^ID=' /etc/os-release | cut -d'=' -f2)" = "arch" ]; then
+      archlinux
+  fi
+  # Detect whether current is Ubuntu
+  if [ "$(grep -E '^ID=' /etc/os-release | cut -d'=' -f2)" = "ubuntu" ]; then
+      ubuntu
+  fi
+fi
 
-# Detect the current operating system
-os_id=$(grep -E '^ID=' /etc/os-release | cut -d'=' -f2)
-case "$os_id" in
-    "arch") archlinux ;;
-    "ubuntu") ubuntu ;;
-    "darwin") macos ;;
-    *) ;;
-esac
+# Detect whether current is macos
+if [ "$(uname)" = "Darwin" ]; then
+  macos
+fi
