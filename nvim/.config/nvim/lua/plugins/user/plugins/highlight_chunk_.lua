@@ -9,7 +9,7 @@ return {
     "shellRaining/hlchunk.nvim",
     event = { "UIEnter" },
     config = function()
-      vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
+      -- vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
       require("hlchunk").setup({
         chunk = {
           enable = true,
