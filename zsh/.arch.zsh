@@ -1,5 +1,5 @@
 macos() {
-  echo "This is a macOS system"
+  # echo "This is a macOS system"
 }
 
 archlinux() {
