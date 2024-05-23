@@ -124,13 +124,10 @@ source $ZSH/oh-my-zsh.sh
 ################################################
 ################################################
 
-
 #🔽🔽🔽
-# Autostart X at login
-# Ref : https://wiki.archlinux.org/title/Xinit#Autostart_X_at_login
-if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-  exec startx
-fi
+if [ -f $HOME/.arch.zsh ]; then  
+    source $HOME/.arch.zsh  
+fi  
 #🔼🔼🔼
 
 #🔽🔽🔽
@@ -300,12 +297,6 @@ alias trash-autoclean='trash-empty 30'
 alias trash-cd='cd ${HOME}/.local/share/Trash'
 alias trash-ls='trash-list'
 alias trash-ll='trash-ls'
-#🔼🔼🔼
-
-
-# soft ware
-#🔽🔽🔽
-alias clion='nohup /opt/clion/clion-2023.2.1/bin/clion.sh&>/dev/null'
 #🔼🔼🔼
 
 # zoxide
