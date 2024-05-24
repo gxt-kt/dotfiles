@@ -8,10 +8,11 @@ import argparse
 
 
 convert_cnt = 0
+successful_cnt = 0
 
 
 def convert_encoding(file, input_encoding, output_encoding):
-    global convert_cnt
+    global convert_cnt, successful_cnt
     convert_cnt += 1
     print(f"[{convert_cnt}]：{file} ", end="")
     try:
@@ -29,6 +30,7 @@ def convert_encoding(file, input_encoding, output_encoding):
     with codecs.open(file, "w", output_encoding) as f:
         try:
             f.write(content)
+            successful_cnt += 1
         except Exception as e:
             print(f"文件写入失败：{e}")
             return
@@ -60,3 +62,4 @@ args = parser.parse_args()
 
 if __name__ == "__main__":
     convert_directory(args.path, args.input_encoding, args.output_encoding)
+    print("转换")
