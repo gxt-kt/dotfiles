@@ -62,4 +62,4 @@ args = parser.parse_args()
 
 if __name__ == "__main__":
     convert_directory(args.path, args.input_encoding, args.output_encoding)
-    print("转换")
+    print("总计检测{}个文件，转换成功{}个", convert_cnt, successful_cnt)
