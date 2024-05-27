@@ -64,6 +64,9 @@ return {
         ["<Leader>b"] = { desc = "Buffers" },
         -- quick save
         -- ["<C-s>"] = { ":w!<cr>", desc = "Save File" },  -- change description but the same command
+
+        ["<Leader>lj"] = { vim.diagnostic.goto_next, desc = "next diagnostic", noremap = true, silent = true },
+        ["<Leader>lk"] = { vim.diagnostic.goto_prev, desc = "prev diagnostic", noremap = true, silent = true },
       },
       t = {
         -- setting a mapping to false will disable it
