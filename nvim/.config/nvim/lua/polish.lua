@@ -9,6 +9,16 @@
 -- https://github.com/AstroNvim/AstroNvim/issues/2109
 vim.on_key(nil, vim.api.nvim_get_namespaces()["auto_hlsearch"])
 
+-- set for ufo and statuscol
+-- https://github.com/kevinhwang91/nvim-ufo/issues/4#issuecomment-1512772530
+vim.o.foldcolumn = "1" -- '0' is not bad
+vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+-- larger icon
+-- vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+
 -- Set up custom filetypes
 vim.filetype.add {
   extension = {

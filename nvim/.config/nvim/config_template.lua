@@ -36,4 +36,7 @@ return {
     -- this plugin start is too slow(about 50ms)
     persistent_breakpoints_enabled = false,
   },
+  heirline = {
+    statuscol_enabled = false,
+  },
 }
