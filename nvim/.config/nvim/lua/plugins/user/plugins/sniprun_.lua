@@ -3,9 +3,10 @@
 return {
   -- 支持快速片段化运行代码
   "michaelb/sniprun",
-  build = "bash ./install.sh",
+  branch = "master",
+  build = "sh install.sh",
   config = function()
-    require("sniprun").setup({
+    require("sniprun").setup {
       display = {
         -- "Classic",       --# display results in the command-line  area
         -- "VirtualTextOk", --# display ok results as virtual text (multiline is shortened)
@@ -17,6 +18,6 @@ return {
         -- "NvimNotify",              --# display with the nvim-notify plugin
         -- "Api"                      --# return output to a programming interface
       },
-    })
+    }
   end,
 }
