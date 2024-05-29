@@ -37,6 +37,7 @@ return {
     persistent_breakpoints_enabled = false,
   },
   heirline = {
+    -- set false will use your own statuscol config
     statuscol_enabled = false,
   },
 }

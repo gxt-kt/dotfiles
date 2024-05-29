@@ -38,6 +38,8 @@ return {
       require("statuscol").setup {
         -- disable for neo-tree
         ft_ignore = { "neo-tree" },
+        -- whether to right-align the cursor line number with 'relativenumber' set
+        relculright = false,
         -- Default segments (fold -> sign -> line number + separator), explained below
         segments = {
           -- 显示别的乱七八遭的
