@@ -169,7 +169,8 @@ hash proxychains 2>/dev/null && { alias pro='proxychains'; }
 local proxy="127.0.0.1:7890"
 function proxy_on() {
     if (( $# > 0 )); then
-        valid=$(echo $@ | sed -n 's/\([0-9]\{1,3\}.\?\)\{4\}:\([0-9]\+\)/&/p')
+        # get "ip:port" format
+        valid=$(echo $@ | sed -E 's/([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}):([0-9]+)/\1:\2/')
         if [[ $valid != $@ ]]; then
             >&2 echo "Invalid address"
             return 1
