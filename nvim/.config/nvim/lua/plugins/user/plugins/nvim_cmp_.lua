@@ -21,14 +21,13 @@ return {                    -- override nvim-cmp plugin
     opts.mapping['<CR>'] = cmp.mapping.confirm({ select = true })
     -- 不用ctrl-enter,因为这个组合在tmux中识别不了
     -- opts.mapping["<C-Enter>"] = require("cmp").mapping(require('cmp').mapping.complete(), { "i", "c" })
-    opts.mapping["<C-n>"] = require("cmp").mapping({
-      i = function(fallbck)
-        if require("cmp").visible() then
-          cmp.select_next_item()
-        else
-          cmp.mapping.confirm({ behavior = require("cmp").ConfirmBehavior.Replace, select = true })
-        end
-      end,
+    opts.mapping["<Down>"] = require("cmp").mapping({
+      i = cmp.mapping.select_next_item(),
+      c = cmp.mapping.select_next_item(),
+    })
+    opts.mapping["<Up>"] = require("cmp").mapping({
+      i = cmp.mapping.select_prev_item(),
+      c = cmp.mapping.select_prev_item(),
     })
     -- require('cmp').mapping.complete(), { "i", "c" }
     opts.mapping["<Tab>"] = require("cmp").mapping({
