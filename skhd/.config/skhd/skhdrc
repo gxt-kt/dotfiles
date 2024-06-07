@@ -1,2 +1,3 @@
 cmd-return : kitty -d ~
-cmd-e : open ~
+cmd+shift-e : open ~
+cmd-i : open -a "System Preferences"
