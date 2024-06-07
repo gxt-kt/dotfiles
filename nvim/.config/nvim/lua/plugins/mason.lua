@@ -13,8 +13,8 @@ return {
       opts.ensure_installed = require("astrocore").list_insert_unique(opts.ensure_installed, {
         "lua_ls",
         -- add more arguments for adding more language servers
-        "clangd",
-        "pyright",
+        -- "clangd",
+        -- "pyright",
       })
     end,
   },

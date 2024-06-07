@@ -40,6 +40,8 @@ return {
     },
     -- enable servers that you already have installed without mason
     servers = {
+      -- use your own clangd in $PATH
+      "clangd"
       -- "pyright"
     },
     -- customize language server configuration options passed to `lspconfig`
