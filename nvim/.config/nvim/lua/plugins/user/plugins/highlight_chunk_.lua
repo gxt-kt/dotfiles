@@ -3,25 +3,21 @@
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
-    enabled = false
+    enabled = false,
   },
   {
     "shellRaining/hlchunk.nvim",
     event = { "UIEnter" },
     config = function()
       -- vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
-      require("hlchunk").setup({
+      require("hlchunk").setup {
         chunk = {
           enable = true,
-          use_treesitter = false,
-          notify = true, -- notify if some situation(like disable chunk mod double time)
+          use_treesitter = true,
+          max_file_size = 1024 * 1024,
           exclude_filetypes = {
             aerial = true,
             dashboard = true,
-          },
-          support_filetypes = {
-            "*.lua",
-            "*.js",
           },
           chars = {
             horizontal_line = "─",
@@ -33,6 +29,9 @@ return {
           style = {
             { fg = "#CB8764" },
           },
+          error_sign = true,
+          -- duration = 150,
+          delay = 50,
         },
         indent = {
           enable = true, --
@@ -42,7 +41,7 @@ return {
           use_treesitter = false,
           style = {
             -- { fg = vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui") }
-            { fg = "#51576e" }
+            { fg = "#51576e" },
           },
         },
         line_num = {
@@ -56,10 +55,10 @@ return {
             "․",
           },
           style = {
-            vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg", "gui"),
+            vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID "Whitespace"), "fg", "gui"),
           },
         },
-      })
-    end
-  }
+      }
+    end,
+  },
 }
