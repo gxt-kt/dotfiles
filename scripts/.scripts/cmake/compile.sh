@@ -53,8 +53,13 @@ ExecBuild() {
   myecho "============================================="
   myecho "make"
   myecho "============================================="
-  cpu_cores=$(grep -c '^processor' /proc/cpuinfo)  
-  if ! make -j${cpu_cores}; then
+  # for macos
+  if [ "$(uname)" = "Darwin" ]; then
+    cpu_cores=$(sysctl -n hw.physicalcpu)  
+  else
+    cpu_cores=$(grep -c '^processor' /proc/cpuinfo)  
+  fi
+  if ! make -j$((cpu_cores - 2)); then
     echo -e '\033[31m[ ERROR ] : Failed Run "make"\033[0m'
     exit 1
   fi
