@@ -22,7 +22,7 @@ return {
       package.path = package.path .. ";" .. vim.fn.expand "$HOME" .. "/.luarocks/share/lua/5.1/?/init.lua;"
       package.path = package.path .. ";" .. vim.fn.expand "$HOME" .. "/.luarocks/share/lua/5.1/?.lua;"
       require("image").setup {
-        backend = "ueberzug",
+        backend = require("my_sys").GetConfig("config_", "image.backend", "ueberzug"),
         integrations = {
           markdown = {
             enabled = true,
