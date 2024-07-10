@@ -1,6 +1,9 @@
 -- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
-vim.cmd([[autocmd BufNewFile,BufRead *.launch set filetype=xml]])
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*.launch",
+  command = "set filetype=xml",
+})
 
 -- set python tab is 4
 vim.api.nvim_create_autocmd("FileType", {
@@ -11,9 +14,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- create colorcolum for cpp
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = { "*.cpp", "*.cc", "*.c", "*.h", "*.hpp", "*.cxx" },
-  callback = function()
-    vim.opt_local.colorcolumn = { 80 }
-  end,
+  callback = function() vim.opt_local.colorcolumn = { 80 } end,
 })
 
 -- Sovle txt bug use kitty+tmux and show image
@@ -21,6 +22,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 vim.api.nvim_create_autocmd({ "VimLeave" }, {
   callback = function()
     -- do nothing
-    vim.fn.jobstart('', { detach = true })
+    vim.fn.jobstart("", { detach = true })
   end,
 })

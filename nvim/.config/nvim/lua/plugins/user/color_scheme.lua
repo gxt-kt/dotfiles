@@ -37,16 +37,17 @@ return {
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    init = function()
-      -- latte, frappe, macchiato, mocha
-      vim.g.catppuccin_flavour = "frappe"
+    config = function()
+      require("catppuccin").setup {
+        flavour = "frappe", -- latte, frappe, macchiato, mocha
+      }
     end,
   },
   {
-    "EdenEast/nightfox.nvim"
+    "EdenEast/nightfox.nvim",
   },
   {
-    "sainnhe/everforest"
+    "sainnhe/everforest",
   },
   {
     "morhetz/gruvbox",
@@ -59,18 +60,16 @@ return {
   },
   {
     "marko-cerovac/material.nvim",
-    init = function()
-      vim.g.material_style = "palenight"
-    end,
+    init = function() vim.g.material_style = "palenight" end,
     config = function()
-      require("material").setup({
+      require("material").setup {
         contrast = {
-          terminal = false,            -- Enable contrast for the built-in terminal
-          sidebars = false,            -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
-          floating_windows = false,    -- Enable contrast for floating windows
-          cursor_line = false,         -- Enable darker background for the cursor line
+          terminal = false, -- Enable contrast for the built-in terminal
+          sidebars = false, -- Enable contrast for sidebar-like windows ( for example Nvim-Tree )
+          floating_windows = false, -- Enable contrast for floating windows
+          cursor_line = false, -- Enable darker background for the cursor line
           non_current_windows = false, -- Enable darker background for non-current windows
-          filetypes = {},              -- Specify which filetypes get the contrasted (darker) background
+          filetypes = {}, -- Specify which filetypes get the contrasted (darker) background
         },
         styles = {
           -- Give comments style such as bold, italic, underline etc.
@@ -103,17 +102,17 @@ return {
         },
         disable = {
           colored_cursor = false, -- Disable the colored cursor
-          borders = false,        -- Disable borders between verticaly split windows
-          background = false,     -- Prevent the theme from setting the background (NeoVim then uses your terminal background)
-          term_colors = false,    -- Prevent the theme from setting terminal colors
-          eob_lines = false,      -- Hide the end-of-buffer lines
+          borders = false, -- Disable borders between verticaly split windows
+          background = false, -- Prevent the theme from setting the background (NeoVim then uses your terminal background)
+          term_colors = false, -- Prevent the theme from setting terminal colors
+          eob_lines = false, -- Hide the end-of-buffer lines
         },
         high_visibility = {
-          lighter = false,         -- Enable higher contrast text for lighter style
-          darker = false,          -- Enable higher contrast text for darker style
+          lighter = false, -- Enable higher contrast text for lighter style
+          darker = false, -- Enable higher contrast text for darker style
         },
         lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
-        async_loading = true,      -- Load parts of the theme asyncronously for faster startup (turned on by default)
+        async_loading = true, -- Load parts of the theme asyncronously for faster startup (turned on by default)
         -- If you want to everride the default colors, set this to a function
         -- custom_colors = nil,
         custom_colors = function(colors)
@@ -129,7 +128,7 @@ return {
           -- HopNextKey1 = { fg = "#00ff00", bold = true },
           -- HopNextKey2 = { fg = "#0000ff" },
         }, -- Overwrite highlights with your own
-      })
+      }
     end,
   },
 
@@ -143,32 +142,28 @@ return {
     local pickers = require "telescope.pickers"
     local finders = require "telescope.finders"
     local sorters = require "telescope.sorters"
-    local dropdown = require "telescope.themes".get_dropdown()
+    local dropdown = require("telescope.themes").get_dropdown()
 
     local function enter(prompt_bufnr)
       local selected = actions_state.get_selected_entry()
-      local cmd = 'colorscheme ' .. selected[1]
+      local cmd = "colorscheme " .. selected[1]
       vim.cmd(cmd)
       actions.close(prompt_bufnr)
     end
 
-    local function move_next(prompt_bufnr)
-      actions.move_selection_next(prompt_bufnr)
-    end
-    local function move_prev(prompt_bufnr)
-      actions.move_selection_previous(prompt_bufnr)
-    end
+    local function move_next(prompt_bufnr) actions.move_selection_next(prompt_bufnr) end
+    local function move_prev(prompt_bufnr) actions.move_selection_previous(prompt_bufnr) end
 
     local function next_color(prompt_bufnr)
       move_next(prompt_bufnr)
       local selected = actions_state.get_selected_entry()
-      local cmd = 'colorscheme ' .. selected[1]
+      local cmd = "colorscheme " .. selected[1]
       vim.cmd(cmd)
     end
     local function prev_color(prompt_bufnr)
       move_prev(prompt_bufnr)
       local selected = actions_state.get_selected_entry()
-      local cmd = 'colorscheme ' .. selected[1]
+      local cmd = "colorscheme " .. selected[1]
       vim.cmd(cmd)
     end
 
@@ -177,7 +172,7 @@ return {
       --Modify the list of colors
       -- finder = finders.new_table {"gruvbox", "nordfox", "nightfox", "monokai", "tokyonight"},
       finder = finders.new_table(all_colors),
-      sorter = sorters.get_generic_fuzzy_sorter({}),
+      sorter = sorters.get_generic_fuzzy_sorter {},
 
       prompt_title = "Change Colorscheme: ( <C-n/p> <C-j/k> Enter )",
 
@@ -194,5 +189,5 @@ return {
     local colors = pickers.new(dropdown, opts)
 
     colors:find()
-  end
+  end,
 }
