@@ -1,12 +1,15 @@
-# How to use:
-# 1. copy this file to ~/.vimrc
-# 2. install plug.vim (install plug.vim to ~/.vim/autoload dir)
-#    $curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-# 3. install plugins in vim
-#    :PlugInstall
-# Others:
-# more plugin command see https://github.com/junegunn/vim-plug
-#
+" ================================================================================================
+" ================================================================================================
+" How to use:
+" 1. copy this file to ~/.vimrc
+" 2. install plug.vim (install plug.vim to ~/.vim/autoload dir)
+"    $curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" 3. install plugins in vim
+"    :PlugInstall
+" Others:
+" more plugin command see https://github.com/junegunn/vim-plug
+" ================================================================================================
+" ================================================================================================
 
 call plug#begin()
 Plug 'scrooloose/nerdtree'
