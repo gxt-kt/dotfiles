@@ -40,8 +40,8 @@ nnoremap <C-w> :wq<cr>
 map <leader>s <Plug>(easymotion-s2)
 
 " NERDTree
-nnoremap <leader>g :NERDTreeToggle<cr>
-nnoremap <leader>f :NERDTreeFind<cr>
+nnoremap <leader>e :NERDTreeToggle<cr>
+nnoremap <leader>o :NERDTreeFind<cr>
 
 " multiple-cursors
 " https://stackoverflow.com/questions/55202799/ideavim-multi-cursor-usage
