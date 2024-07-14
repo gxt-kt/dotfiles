@@ -1,6 +1,11 @@
 macos() {
   export LC_ALL=en_US.UTF-8  
   export LANG=en_US.UTF-8
+  # alias gcc="/opt/homebrew/bin/aarch64-apple-darwin23-gcc-14"
+  # alias g++="/opt/homebrew/bin/aarch64-apple-darwin23-g++-14"
+  # alias clang="/opt/homebrew/bin/aarch64-apple-darwin23-gcc-14"
+  # alias clang++="/opt/homebrew/bin/aarch64-apple-darwin23-g++-14"
+  # alias ld="/opt/homebrew/bin/"
 }
 
 archlinux() {

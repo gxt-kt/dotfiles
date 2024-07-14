@@ -59,6 +59,9 @@ return {
           ["<Leader>z"] = { "<cmd>MaximizerToggle<cr>", desc = "Max current buffer", noremap = true, silent = true },
 
           -- max current buffer
+          ["<Leader>dg"] = { "<cmd>Neogen<cr>", desc = "Neogen docs", noremap = true, silent = true },
+
+          -- max current buffer
           ["<Leader>s"] = {
             "<cmd>lua require('flash').jump()<cr>",
             desc = "Max current buffer",
