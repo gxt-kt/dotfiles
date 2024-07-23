@@ -1,6 +1,30 @@
 macos() {
+  alias updatedb="/usr/libexec/locate.update"
+
   export LC_ALL=en_US.UTF-8  
   export LANG=en_US.UTF-8
+
+
+
+  # header search file path
+  export C_INCLUDE_PATH=${C_INCLUDE_PATH}:/opt/homebrew/include/
+  export CPLUS_INCLUDE_PATH=${CPLUS_INCLUDE_PATH}:/opt/homebrew/include/
+  # set cmake header path
+  export CMAKE_INCLUDE_PATH=${CMAKE_INCLUDE_PATH}:/opt/homebrew/include/
+  # compiling lib search file path
+  export LIBRARY_PATH=${LIBRARY_PATH}:/opt/homebrew/lib/
+  # running lib search file path
+  export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/homebrew/lib/
+
+  # add llvm lib
+  # export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+  # export LDFLAGS=" -L/opt/homebrew/opt/Llvm/lib"
+  # export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+
+  # add openmp lib
+  # export LDFLAGS=" -L/opt/homebrew/opt/libomp/lib"
+  # export CPPFLAGS="-I/opt/homebrew/opt/libomp/include"}
+
   # alias gcc="/opt/homebrew/bin/aarch64-apple-darwin23-gcc-14"
   # alias g++="/opt/homebrew/bin/aarch64-apple-darwin23-g++-14"
   # alias clang="/opt/homebrew/bin/aarch64-apple-darwin23-gcc-14"
