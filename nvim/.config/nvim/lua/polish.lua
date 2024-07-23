@@ -31,3 +31,7 @@ vim.filetype.add {
     ["~/%.config/foo/.*"] = "fooscript",
   },
 }
+
+-- Set nofixeol and nofixendofline options
+vim.opt.fixeol = false
+vim.opt.fixendofline = false

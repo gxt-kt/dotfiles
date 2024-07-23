@@ -127,7 +127,10 @@ source $ZSH/oh-my-zsh.sh
 #🔽🔽🔽
 if [ -f $HOME/.arch.zsh ]; then  
     source $HOME/.arch.zsh  
-fi  
+fi
+if [ -f $HOME/.user.zsh ]; then  
+    source $HOME/.user.zsh  
+fi
 #🔼🔼🔼
 
 #🔽🔽🔽
