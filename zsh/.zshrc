@@ -312,15 +312,17 @@ alias trash-ll='trash-ls'
 
 # zoxide
 #🔽🔽🔽
-eval "$(zoxide init zsh)"
-z() {
-  if [[ $# -eq 0 ]]; then
-    __zoxide_zi
-  else
-    __zoxide_z $@
-  fi
-}
-j() {
-    z $@
-}
+if command -v zoxide &> /dev/null; then  
+    eval "$(zoxide init zsh)"
+    z() {
+      if [[ $# -eq 0 ]]; then
+        __zoxide_zi
+      else
+        __zoxide_z $@
+      fi
+    }
+    j() {
+        z $@
+    }
+fi
 #🔼🔼🔼

@@ -17,9 +17,13 @@ macos() {
   export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/homebrew/lib/
 
   # add llvm lib
-  # export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
-  # export LDFLAGS=" -L/opt/homebrew/opt/Llvm/lib"
-  # export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+  export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+  export LDFLAGS=" -L/opt/homebrew/opt/Llvm/lib"
+  export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
+  
+  # change c/cxx compile
+  export CC="/opt/homebrew/opt/llvm/bin/clang"
+  export CXX="/opt/homebrew/opt/llvm/bin/clang++"
 
   # add openmp lib
   # export LDFLAGS=" -L/opt/homebrew/opt/libomp/lib"
