@@ -33,9 +33,15 @@ return {
     injector = { ---@type table<lc.lang, lc.inject>
       ["cpp"] = {
         before = {
+          "#ifdef __linux__",
           "#include <bits/stdc++.h>",
           "",
           '#include "/home/gxt_kt/Projects/debugstream/debugstream.hpp"',
+          "#elif __APPLE__",
+          '#include "/Users/gxt_kt/Projects/debugstream/debugstream.hpp"',
+          '#include "stdc++.h"',
+          "#elif _WIN32",
+          "#endif",
           "using namespace std;",
         },
         after = {

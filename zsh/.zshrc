@@ -127,7 +127,10 @@ source $ZSH/oh-my-zsh.sh
 #🔽🔽🔽
 if [ -f $HOME/.arch.zsh ]; then  
     source $HOME/.arch.zsh  
-fi  
+fi
+if [ -f $HOME/.user.zsh ]; then  
+    source $HOME/.user.zsh  
+fi
 #🔼🔼🔼
 
 #🔽🔽🔽
@@ -228,7 +231,7 @@ alias cfh="cd ~ && cd \$(fd --type d --hidden | fzf)" # search from home
 #🔼🔼🔼
 
 #🔽🔽🔽
-# lunarvim
+# neovim
 export PATH="$HOME/.local/bin":$PATH
 export EDITOR=$(bash -c 'if command -v nvim >/dev/null 2>&1; then echo "nvim"; elif command -v lvim >/dev/null 2>&1; then echo "lvim"; else echo "vim"; fi')
 # export EDITOR='nvim'
@@ -291,6 +294,12 @@ alias words_to_mp3='python3 ~/.scripts/english_helper/generate_mp3_from_words.py
 export PATH="$HOME/.cargo/bin":$PATH
 #🔼🔼🔼
 
+# enable cmake generate compile json file
+#🔽🔽🔽
+export CMAKE_EXPORT_COMPILE_COMMANDS=1
+#🔼🔼🔼
+
+
 
 # trash-cli alis : https://github.com/andreafrancia/trash-cli
 #🔽🔽🔽
@@ -303,15 +312,17 @@ alias trash-ll='trash-ls'
 
 # zoxide
 #🔽🔽🔽
-eval "$(zoxide init zsh)"
-z() {
-  if [[ $# -eq 0 ]]; then
-    __zoxide_zi
-  else
-    __zoxide_z $@
-  fi
-}
-j() {
-    z $@
-}
+if command -v zoxide &> /dev/null; then  
+    eval "$(zoxide init zsh)"
+    z() {
+      if [[ $# -eq 0 ]]; then
+        __zoxide_zi
+      else
+        __zoxide_z $@
+      fi
+    }
+    j() {
+        z $@
+    }
+fi
 #🔼🔼🔼

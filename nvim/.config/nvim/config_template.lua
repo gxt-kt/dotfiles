@@ -10,6 +10,7 @@ return {
   },
   image = {
     image_enabled = false,
+    backend = "ueberzug", -- kitty or ueberzug
   },
   gp = {
     gp_enabled = true,

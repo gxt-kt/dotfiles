@@ -70,7 +70,7 @@ return {
               namespace = { "gitsign" },
               max_width = 1,
               colwidth = 1,
-              auto = false,
+              auto = true,
             },
             -- condition = { true, builtin.not_empty },
             click = "v:lua.ScLa",

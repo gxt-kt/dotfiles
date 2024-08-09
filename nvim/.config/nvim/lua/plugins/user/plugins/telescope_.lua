@@ -31,13 +31,15 @@ return {
   },
   {
     "AckslD/nvim-neoclip.lua",
-    requires = {
+    dependencies = {
+      { "kkharji/sqlite.lua", module = "sqlite" },
       -- you'll need at least one of these
       -- {'nvim-telescope/telescope.nvim'},
       -- {'ibhagwan/fzf-lua'},
     },
     config = function()
       require("neoclip").setup {
+        enable_persistent_history = true,
         keys = {
           telescope = {
             i = {
@@ -47,7 +49,7 @@ return {
               ["<C-p>"] = require("telescope.actions").move_selection_previous,
               paste = "<CR>",
               delete = "<c-d>", -- delete an entry
-              edit = "<c-e>",   -- edit an entry
+              edit = "<c-e>", -- edit an entry
               custom = {},
             },
             n = {
@@ -57,7 +59,7 @@ return {
               ["<C-p>"] = require("telescope.actions").move_selection_previous,
               paste = "<CR>",
               delete = "d", -- delete an entry
-              edit = "e",   -- edit an entry
+              edit = "e", -- edit an entry
               custom = {},
             },
           },

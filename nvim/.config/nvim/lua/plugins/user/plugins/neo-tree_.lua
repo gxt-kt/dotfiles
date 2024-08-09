@@ -24,6 +24,7 @@ return {
       },
     }
     opts.filesystem = {
+      use_libuv_file_watcher = true, -- use the OS level file watchers to detect changes
       follow_current_file = {
         enabled = true,
         leave_dirs_open = false,

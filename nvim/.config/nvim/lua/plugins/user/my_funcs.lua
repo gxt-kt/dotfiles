@@ -18,7 +18,10 @@ end
 
 M.live_grep_raw = function(opts, mode)
   opts = opts or {}
-  opts.prompt_title = '"search_string" [--hidden] [--no-ignore] [--iglob] (search_path)'
+  -- --hidden表示搜索隐藏文件
+  -- --no-ignore表示搜索gitignore文件
+  -- --igblob表示在指定路径搜索
+  opts.prompt_title = '"search_string" [--hidden] [--no-ignore] <[--iglob] (search_path)>'
   -- for normal mode
   if not opts.default_text then
     opts.default_text = '"' .. M.escape_rg_text(M.get_text(mode)) .. '"'
@@ -31,10 +34,30 @@ M.live_grep_raw = function(opts, mode)
   -- whether search all files
   if opts.search_all then opts.default_text = "--hidden --no-ignore " .. opts.default_text end
 
+  local actions = require "telescope.actions"
+  -- 设置快捷键
+  opts.mappings = {
+    i = {
+      ["<C-j>"] = actions.cycle_history_next,
+      ["<C-k>"] = actions.cycle_history_prev,
+      ["<C-n>"] = actions.move_selection_next,
+      ["<C-p>"] = actions.move_selection_previous,
+    },
+    n = {
+      ["<C-j>"] = actions.cycle_history_next,
+      ["<C-k>"] = actions.cycle_history_prev,
+      ["<C-n>"] = actions.move_selection_next,
+      ["<C-p>"] = actions.move_selection_previous,
+    },
+  }
+  -- 使用一个插件实现我们自己的telescope搜索
   require("telescope").extensions.live_grep_args.live_grep_args(
+    -- 使用默认主题
+    opts
+    -- 底下三个是telecope所自带的主题
     -- require('telescope.themes').get_ivy(opts)
     -- require('telescope.themes').get_cursor(opts)
-    require("telescope.themes").get_dropdown(opts)
+    -- require("telescope.themes").get_dropdown(opts)
   )
 end
 
