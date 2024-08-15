@@ -86,7 +86,12 @@ plugins=(
     sudo
 	extract
 	fzf
+	zsh-vi-mode
 )
+
+# plugin: zsh-vi-mode
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+ZVM_VI_EDITOR=nvim
 
 source $ZSH/oh-my-zsh.sh
 
@@ -136,7 +141,7 @@ fi
 #🔽🔽🔽
 # TMUX config
 # if set this , home and end in tmux will be strange, need remap home and end in tmux.
-# export TERM=xterm-256color
+export TERM=xterm-256color
 
 alias tmux-ls="tmux list-sessions"
 alias tmux-cd="tmux attach-session -t"
