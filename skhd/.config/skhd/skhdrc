@@ -1,3 +1,6 @@
 cmd-return : kitty -d ~ --title "kitty"
 cmd+shift-e : open ~
 cmd-i : open -a "System Preferences"
+
+# cmd-tab : open -a 'Mission Control'  
+cmd-tab : bash ~/.scripts/macos/misson_control.sh
