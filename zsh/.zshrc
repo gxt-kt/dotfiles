@@ -90,8 +90,9 @@ plugins=(
 )
 
 # plugin: zsh-vi-mode
-ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-ZVM_VI_EDITOR=nvim
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk # press "jk" to enter normal mode
+ZVM_ESCAPE_TIMEOUT=0.1 # wait time for escape bind key (default is 0.3s)
+ZVM_VI_EDITOR=nvim # visual mode "vv" use editor to edit cmd
 ZVM_INIT_MODE=sourcing
 
 source $ZSH/oh-my-zsh.sh
@@ -232,8 +233,6 @@ alias cat='bash -c '\''my_cat=""; if command -v bat >/dev/null 2>&1; then my_cat
 # 依次检测lvim/nvim是否存在，存在替换成对应的
 alias v='bash -c '\''my_vim=""; if command -v nvim >/dev/null 2>&1; then my_vim="nvim"; else if command -v lvim >/dev/null 2>&1; then my_vim="lvim"; else my_vim="vim"; fi; fi; if [ $# -gt 0 ]; then $my_vim "$@"; else $my_vim .; fi'\'' bash'
 alias vim='bash -c '\''my_vim=""; if command -v nvim >/dev/null 2>&1; then my_vim="nvim"; else if command -v lvim >/dev/null 2>&1; then my_vim="lvim"; else my_vim="vim"; fi; fi; if [ $# -gt 0 ]; then $my_vim "$@"; else $my_vim .; fi'\'' bash'
-alias cf="cd \$(fd --type d --hidden | fzf)"
-alias cfh="cd ~ && cd \$(fd --type d --hidden | fzf)" # search from home
 #🔼🔼🔼
 
 #🔽🔽🔽
@@ -250,12 +249,16 @@ export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude={${fzf_ignore}} "
 export FZF_DEFAULT_OPTS="--height 80% --layout=reverse --preview 'echo {} | ~/.config/fzf/fzf_preview.py' --preview-window=down --border \
   --bind ctrl-d:page-down,ctrl-u:page-up \
   "
-_fzf_compgen_path() {
-  fd --hidden --follow --exclude={${fzf_ignore}}
-}
-_fzf_compgen_dir() {
-  fd --type d --hidden --exclude={${fzf_ignore}}
-}
+# _fzf_compgen_path() {
+#   fd --hidden --follow --exclude={${fzf_ignore}}
+# }
+# _fzf_compgen_dir() {
+#   fd --type d --hidden --exclude={${fzf_ignore}}
+# }
+# optimizer fzf for zsh
+source <(fzf --zsh)
+# alias cf="cd \$(fd --type d --hidden | fzf)"
+# alias cfh="cd ~ && cd \$(fd --type d --hidden | fzf)" # search from home
 #🔼🔼🔼
 
 #🔽🔽🔽
