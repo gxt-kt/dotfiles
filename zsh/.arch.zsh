@@ -33,6 +33,10 @@ macos() {
   # alias g++="/opt/homebrew/bin/aarch64-apple-darwin23-g++-14"
   # alias clang="/opt/homebrew/bin/aarch64-apple-darwin23-gcc-14"
   # alias clang++="/opt/homebrew/bin/aarch64-apple-darwin23-g++-14"
+  # alias gcc="/opt/homebrew/opt/llvm/bin/clang"
+  # alias g++="/opt/homebrew/opt/llvm/bin/clang++"
+  # alias clang="/opt/homebrew/opt/llvm/bin/clang"
+  # alias clang++="/opt/homebrew/opt/llvm/bin/clang++"
   # alias ld="/opt/homebrew/bin/"
 }
 
