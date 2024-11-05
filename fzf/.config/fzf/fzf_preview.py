@@ -36,7 +36,7 @@ if __name__ == "__main__":
     elif preview_nameandline[0].replace("'", '').endswith(('.md')):
         os.system('glow -s dark -- {}'.format(preview_nameandline[0]))
     else:
-        if os.system(f"command -v bat &>/dev/null") == 0 : # if has bat to preview file
+        if os.system("command -v bat >/dev/null") == 0 : # if has bat to preview file
             os.system('bat --style=numbers --color=always -r {}: {}'.format(
                 preview_nameandline[1], preview_nameandline[0]))
         else :
