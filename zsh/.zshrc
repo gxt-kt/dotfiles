@@ -335,7 +335,3 @@ if command -v zoxide &> /dev/null; then
     }
 fi
 #🔼🔼🔼
-#
-
-## ros
-source /opt/ros/noetic/setup.zsh
