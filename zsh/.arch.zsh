@@ -1,5 +1,6 @@
 macos() {
   alias updatedb="/usr/libexec/locate.update"
+  alias docker_start="open /Applications/Docker.app"
 
   export LC_ALL=en_US.UTF-8  
   export LANG=en_US.UTF-8

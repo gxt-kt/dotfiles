@@ -226,6 +226,7 @@ function proxy_status(){
 #🔽🔽🔽
 # alias
 alias r="ranger"
+alias e="extract"
 command -v lolcat &>/dev/null && alias neofetch="neofetch | lolcat"
 # 依次检测bat/cat是否存在，存在替换成对应的，推荐使用bat，并且使用--style=plain更朴素一点
 # command -v ccat &>/dev/null && alias cat="ccat"
@@ -312,7 +313,7 @@ export CMAKE_EXPORT_COMPILE_COMMANDS=1
 
 # trash-cli alis : https://github.com/andreafrancia/trash-cli
 #🔽🔽🔽
-alias rm='trash-put'
+alias rm='bash -c '\''my_rm=""; if command -v trash-put >/dev/null 2>&1; then my_rm="trash-put"; else my_rm="rm"; fi; if [ "$#" -gt 0 ]; then $my_rm "$@"; fi'\'' _'
 alias trash-autoclean='trash-empty 30'
 alias trash-cd='cd ${HOME}/.local/share/Trash'
 alias trash-ls='trash-list'
