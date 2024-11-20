@@ -146,7 +146,7 @@ fi
 export TERM=xterm-256color
 
 alias tmux-ls="tmux list-sessions"
-alias tmux-cd="tmux attach-session -t"
+alias tmux-cd="tmux -u attach-session -t"
 alias tmux-rm="tmux kill-session -t"
 alias tmux-reboot="tmux kill-server && tmux || tmux"
 
