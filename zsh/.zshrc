@@ -7,6 +7,8 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/.local/bin":$PATH
+export PATH="$HOME/.cargo/bin":$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -238,7 +240,6 @@ alias vim='bash -c '\''my_vim=""; if command -v nvim >/dev/null 2>&1; then my_vi
 
 #🔽🔽🔽
 # neovim
-export PATH="$HOME/.local/bin":$PATH
 export EDITOR=$(bash -c 'if command -v nvim >/dev/null 2>&1; then echo "nvim"; elif command -v lvim >/dev/null 2>&1; then echo "lvim"; else echo "vim"; fi')
 # export EDITOR='nvim'
 #🔼🔼🔼
@@ -299,16 +300,11 @@ alias count_lines='python3 ~/.scripts/code/count_lines.py'
 alias words_to_mp3='python3 ~/.scripts/english_helper/generate_mp3_from_words.py'
 #🔼🔼🔼
 
-# ADD rust cargo bin path
-#🔽🔽🔽
-export PATH="$HOME/.cargo/bin":$PATH
-#🔼🔼🔼
 
 # enable cmake generate compile json file
 #🔽🔽🔽
 export CMAKE_EXPORT_COMPILE_COMMANDS=1
 #🔼🔼🔼
-
 
 
 # trash-cli alis : https://github.com/andreafrancia/trash-cli
