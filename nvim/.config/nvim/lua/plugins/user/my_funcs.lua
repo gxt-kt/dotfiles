@@ -31,6 +31,11 @@ M.live_grep_raw = function(opts, mode)
   -- for visual mode
   if mode then opts.default_text = opts.default_text .. '"' .. M.escape_rg_text(M.get_text(mode)) .. '"' end
 
+  -- default ignore files
+  opts.defaults = {
+    file_ignore_patterns = { ".git/", "node_modules", "build/" },
+  }
+
   -- whether search all files
   if opts.search_all then opts.default_text = "--hidden --no-ignore " .. opts.default_text end
 
@@ -50,15 +55,28 @@ M.live_grep_raw = function(opts, mode)
       ["<C-p>"] = actions.move_selection_previous,
     },
   }
+
+  -- 获取vim窗口的大小
+  local width = vim.o.columns
+  local height = vim.o.lines
+  -- require("my_sys").DEBUG("width", width)
+  -- require("my_sys").DEBUG("height", height)
+  -- 根据vim窗口大小选择 opts
+  -- 宽度大于120默认就没有预览了，就用另一个上下预览的
+  if width >= 120 then
+    require("telescope").extensions.live_grep_args.live_grep_args(opts)
+  else
+    require("telescope").extensions.live_grep_args.live_grep_args(require("telescope.themes").get_dropdown(opts))
+  end
   -- 使用一个插件实现我们自己的telescope搜索
-  require("telescope").extensions.live_grep_args.live_grep_args(
-    -- 使用默认主题
-    opts
-    -- 底下三个是telecope所自带的主题
-    -- require('telescope.themes').get_ivy(opts)
-    -- require('telescope.themes').get_cursor(opts)
-    -- require("telescope.themes").get_dropdown(opts)
-  )
+  -- require("telescope").extensions.live_grep_args.live_grep_args(
+  --   -- 使用默认主题
+  --   opts
+  --   -- 底下三个是telecope所自带的主题
+  --   -- require('telescope.themes').get_ivy(opts)
+  --   -- require('telescope.themes').get_cursor(opts)
+  --   -- require("telescope.themes").get_dropdown(opts)
+  -- )
 end
 
 M.get_text = function(mode)
