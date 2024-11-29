@@ -147,6 +147,7 @@ fi
 # if set this , home and end in tmux will be strange, need remap home and end in tmux.
 export TERM=xterm-256color
 
+alias tmux="tmux -u"
 alias tmux-ls="tmux list-sessions"
 alias tmux-cd="tmux -u attach-session -t"
 alias tmux-rm="tmux kill-session -t"
@@ -332,3 +333,6 @@ if command -v zoxide &> /dev/null; then
     }
 fi
 #🔼🔼🔼
+
+# solve bug ssh zsh-vi-mode will caplitalizes the last character
+unset zle_bracketed_paste
