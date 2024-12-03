@@ -88,8 +88,8 @@ plugins=(
     sudo
 	extract
 	zsh-vi-mode
-	fzf
 )
+command -v fzf &>/dev/null && plugins+=(fzf)
 
 # plugin: zsh-vi-mode
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk # press "jk" to enter normal mode
@@ -133,6 +133,7 @@ source $ZSH/oh-my-zsh.sh
 ################################################
 ################################################
 
+# source my other config zsh file
 #🔽🔽🔽
 if [ -f $HOME/.arch.zsh ]; then  
     source $HOME/.arch.zsh  
@@ -259,9 +260,7 @@ export FZF_DEFAULT_OPTS="--height 80% --layout=reverse --preview 'echo {} | ~/.c
 #   fd --type d --hidden --exclude={${fzf_ignore}}
 # }
 # optimizer fzf for zsh
-source <(fzf --zsh)
-# alias cf="cd \$(fd --type d --hidden | fzf)"
-# alias cfh="cd ~ && cd \$(fd --type d --hidden | fzf)" # search from home
+command -v fzf &>/dev/null && source <(fzf --zsh)
 #🔼🔼🔼
 
 #🔽🔽🔽
@@ -315,6 +314,16 @@ alias trash-autoclean='trash-empty 30'
 alias trash-cd='cd ${HOME}/.local/share/Trash'
 alias trash-ls='trash-list'
 alias trash-ll='trash-ls'
+#🔼🔼🔼
+
+# cmake
+#🔽🔽🔽
+alias cmake_build='cmake -S. -Bbuild && cmake --build build -j'
+alias cmake_build_debug='cmake -S. -Bbuild/debug && cmake --build build/debug -j'
+alias cmake_build_release='cmake -S. -Bbuild/release && cmake --build build/release -j'
+alias cmake_install='sudo cmake --install build'
+alias cmake_install_debug='sudo cmake --install build/debug'
+alias cmake_install_release='sudo cmake --install build/release'
 #🔼🔼🔼
 
 # zoxide
