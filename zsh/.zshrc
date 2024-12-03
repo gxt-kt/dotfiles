@@ -319,8 +319,8 @@ alias trash-ll='trash-ls'
 # cmake
 #🔽🔽🔽
 alias cmake_build='cmake -S. -Bbuild && cmake --build build -j'
-alias cmake_build_debug='cmake -S. -Bbuild/debug && cmake --build build/debug -j'
-alias cmake_build_release='cmake -S. -Bbuild/release && cmake --build build/release -j'
+alias cmake_build_debug='cmake -S. -Bbuild/debug -DCMAKE_BUILD_TYPE=Debug && cmake --build build/debug -j'
+alias cmake_build_release='cmake -S. -Bbuild/release -DCMAKE_BUILD_TYPE=Release && cmake --build build/release -j'
 alias cmake_install='sudo cmake --install build'
 alias cmake_install_debug='sudo cmake --install build/debug'
 alias cmake_install_release='sudo cmake --install build/release'
