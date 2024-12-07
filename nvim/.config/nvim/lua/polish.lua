@@ -4,7 +4,25 @@
 -- things like custom filetypes. This just pure lua so anything that doesn't
 -- fit in the normal config locations above can go here
 
-vim.opt.clipboard = "unnamedplus"
+-- ref: https://www.cnblogs.com/sxrhhh/p/18234652/neovim-copy-anywhere
+-- 本地环境
+if os.getenv "SSH_TTY" == nil then
+  vim.opt.clipboard:append "unnamedplus"
+else
+  -- remote env
+  vim.opt.clipboard:append "unnamedplus"
+  vim.g.clipboard = {
+    name = "OSC 52",
+    copy = {
+      ["+"] = require("vim.ui.clipboard.osc52").copy "+",
+      ["*"] = require("vim.ui.clipboard.osc52").copy "*",
+    },
+    paste = {
+      ["+"] = require("vim.ui.clipboard.osc52").paste "+",
+      ["*"] = require("vim.ui.clipboard.osc52").paste "*",
+    },
+  }
+end
 
 -- NOTE: gxt: Astronvim Feature_or_Bug?
 -- https://www.reddit.com/r/AstroNvim/comments/108cir5/keep_word_search_highlighting/
