@@ -161,7 +161,7 @@ class Tmux
   end
 
   def create_window(name, cmd, _pane_width, _pane_height)
-    output = exec("new-window -P -d -n '#{name}' -F '#{WINDOW_FORMAT}' '#{cmd}'").chomp
+    output = exec("new-window -c '\#{pane_current_path}' -P -d -n '#{name}' -F '#{WINDOW_FORMAT}' '#{cmd}'").chomp
 
     Window.from_json(output)
   end
@@ -243,7 +243,13 @@ class Tmux
   end
 
   def select_pane(id)
-    exec(["select-pane", "-t", id].join(' '))
+    args = ["select-pane", "-t", id]
+
+    if @version >= Tmux.tmux_version_to_semver("3.1")
+      args << "-Z"
+    end
+
+    exec(args.join(' '))
   end
 
   def zoom_pane(id)
@@ -283,7 +289,7 @@ class Tmux
     exec(Process.quote(["display-message", "-d", delay.to_s, msg]))
   end
 
-  private def exec(cmd)
+  def exec(cmd)
     @sh.exec("#{tmux} #{cmd}")
   end
 end

@@ -1,3 +1,40 @@
+## 2.2.2 - 14 Aug 2024
+
+* Fixed error in multi-user environments.
+* Added XDG dirs, logs are now in ~/.local/state/tmux-fingers/fingers.log instead of /tmp/fingers.log.
+* Action stderr is now logged to ~/.local/state/tmux-fingers/action-stderr
+
+## 2.2.1 - 29 Jul 2024
+
+* Tweaks to version detection logic ( Fixes #125 ).
+
+## 2.2.0 - 21 Jul 2024
+
+* Add new option @fingers-enabled-builtin-patterns ( Fixes #19 ).
+* New way of setting up tmux-fingers bindings, with command line option to allow using only specific patterns (built-in or custom) ( Fixes #117 )
+* Fix issue where zoom panes would be unzoomed when closing ( Fixes #123 ).
+* Open tmux-fingers in same path as target pane path ( Fixes #120 ).
+
+## 2.1.5 - 02 May 2024
+
+* User defined patterns now take precedence over built-in ones.
+* Fix blank screen under certain circumstances due to incorrect handling of capture groups.
+
+## 2.1.4 - 08 Mar 2024
+
+* Fixed "No last pane" error when using "tmux last-pane" ( Fixes #48 )
+
+## 2.1.3 - 31 Jan 2024
+
+* Fix "Too many matches" exception ( fixes #112 ).
+
+## 2.1.2 - 19 Jan 2024
+
+* Added termux support.
+* Fixes to Fingers::Dirs to remove hardcoded paths. Default log path is now /tmp/fingers.log.
+* Updated Crystal version to generate clean ELF executables.
+* Improve exception handling when rendering.
+
 ## 2.1.1 - 16 Nov 2023
 
 * Fix copy/jump when using special named capture group "match".

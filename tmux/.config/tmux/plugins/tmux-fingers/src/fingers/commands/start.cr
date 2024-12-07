@@ -1,3 +1,4 @@
+require "cling"
 require "./base"
 require "../hinter"
 require "../view"
@@ -24,11 +25,38 @@ module Fingers::Commands
     end
   end
 
-  class Start < Base
+  class Start < Cling::Command
     @original_options : Hash(String, String) = {} of String => String
+    @last_pane_id : String | Nil
+    @mode : String = "default"
+    @pane_id : String = ""
+    @patterns : Array(String) = [] of String
 
-    def run
-      track_options_to_restore!
+    def setup : Nil
+      @name = "start"
+      add_argument "pane_id", required: true
+      add_option "mode",
+                 description: "jump or not",
+                 type: :single,
+                 default: "default"
+
+      add_option "patterns",
+                 description: "comma separated list of pattern names",
+                 type: :single
+    end
+
+    def run(arguments, options) : Nil
+      @mode = options.get("mode").as_s
+      @pane_id = arguments.get("pane_id").as_s
+
+      if options.has?("patterns")
+        @patterns = patterns_from_options(options.get("patterns").as_s)
+      else
+        @patterns = Fingers.config.patterns.values
+      end
+
+      track_options_to_restore
+      track_last_pane
       show_hints
 
       if Fingers.config.benchmark_mode == "1"
@@ -40,7 +68,25 @@ module Fingers::Commands
       teardown
     end
 
-    private def track_options_to_restore!
+    private def patterns_from_options(pattern_names_option : String)
+      pattern_names = pattern_names_option.split(",")
+
+      result = [] of String
+
+      pattern_names.each do |pattern_name|
+        pattern = Fingers.config.patterns[pattern_name]?
+        if pattern
+          result << pattern
+        else
+          tmux.display_message("[tmux-fingers] error: Unknown pattern #{pattern_name}", 5000)
+          exit 0
+        end
+      end
+
+      result
+    end
+
+    private def track_options_to_restore
       options_to_preserve.each do |option|
         value = tmux.get_global_option(option)
         @original_options[option] = value
@@ -51,6 +97,16 @@ module Fingers::Commands
       @original_options.each do |option, value|
         tmux.set_global_option(option, value)
       end
+    end
+
+    private def restore_last_pane
+      tmux.select_pane(@last_pane_id)
+      tmux.select_pane(target_pane.pane_id)
+    end
+
+    private def track_last_pane
+      last_pane_id = tmux.exec("display-message -t '{last}' -p '\#{pane_id}'").chomp
+      @last_pane_id = last_pane_id unless last_pane_id.empty?
     end
 
     private def options_to_preserve
@@ -94,16 +150,18 @@ module Fingers::Commands
       tmux.swap_panes(fingers_pane_id, target_pane.pane_id)
       tmux.kill_pane(fingers_pane_id)
 
+      restore_last_pane
       restore_options
+
       view.run_action if state.result
     end
 
     private getter target_pane : Tmux::Pane do
-      tmux.find_pane_by_id(@args[0]).not_nil!
+      tmux.find_pane_by_id(@pane_id).not_nil!
     end
 
     private getter mode : String do
-      @args[1].not_nil!
+      @mode.not_nil!
     end
 
     private getter fingers_window : Tmux::Window do
@@ -125,6 +183,7 @@ module Fingers::Commands
     private getter hinter : Hinter do
       Fingers::Hinter.new(
         input: pane_contents,
+        patterns: @patterns,
         width: target_pane.pane_width.to_i,
         state: state,
         output: pane_printer,

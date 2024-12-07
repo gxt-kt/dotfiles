@@ -1,18 +1,16 @@
+---
+version: 2.2.2
 name: fingers
-version: 2.1.1
-
 authors:
-  - Jorge Morante <jorge@morante.eu>
-
+- Jorge Morante <jorge@morante.eu>
 targets:
   tmux-fingers:
     main: src/fingers.cr
-
-development_dependencies:
-  ameba:
-    github: crystal-ameba/ameba
-    version: ~> 1.5.0
-
-crystal: 1.9.2
-
+dependencies:
+  cling:
+    github: devnote-dev/cling
+    version: '>= 3.0.0'
+  xdg_base_directory:
+    github: tijn/xdg_base_directory
+crystal: 1.11.2
 license: MIT
