@@ -24,6 +24,10 @@ else
   }
 end
 
+-- ref: help jumplist-stack
+-- ref: https://www.bilibili.com/video/BV132qUY4EhS/
+vim.opt.jumpoptions = "stack"
+
 -- NOTE: gxt: Astronvim Feature_or_Bug?
 -- https://www.reddit.com/r/AstroNvim/comments/108cir5/keep_word_search_highlighting/
 -- https://github.com/AstroNvim/AstroNvim/issues/2109
