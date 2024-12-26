@@ -1,5 +1,7 @@
 -- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
 
+vim.g.gitblame_message_when_not_committed = "" -- set null when nothing commit
+
 return {
   {
     "FabijanZulj/blame.nvim",
