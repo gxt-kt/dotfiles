@@ -10,7 +10,7 @@ return {
         "<C-b>",
         "<C-f>",
         "<C-y>",
-        "<C-e>",
+        -- "<C-e>", -- <c-e> map to smart-splits
         "zt",
         "zz",
         "zb",

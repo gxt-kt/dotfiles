@@ -7,24 +7,30 @@ local M = {}
 
 
 local terminal_maps = {
-  { vim.o.shell, "<M-`>",         "Float Terminal",      "float",      nil },
-  { vim.o.shell, "<M-Esc>",       "Float Terminal",      "float",      nil },
-  { vim.o.shell, "<M-->",         "Horizontal Terminal", "horizontal", 0.3 },
-  { vim.o.shell, "<M-\\>",        "Vertical Terminal",   "vertical",   0.4 },
-  { vim.o.shell, "<M-BackSpace>", "Vertical Terminal",   "vertical",   0.4 },
+  { vim.o.shell, "<M-`>",         "Float Terminal1",      "float",      nil },
+  { vim.o.shell, "<M-Esc>",       "Float Terminal2",      "float",      nil },
+  { vim.o.shell, "<M-->",         "Horizontal Terminal1", "horizontal", 0.3 },
+  { vim.o.shell, "<M-=>",         "Horizontal Terminal2", "horizontal", 0.3 },
+  { vim.o.shell, "<M-\\>",        "Vertical Terminal1",   "vertical",   0.4 },
+  { vim.o.shell, "<M-BackSpace>", "Vertical Terminal2",   "vertical",   0.4 },
 }
 
+-- 这里原来是用的buffer size为基准
 --- Get current buffer size
 ---@return {width: number, height: number}
+-- local function get_buf_size()
+--   local cbuf = vim.api.nvim_get_current_buf()
+--   local bufinfo = vim.tbl_filter(function(buf)
+--     return buf.bufnr == cbuf
+--   end, vim.fn.getwininfo(vim.api.nvim_get_current_win()))[1]
+--   if bufinfo == nil then
+--     return { width = -1, height = -1 }
+--   end
+--   return { width = bufinfo.width, height = bufinfo.height }
+-- end
+-- 我改成了用总共窗口的size
 local function get_buf_size()
-  local cbuf = vim.api.nvim_get_current_buf()
-  local bufinfo = vim.tbl_filter(function(buf)
-    return buf.bufnr == cbuf
-  end, vim.fn.getwininfo(vim.api.nvim_get_current_win()))[1]
-  if bufinfo == nil then
-    return { width = -1, height = -1 }
-  end
-  return { width = bufinfo.width, height = bufinfo.height }
+  return { width = vim.o.columns, height = vim.o.lines }
 end
 
 --- Get the dynamic terminal size in cells
@@ -49,7 +55,7 @@ M.init = function(terminal_execs)
     local direction = exec[4] or "float"
 
     local opts = {
-      cmd = exec[1] or lvim.builtin.terminal.shell or vim.o.shell,
+      cmd = exec[1] or vim.o.shell,
       keymap = exec[2],
       label = exec[3],
       -- NOTE: unable to consistently bind id/count <= 9, see #2146
@@ -80,8 +86,10 @@ end
 
 M._exec_toggle = function(opts)
   local Terminal = require("toggleterm.terminal").Terminal
-  local term = Terminal:new { cmd = opts.cmd, count = opts.count, direction = opts.direction }
-  term:toggle(opts.size, opts.direction)
+  -- local term = Terminal:new { cmd = opts.cmd, count = opts.count, direction = opts.direction }
+  -- term:toggle(opts.size, opts.direction)
+  local term = Terminal:new {size=opts.size, cmd = opts.cmd, count = opts.count, direction = opts.direction }
+  term:toggle(opts.size)
 end
 
 
