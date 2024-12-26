@@ -168,6 +168,18 @@ return {
     end
 
     local all_colors = vim.fn.getcompletion("", "color")
+
+    -- 获取当前的颜色主题
+    local current_color = vim.g.colors_name or vim.o.background or ""
+    -- 设定默认选择的颜色
+    local default_selection = nil
+    for i, color in ipairs(all_colors) do
+      if color == current_color then
+        default_selection = i
+        break
+      end
+    end
+
     local opts = {
       --Modify the list of colors
       -- finder = finders.new_table {"gruvbox", "nordfox", "nightfox", "monokai", "tokyonight"},
@@ -175,6 +187,9 @@ return {
       sorter = sorters.get_generic_fuzzy_sorter {},
 
       prompt_title = "Change Colorscheme: ( <C-n/p> <C-j/k> Enter )",
+
+      -- 设置默认选择当前的主题
+      default_selection_index = default_selection,
 
       attach_mappings = function(prompt_bufnr, map)
         map("i", "<CR>", enter)
