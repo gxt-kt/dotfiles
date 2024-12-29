@@ -6,10 +6,9 @@ return {
     enabled = false,
   },
   {
-    "shellRaining/hlchunk.nvim",
-    event = { "UIEnter" },
+    "gxt-kt/hlchunk.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
-      -- vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, { pattern = "*", command = "EnableHL" })
       require("hlchunk").setup {
         chunk = {
           enable = true,
@@ -30,7 +29,7 @@ return {
             { fg = "#CB8764" },
           },
           error_sign = true,
-          -- duration = 150,
+          duration = 150,
           delay = 50,
         },
         indent = {
