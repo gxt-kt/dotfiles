@@ -396,6 +396,12 @@ return {
           -- setting a mapping to false will disable it
           -- ["<esc>"] = false,
           -- ["<Leader>h"] = false,
+          ["<Leader>gg"] = {
+            "<cmd>lua require('my_funcs').git_gitui_toggle()<cr>",
+            desc = "gitui",
+            noremap = true,
+            silent = true,
+          },
         },
       },
     },
