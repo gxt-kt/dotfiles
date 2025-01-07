@@ -282,6 +282,12 @@ return {
             noremap = true,
             silent = true,
           },
+          ["<C-_>"] = {
+            "<cmd>RenderMarkdown toggle<cr>",
+            desc = "markdown render",
+            noremap = true,
+            silent = true,
+          },
 
           -- leetcode
           -- lvim.builtin.which_key.mappings.L = nil

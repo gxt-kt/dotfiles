@@ -21,7 +21,7 @@ return {
     -- gp_openai_key_file_path = vim.fn.stdpath "config" .. "/.openai_api_key",
   },
   markdown = {
-    highlight_by_headlines = true,
+    highlight_method = "render-markdown", -- headlines or render-markdown
   },
   leetcode = {
     leetcode_enabled = true,
