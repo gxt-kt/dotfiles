@@ -83,7 +83,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
 	git
 	zsh-autosuggestions
-	zsh-completions
 	zsh-syntax-highlighting
     sudo
 	extract
@@ -96,6 +95,9 @@ ZVM_VI_INSERT_ESCAPE_BINDKEY=jk # press "jk" to enter normal mode
 ZVM_ESCAPE_TIMEOUT=0.1 # wait time for escape bind key (default is 0.3s)
 ZVM_VI_EDITOR=nvim # visual mode "vv" use editor to edit cmd
 ZVM_INIT_MODE=sourcing
+
+# plugin: zsh-autosuggestions
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 source $ZSH/oh-my-zsh.sh
 
