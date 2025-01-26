@@ -4,6 +4,14 @@
 -- things like custom filetypes. This just pure lua so anything that doesn't
 -- fit in the normal config locations above can go here
 
+-- use for some terminal only support osc52 copy but not paste
+local function paste()
+  return {
+    vim.fn.split(vim.fn.getreg "", "\n"),
+    vim.fn.getregtype "",
+  }
+end
+
 -- ref: https://www.cnblogs.com/sxrhhh/p/18234652/neovim-copy-anywhere
 -- 本地环境
 if os.getenv "SSH_TTY" == nil then
@@ -18,8 +26,8 @@ else
       ["*"] = require("vim.ui.clipboard.osc52").copy "*",
     },
     paste = {
-      ["+"] = require("vim.ui.clipboard.osc52").paste "+",
-      ["*"] = require("vim.ui.clipboard.osc52").paste "*",
+      ["+"] = paste,
+      ["*"] = paste,
     },
   }
 end
