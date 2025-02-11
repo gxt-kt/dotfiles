@@ -13,8 +13,9 @@ local function paste()
 end
 
 -- ref: https://www.cnblogs.com/sxrhhh/p/18234652/neovim-copy-anywhere
--- 本地环境
-if os.getenv "SSH_TTY" == nil then
+-- 本地环境 判断SSH_CONNECTION在tmux环境下也有用，SSH_TTY有时会失效
+-- if os.getenv "SSH_TTY" == nil then
+if os.getenv "SSH_CONNECTION" == nil then
   vim.opt.clipboard:append "unnamedplus"
 else
   -- remote env
