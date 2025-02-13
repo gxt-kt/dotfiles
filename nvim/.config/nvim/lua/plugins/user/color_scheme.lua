@@ -13,6 +13,7 @@ return {
       highlights = {
         init = { -- this table overrides highlights in all themes
           -- Normal = { bg = "#000000" },
+          Folded = { bg = nil }, -- 配置折叠代码块背景色为空（默认是有一个蒙版一样的）
         },
         astrodark = { -- a table of overrides/changes when applying the astrotheme theme
           -- Normal = { bg = "#000000" },
