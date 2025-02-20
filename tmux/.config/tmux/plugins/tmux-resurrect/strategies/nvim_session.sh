@@ -24,12 +24,7 @@ main() {
 		# starting plain nvim.
 		echo "nvim"
 	else
-		# echo "$ORIGINAL_COMMAND"
-    
-    # NOTE: gxt: add for neovim resession plugin
-    # must have resession plugin (astronvim)
-		# echo "nvim -c 'lua require(\"resession\").load(\"$DIRECTORY\", { dir = \"dirsession\" , silence_errors=true})'" >> ~/log
-		echo "nvim -c 'lua require(\"resession\").load(\"$DIRECTORY\", { dir = \"dirsession\" , silence_errors=true })'"
+		echo "$ORIGINAL_COMMAND"
 	fi
 }
 main
